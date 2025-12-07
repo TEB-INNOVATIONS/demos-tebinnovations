@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fuego Aura - Precision. Power. Passion.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sora: ['Sora', 'sans-serif'],
+          },
+          colors: {
+            'aura-blue': {
+              '100': '#E0F5FF',
+              '300': '#66CFFF',
+              '500': '#00A9FF',
+              '700': '#007ACC',
+            },
+            'aura-dark': {
+              '800': '#1A2333',
+              '900': '#0F172A',
+            },
+          },
+          boxShadow: {
+            'glow-blue': '0 0 15px rgba(0, 169, 255, 0.5), 0 0 5px rgba(0, 169, 255, 0.7)',
+            'glow-blue-sm': '0 0 8px rgba(0, 169, 255, 0.4)',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-aura-dark-900 text-gray-300 font-sora">
+<div class="overflow-x-hidden" id="page-wrapper">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 bg-aura-dark-900/80 backdrop-blur-sm" data-purpose="Site Navigation Header" id="main-header">
+<div class="container mx-auto px-6 py-4">
+<nav class="flex items-center justify-between">
+<!-- Logo -->
+<a class="flex items-center gap-3" data-purpose="Logo Link" href="#">
+<img alt="Fuego Aura Logo" class="h-8 w-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB920Wcr7CRslYwmySXHpJdY97eJGimnVkbDUadAkq3858z6XszLYW_DaF-ZPhey4s8ltEoNpE_scSmrkEkHwcQMENz8jwpJqj14QQS5erYr9DbN8Ocz25LAj1pa6TKpUSuTwn-f_BVNPfDYAoCAjjlx4SoKjS23nHyTxOs15I5RCrdRyNhLkApEWsXIAZFSyQbyWhonknabHADlgpb7bPDf0UkD0fuoLYB_uhefhmdx_oLaaMs9UgSGdpHKaMAz2pxB14CbLe8qg"/>
+<span class="text-white text-2xl font-bold">Fuego Aura</span>
+</a>
+<!-- Desktop Navigation Links -->
+<div class="hidden md:flex items-center space-x-8 text-sm">
+<a class="hover:text-aura-blue-500 transition-colors" href="#about">About</a>
+<a class="hover:text-aura-blue-500 transition-colors" href="#services">Services</a>
+<a class="hover:text-aura-blue-500 transition-colors" href="#process">Process</a>
+<a class="hover:text-aura-blue-500 transition-colors" href="#gallery">Gallery</a>
+<a class="hover:text-aura-blue-500 transition-colors" href="#contact">Contact</a>
+</div>
+<!-- CTA Button -->
+<a class="hidden md:inline-block px-5 py-2 text-sm font-semibold text-white bg-aura-dark-800 border border-aura-blue-700 rounded-md hover:bg-aura-blue-700 hover:shadow-glow-blue-sm transition-all" href="#contact">
+            Get a Quote
+          </a>
+<!-- Mobile Menu Button (Hamburger) -->
+<button aria-label="Open menu" class="md:hidden text-white">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16m-4 6h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</nav>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main id="main-content">
+<!-- BEGIN: HeroSection -->
+<section class="relative py-32 md:py-48 text-center text-white" data-purpose="Hero Section" id="hero">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Laser cutter in action" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFYbEBafhg1N0zSB4Xgr4SsPeAsjoMh3OfVOkbBYXXZEjmMJc6MwLAE1Anps8gzVa9Qz6DsCoSQ2xcFxWkbpJQdvYlej6hWsHC8H7WIkmvGu96mgLer--eBuIiJ3FPPnN_4oIW_Qz1KqksJYX0BuFd_5kEUPwJRF9TG8yH5tA-8nfa9vTn6FrksZiEfDB5LoKzRcIhv0hOkF9hPE6WWopUTusiR1IojIUG1dGl0TSeF9-D4Hc7zWvkvU9VFPex0v-HoVeYNd-ZzA"/>
+<div class="absolute inset-0 bg-aura-dark-900/70"></div>
+</div>
+<div class="container mx-auto px-6 relative z-10">
+<h1 class="text-4xl md:text-6xl font-bold mb-4" data-purpose="Main Headline">
+            Fuego Aura:<br/>
+<span class="text-aura-blue-300">Precision. Power. Passion.</span>
+</h1>
+<p class="max-w-2xl mx-auto mb-8 text-gray-300">
+            Transforming materials with light. Your premier partner for laser cutting, engraving, and creative fabrication.
+          </p>
+<a class="inline-block px-8 py-3 text-lg font-semibold text-white bg-aura-blue-500 rounded-md shadow-glow-blue hover:bg-aura-blue-700 transition-all" href="#gallery">
+            Explore Our Work
+          </a>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: AboutSection -->
+<section class="py-24 bg-aura-dark-900" data-purpose="About Section" id="about">
+<div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+<!-- About Image -->
+<div class="relative p-2 border border-aura-blue-700/50 rounded-lg">
+<div class="absolute -inset-2 bg-gradient-to-r from-aura-blue-500/30 to-transparent rounded-lg blur-xl animate-pulse" style="animation-duration: 4s;"></div>
+<img alt="Team working on a project with a laser cutter" class="rounded-md relative z-10 w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtFVhmJNFkzCbQhtDIAwK1_xsTyA6uatlF-65tGg2cHnJ11QoQPfMAE9V1lodyGboRghS-kJgmHo8S35_jdd6XCDehbTLD9y8Xt04qfHe9K9YoxMLx9wcUlj2HsRYU7Y5_GgUxdm7DfoSxxBY80eCFQdWdLXvZj4XvdFU_NmUXhutarhwqkzRYtGvd6S5H9A_4S-oL4mzdbIGH_6u0-ft5eIB3cMFk8W43M8sBIW45QrUbQRgj_7Yf-_b0GStW3Bwm3_Qa13L-zw"/>
+</div>
+<!-- About Content -->
+<div data-purpose="About Text Content">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-6">About Section</h2>
+<p class="mb-4">
+              Fuego Aura has dedicated to entrepreneurship, innovation and occaecat consequat minim. Laborum excepteur exercitation, and eiusmod commodo, proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+<p class="mb-8">
+              We transforming materials with light. Your premier partner for laser cutting, engraving, and creative fabrication.
+            </p>
+<a class="inline-block px-8 py-3 font-semibold text-white bg-aura-blue-500 rounded-md shadow-glow-blue hover:bg-aura-blue-700 transition-all" href="#services">
+              Explore Our Work
+            </a>
+</div>
+</div>
+</section>
+<!-- END: AboutSection -->
+<!-- BEGIN: ServicesSection -->
+<section class="py-24 bg-aura-dark-800 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] bg-opacity-5" data-purpose="Services Section" id="services">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Services Section</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Service Card: Laser Cutting -->
+<div class="bg-aura-dark-900/50 border border-aura-blue-700/30 rounded-lg p-6 text-center backdrop-blur-sm hover:border-aura-blue-500 hover:shadow-glow-blue-sm transition-all duration-300">
+<img alt="Laser Cutting Icon" class="h-16 w-16 mx-auto mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBojXnxdS22_dO_H23S22mdqGv6vleI9OEuMDQKlmj4BJdNoKj_Vvd9pWvg7QvRGkAvuqYR7Zd7YokLl_7aP7-rILqsTa6UneLZ2JTJnW0qS6bXcKxIEgzd4KfYKzOED-9b0X--TRc0dgHLRf_n8INzo95v22Jge9kBVRRvP2HksetU3w61kPFQxLQbwxwGufcz6zrLUqPySQrRbG4QZMgfjzOMMGvrW9fwQeIaxxx05g0OIYYPFQlAciGymh2qzVI1cUkmn0f83Q"/>
+<h3 class="text-xl font-semibold text-white mb-2">Laser Cutting</h3>
+<p class="text-sm text-gray-400 mb-4">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+<a class="font-semibold text-aura-blue-300 hover:text-white transition-colors" href="#">Learn More →</a>
+</div>
+<!-- Service Card: Engraving & Marking -->
+<div class="bg-aura-dark-900/50 border border-aura-blue-700/30 rounded-lg p-6 text-center backdrop-blur-sm hover:border-aura-blue-500 hover:shadow-glow-blue-sm transition-all duration-300">
+<div class="h-16 w-16 mx-auto mb-4 bg-gray-700 rounded"></div>
+<h3 class="text-xl font-semibold text-white mb-2">Engraving &amp; Marking</h3>
+<p class="text-sm text-gray-400 mb-4">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+<a class="font-semibold text-aura-blue-300 hover:text-white transition-colors" href="#">Learn More →</a>
+</div>
+<!-- Service Card: Custom Fabrication -->
+<div class="bg-aura-dark-900/50 border border-aura-blue-700/30 rounded-lg p-6 text-center backdrop-blur-sm hover:border-aura-blue-500 hover:shadow-glow-blue-sm transition-all duration-300">
+<img alt="Custom Fabrication Icon" class="h-16 w-16 mx-auto mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhNlSnqRctUgNDlv5oxS_gfmZft76xgHzLeK_U5CXq3TQm8WM-OIMFPPQoJgMJHVn1M2Cbvtb1GbzEAOuOgTypjZoYLX6LeHPiT6ju5DkHDealXG_LIjVyNk93NyzVQDLDzLJ1OFd8pZwHBVKtXgm-AjLx6Hc3KndOk7IgLnO0IaTEk_huWyVoHnIaz7FqD6Yl4pS8XuT3Z3rkr7a2FaHld2ay60PfNIIYHp3tXaB-XLQGhCA_t2nPYKvGGMK6vwIAWwrXYN-7HQ"/>
+<h3 class="text-xl font-semibold text-white mb-2">Custom Fabrication</h3>
+<p class="text-sm text-gray-400 mb-4">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+<a class="font-semibold text-aura-blue-300 hover:text-white transition-colors" href="#">Learn More →</a>
+</div>
+<!-- Service Card: Prototyping -->
+<div class="bg-aura-dark-900/50 border border-aura-blue-700/30 rounded-lg p-6 text-center backdrop-blur-sm hover:border-aura-blue-500 hover:shadow-glow-blue-sm transition-all duration-300">
+<img alt="Prototyping Icon" class="h-16 w-16 mx-auto mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMFkXpPlpVZItk2Bdtp9xd-4CoGnwg2DWkNepooBbBcQzBkWTzRZUzzJsCqWQuByWOCFWkXaQkIKmVMe4OHscJHmfBtroNDicVlXl8nqCN6lndvOuWJ24s_W0VwrB8qCWkzcBxS-QdeqtYSya0_7yE10_a4QOxexqh9UTsT4Jy85BPs_esfXmLs07VLi1Ajrxqa48x1sSh-3qOytazHnbqyp-fD3aGT51X4yimDOc2UCC_AZmM5-QXg4HbaP8QaKxULAvU4wcMAQ"/>
+<h3 class="text-xl font-semibold text-white mb-2">Prototyping</h3>
+<p class="text-sm text-gray-400 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+<a class="font-semibold text-aura-blue-300 hover:text-white transition-colors" href="#">Learn More →</a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ServicesSection -->
+<!-- BEGIN: ProcessSection -->
+<section class="py-24 bg-aura-dark-900" data-purpose="Our Process Section" id="process">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-16">Process Section</h2>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start text-center">
+<!-- Process Step 1 -->
+<div class="flex flex-col items-center">
+<div class="bg-aura-dark-800 border border-aura-blue-700/30 rounded-lg p-5 mb-4">
+<div class="h-12 w-12 bg-gray-700 rounded"></div>
+</div>
+<h3 class="font-semibold text-white mb-2">1. Consultation &amp; Design</h3>
+<p class="text-sm text-gray-400">Excepteur sint occaecat cupidatat non proident.</p>
+</div>
+<!-- Process Step 2 -->
+<div class="flex flex-col items-center">
+<div class="bg-aura-dark-800 border border-aura-blue-700/30 rounded-lg p-5 mb-4">
+<div class="h-12 w-12 bg-gray-700 rounded"></div>
+</div>
+<h3 class="font-semibold text-white mb-2">2. Material Selection</h3>
+<p class="text-sm text-gray-400">Duis aute irure dolor in reprehenderit in voluptate.</p>
+</div>
+<!-- Process Step 3 -->
+<div class="flex flex-col items-center">
+<div class="bg-aura-dark-800 border border-aura-blue-700/30 rounded-lg p-5 mb-4">
+<div class="h-12 w-12 bg-gray-700 rounded"></div>
+</div>
+<h3 class="font-semibold text-white mb-2">3. Laser Processing</h3>
+<p class="text-sm text-gray-400">Ut enim ad minim veniam, quis nostrud exercitation.</p>
+</div>
+<!-- Process Step 4 -->
+<div class="flex flex-col items-center">
+<div class="bg-aura-dark-800 border border-aura-blue-700/30 rounded-lg p-5 mb-4">
+<div class="h-12 w-12 bg-gray-700 rounded"></div>
+</div>
+<h3 class="font-semibold text-white mb-2">4. Finishing &amp; Delivery</h3>
+<p class="text-sm text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ProcessSection -->
+<!-- BEGIN: GallerySection -->
+<section class="py-24 bg-aura-dark-800" data-purpose="Gallery/Showcase Section" id="gallery">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Gallery/Showcase</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Gallery Images -->
+<a class="group block relative overflow-hidden rounded-lg border border-aura-dark-900" href="#"><div class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-gray-500" style="padding-top:100%"></div><div class="absolute inset-0 bg-black/40 flex items-end p-4"><div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"><h3 class="font-bold text-white">Intricate Sculptures</h3><p class="text-sm text-gray-300">Dolor sit amet, consectetur</p></div></div></a>
+<a class="group block relative overflow-hidden rounded-lg border border-aura-dark-900" href="#"><div class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-gray-500" style="padding-top:100%"></div><div class="absolute inset-0 bg-black/40 flex items-end p-4"><div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"><h3 class="font-bold text-white">Etched Glass Awards</h3><p class="text-sm text-gray-300">Lorem ipsum dolor sit amet</p></div></div></a>
+<a class="group block relative overflow-hidden rounded-lg border border-aura-dark-900" href="#"><div class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-gray-500" style="padding-top:100%"></div><div class="absolute inset-0 bg-black/40 flex items-end p-4"><div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"><h3 class="font-bold text-white">Personalized Metal Gifts</h3><p class="text-sm text-gray-300">Excepteur sint occaecat</p></div></div></a>
+<a class="group block relative overflow-hidden rounded-lg border border-aura-dark-900" href="#"><div class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-gray-500" style="padding-top:100%"></div><div class="absolute inset-0 bg-black/40 flex items-end p-4"><div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"><h3 class="font-bold text-white">Architectural Models</h3><p class="text-sm text-gray-300">Cupidatat non proident</p></div></div></a>
+<a class="group block relative overflow-hidden rounded-lg border border-aura-dark-900" href="#"><div class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-gray-500" style="padding-top:100%"></div><div class="absolute inset-0 bg-black/40 flex items-end p-4"><div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"><h3 class="font-bold text-white">Personalized Models</h3><p class="text-sm text-gray-300">Sunt in culpa qui officia</p></div></div></a>
+<a class="group block relative overflow-hidden rounded-lg border border-aura-dark-900" href="#"><div class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-gray-500" style="padding-top:100%"></div><div class="absolute inset-0 bg-black/40 flex items-end p-4"><div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"><h3 class="font-bold text-white">Etched Awards</h3><p class="text-sm text-gray-300">Deserunt mollit anim id</p></div></div></a>
+<a class="group block relative overflow-hidden rounded-lg border border-aura-dark-900" href="#"><div class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-gray-500" style="padding-top:100%"></div><div class="absolute inset-0 bg-black/40 flex items-end p-4"><div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"><h3 class="font-bold text-white">Personalized Metal Gifts</h3><p class="text-sm text-gray-300">Duis aute irure dolor</p></div></div></a>
+<a class="group block relative overflow-hidden rounded-lg border border-aura-dark-900" href="#"><div class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 bg-gray-500" style="padding-top:100%"></div><div class="absolute inset-0 bg-black/40 flex items-end p-4"><div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"><h3 class="font-bold text-white">Architecture</h3><p class="text-sm text-gray-300">Reprehenderit in voluptate</p></div></div></a>
+</div>
+</div>
+</section>
+<!-- END: GallerySection -->
+<!-- BEGIN: FestiveSection -->
+<section class="py-16 bg-aura-dark-900" data-purpose="Seasonal Offer Section" id="festive-offer">
+<div class="container mx-auto px-6">
+<div class="relative rounded-lg overflow-hidden border border-aura-blue-700/30 p-8 md:p-12 flex items-center">
+<!-- Background Image -->
+<div class="absolute inset-0 w-full h-full object-cover object-right z-0 bg-gray-500"></div>
+<!-- Overlay -->
+<div class="absolute inset-0 bg-gradient-to-r from-aura-dark-900 via-aura-dark-900/80 to-transparent z-10"></div>
+<!-- Content -->
+<div class="relative z-20 md:w-1/2">
+<span class="text-aura-blue-300 font-semibold">Lumina Creations</span>
+<h2 class="text-3xl font-bold text-white my-2">Seasonal Special Offer</h2>
+<p class="text-gray-300 mb-6">Get an amazing offer for seasonal laser cut decor!</p>
+<a class="inline-block px-8 py-3 font-semibold text-white bg-aura-blue-500 rounded-md shadow-glow-blue hover:bg-aura-blue-700 transition-all" href="#">
+                Subscribe Offer
+              </a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FestiveSection -->
+<!-- BEGIN: ContactSection -->
+<section class="py-24 bg-aura-dark-800" data-purpose="Contact &amp; CTA Section" id="contact">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold text-white text-center mb-12">Contact/CTA Section</h2>
+<div class="bg-aura-dark-900/50 backdrop-blur-sm border border-aura-blue-700/30 rounded-lg p-8 grid md:grid-cols-2 gap-12">
+<!-- Contact Form -->
+<form action="#" data-purpose="Contact Form" method="POST">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+<div>
+<label class="block text-sm font-medium text-gray-300 mb-1" for="name">Name *</label>
+<input class="w-full bg-aura-dark-800 border-aura-blue-700/50 text-white rounded-md focus:ring-aura-blue-500 focus:border-aura-blue-500" id="name" name="name" required="" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-300 mb-1" for="email">Email *</label>
+<input class="w-full bg-aura-dark-800 border-aura-blue-700/50 text-white rounded-md focus:ring-aura-blue-500 focus:border-aura-blue-500" id="email" name="email" required="" type="email"/>
+</div>
+</div>
+<div class="mb-4">
+<label class="block text-sm font-medium text-gray-300 mb-1" for="message">Message</label>
+<textarea class="w-full bg-aura-dark-800 border-aura-blue-700/50 text-white rounded-md focus:ring-aura-blue-500 focus:border-aura-blue-500" id="message" name="message" rows="4"></textarea>
+</div>
+<button class="w-full px-8 py-3 font-semibold text-white bg-aura-blue-500 rounded-md shadow-glow-blue hover:bg-aura-blue-700 transition-all" type="submit">
+                Send Message
+              </button>
+</form>
+<!-- Contact Info & Map -->
+<div data-purpose="Contact Information and Map">
+<div class="aspect-w-16 aspect-h-9 mb-6">
+<iframe allowfullscreen="" class="w-full h-full rounded-md border border-aura-blue-700/30" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.484197455829!2d103.85195531475459!3d1.286920399064049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da190e290f7d69%3A0x8de39add6a506a28!2sMerlion!5e0!3m2!1sen!2ssg!4v1689234123456"></iframe>
+</div>
+<div class="space-y-2 text-sm">
+<p class="flex items-center gap-3">
+<svg class="h-5 w-5 text-aura-blue-300" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+<span>+60 222 3555</span>
+</p>
+<p class="flex items-center gap-3">
+<svg class="h-5 w-5 text-aura-blue-300" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+<span>contact@fuegoaura.com</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ContactSection -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: Footer -->
+<footer class="bg-aura-dark-900 border-t border-aura-blue-900/50" data-purpose="Site Footer" id="main-footer">
+<div class="container mx-auto px-6 py-12">
+<div class="grid md:grid-cols-4 gap-8 mb-8">
+<!-- Footer About -->
+<div class="md:col-span-2" data-purpose="Footer About Column">
+<a class="flex items-center gap-3 mb-4" href="#">
+<img alt="Fuego Aura Logo" class="h-8 w-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB920Wcr7CRslYwmySXHpJdY97eJGimnVkbDUadAkq3858z6XszLYW_DaF-ZPhey4s8ltEoNpE_scSmrkEkHwcQMENz8jwpJqj14QQS5erYr9DbN8Ocz25LAj1pa6TKpUSuTwn-f_BVNPfDYAoCAjjlx4SoKjS23nHyTxOs15I5RCrdRyNhLkApEWsXIAZFSyQbyWhonknabHADlgpb7bPDf0UkD0fuoLYB_uhefhmdx_oLaaMs9UgSGdpHKaMAz2pxB14CbLe8qg"/>
+<span class="text-white text-2xl font-bold">Fuego Aura</span>
+</a>
+<p class="text-sm text-gray-400 max-w-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+</div>
+<!-- Footer Social -->
+<div data-purpose="Footer Socials Column">
+<h4 class="font-semibold text-white mb-4">Social</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="text-gray-400 hover:text-aura-blue-300 transition-colors" href="#">Instagram</a></li>
+<li><a class="text-gray-400 hover:text-aura-blue-300 transition-colors" href="#">Facebook</a></li>
+<li><a class="text-gray-400 hover:text-aura-blue-300 transition-colors" href="#">LinkedIn</a></li>
+</ul>
+</div>
+<!-- Footer Newsletter -->
+<div data-purpose="Footer Newsletter Column">
+<h4 class="font-semibold text-white mb-4">Newsletter</h4>
+<p class="text-sm text-gray-400 mb-3">Sign up for our newsletter.</p>
+<form action="#" class="flex">
+<input class="flex-grow bg-aura-dark-800 border-aura-blue-700/50 text-white rounded-l-md focus:ring-aura-blue-500 focus:border-aura-blue-500 text-sm" placeholder="Sign up for newsletter" type="email"/>
+<button class="px-4 py-2 text-sm font-semibold text-white bg-aura-blue-500 rounded-r-md hover:bg-aura-blue-700 transition-all" type="submit">
+                Sign up
+              </button>
+</form>
+</div>
+</div>
+<!-- Footer Bottom -->
+<div class="border-t border-aura-blue-900/50 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+<p>© Copyright Fuego Aura.</p>
+<div class="space-x-4 mt-4 md:mt-0">
+<a class="hover:text-aura-blue-300" href="#">Privacy Policy</a>
+<a class="hover:text-aura-blue-300" href="#">Terms</a>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</div>
+</body></html>

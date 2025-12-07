@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuego Aura | Premium Laser & Light Works Demo</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Outfit:wght@300;400;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Root Variables & Theme --- */
+        :root {
+            --primary-color: #00AEED; /* Requested Cyan Blue */
+            --primary-dark: #007bb5;
+            --accent-glow: #00ffea;
+            --dark-bg: #050505;
+            --card-bg: rgba(20, 20, 25, 0.6);
+            --text-light: #ffffff;
+            --text-gray: #b0c4de; /* Blue-tinted gray */
+            --neon-shadow: 0 0 15px rgba(0, 174, 237, 0.6);
+            --glass-border: 1px solid rgba(0, 174, 237, 0.2);
+            --cursor-x: 50%;
+            --cursor-y: 50%;
+        }
+
+        /* --- General Styles --- */
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Interactive Spotlight Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(600px circle at var(--cursor-x) var(--cursor-y), rgba(0, 174, 237, 0.08), transparent 40%);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif; /* Tech font for headers */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        
+        html { scroll-behavior: smooth; }
+
+        /* --- Utilities --- */
+        .text-gradient {
+            background: linear-gradient(135deg, #00AEED, #00ffea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 174, 237, 0.3);
+        }
+
+        .text-neon {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 174, 237, 0.8);
+        }
+
+        .section-padding { padding: 100px 0; }
+
+        /* --- Buttons --- */
+        .btn-fuego {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 14px 35px;
+            border-radius: 4px; /* More industrial/sharp look */
+            font-weight: 600;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px rgba(0, 174, 237, 0.2);
+        }
+
+        .btn-fuego::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 174, 237, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-fuego:hover {
+            background: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 174, 237, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-fuego:hover::before {
+            left: 100%;
+        }
+
+        .btn-glow {
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 20px rgba(0, 174, 237, 0.5);
+            transition: all 0.3s;
+        }
+
+        .btn-glow:hover {
+            background: #fff;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px 0;
+            transition: 0.4s;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 174, 237, 0.1);
+        }
+
+        .navbar-brand img {
+            height: 45px;
+            margin-right: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 174, 237, 0.3);
+        }
+
+        .navbar-brand span {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: var(--text-gray) !important;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+            text-shadow: 0 0 8px rgba(0, 174, 237, 0.6);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            min-height: 100vh;
+            /* darker, sleeker background */
+            background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Moving light effect overlay */
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0, 174, 237, 0.1) 50%, rgba(0,0,0,0.8) 100%);
+            animation: lightMove 10s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes lightMove {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(0, 174, 237, 0.1), #050505 90%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4.5rem; /* Larger */
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 0 0 40px rgba(0, 174, 237, 0.4);
+            letter-spacing: -2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-weight: 300;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 20px;
+            display: inline-block;
+            background: linear-gradient(90deg, rgba(0, 174, 237, 0.1), transparent);
+        }
+
+        /* --- Cards (Services & About) --- */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: var(--glass-border);
+            padding: 40px 30px;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            transform: scaleX(0);
+            transition: 0.4s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 174, 237, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .glass-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--text-light);
+            margin-bottom: 25px;
+            text-shadow: 0 0 20px var(--primary-color);
+            transition: 0.4s;
+        }
+
+        .glass-card:hover .service-icon {
+            color: var(--primary-color);
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* --- About Section & Tagline --- */
+        .tagline-box {
+            background: linear-gradient(90deg, rgba(0, 174, 237, 0.1), transparent);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #fff;
+            position: relative;
+        }
+        
+        .tagline-box i {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* --- Process (Steps) --- */
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 50%; /* Circle */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            margin: 0 auto 25px;
+            box-shadow: 0 0 20px rgba(0, 174, 237, 0.2);
+            position: relative;
+            z-index: 1;
+            transition: 0.3s;
+        }
+        
+        .process-step:hover .step-number {
+            background: var(--primary-color);
+            color: #000;
+            box-shadow: 0 0 40px var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Connect lines */
+        .process-row { position: relative; }
+        .process-row::before {
+            content: '';
+            position: absolute;
+            top: 55px; /* Adjust based on icon height */
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 0;
+        }
+
+        /* --- Gallery --- */
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        .gallery-item img {
+            transition: 0.5s;
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            filter: grayscale(30%); /* Subtle premium touch */
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.08);
+            filter: grayscale(0%);
+        }
+        
+        .gallery-overlay {
+            background: linear-gradient(to top, rgba(0, 174, 237, 0.9), transparent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        /* --- Festive Section --- */
+        .festive-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1516053702120-7f2e46b0487c?q=80&w=2074&auto=format&fit=crop'); /* Lights background */
+            background-size: cover;
+            border-top: 1px solid var(--primary-color);
+            border-bottom: 1px solid var(--primary-color);
+        }
+        
+        .festive-card {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--accent-glow);
+            box-shadow: 0 0 15px rgba(0, 255, 234, 0.1);
+        }
+
+        /* --- Forms --- */
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 15px;
+            transition: 0.3s;
+        }
+
+        .form-control:focus {
+            background-color: rgba(0, 174, 237, 0.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 174, 237, 0.2);
+            color: #fff;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #020202;
+            border-top: 1px solid #111;
+        }
+        
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border: 1px solid transparent;
+            margin: 0 5px;
+            transition: 0.3s;
+        }
+        
+        .social-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 174, 237, 0.5);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .process-row::before { display: none; }
+            .navbar { background: rgba(0,0,0,0.95); }
+        }
+        /* --- Entrance Popup (Demo Notice) --- */
+        .demo-popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 240ms ease, visibility 240ms ease;
+        }
+
+        .demo-popup-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .demo-popup {
+            background: linear-gradient(180deg, #0b0b0b, #0f0f12);
+            border: 1px solid rgba(0, 174, 237, 0.12);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 174, 237, 0.05);
+            color: #fff;
+            max-width: 520px;
+            width: 90%;
+            padding: 22px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .demo-popup h3 { margin-top: 0; margin-bottom: 8px; font-size: 1.25rem; }
+        .demo-popup p { margin: 0 0 14px; color: var(--text-gray); }
+
+        .demo-popup .demo-actions { display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
+
+        .demo-popup .btn-visit {
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .demo-popup .btn-close {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 10px 14px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .demo-popup { padding: 18px; border-radius: 10px; }
+            .demo-popup h3 { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100">
+
+    <!-- Demo Entrance Popup -->
+    <div id="demoPopupOverlay" class="demo-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="demoPopupTitle">
+        <div class="demo-popup">
+            <h3 id="demoPopupTitle">This is a demo website</h3>
+            <p>This site is a demo developed by <strong>TEB Innovations</strong>. If you like it, contact TEB Innovations or visit our website.</p>
+            <div class="demo-actions">
+                <a class="btn-visit" href="https://tebinnnovations.in" target="_blank" rel="noopener">Visit TEB Innovations</a>
+                <button class="btn-close" id="demoPopupClose">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="logo.jpg" alt="Fuego Aura Logo">
+                <span>FUEGO <span class="text-neon">AURA</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a href="#festive" class="btn btn-sm btn-outline-light rounded-pill px-3" style="border-color: var(--accent-glow); color: var(--accent-glow);">
+                            <i class="fas fa-star me-1"></i> Festive
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content container" data-aos="fade-up" data-aos-duration="1200">
+            <h1 class="hero-title">ENGINEERED <br> <span class="text-gradient">LUMINESCENCE</span></h1>
+            
+            <p class="hero-subtitle">
+                Advanced Laser Cutting & Precision Engraving.<br>
+                We shape light, material, and perspective.
+            </p>
+            
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="#services" class="btn btn-glow btn-lg">EXPLORE SERVICES</a>
+                <a href="#contact" class="btn btn-fuego btn-lg">GET A QUOTE</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding" style="background: #080808;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <div style="position: relative;">
+                        <div style="position: absolute; top:-20px; left:-20px; width: 100px; height: 100px; border-top: 3px solid var(--primary-color); border-left: 3px solid var(--primary-color);"></div>
+                        <img src="laser.jpg" class="img-fluid rounded shadow-lg" style="border: 1px solid #333;" alt="Laser Tech">
+                        <div style="position: absolute; bottom:-20px; right:-20px; width: 100px; height: 100px; border-bottom: 3px solid var(--primary-color); border-right: 3px solid var(--primary-color);"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5" data-aos="fade-left">
+                    <h5 class="text-neon mb-2">THE VISION</h5>
+                    <h2 class="mb-4">PRECISION IN <span class="text-white">EVERY PHOTON</span></h2>
+                    <p class="text-gray lead">Fuego Aura is where industrial precision meets artistic illumination. Located in Kunnamkulam, we utilize state-of-the-art laser technology to manipulate acrylic, wood, and metal into stunning visual experiences.</p>
+                    
+                    <div class="tagline-box">
+                        <i class="fas fa-bolt me-2"></i> “Fuego ഇത് Light കത്തും”
+                    </div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-6 mb-3">
+                            <h3 class="text-white mb-0">100+</h3>
+                            <small class="text-gray text-uppercase">Custom Projects</small>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <h3 class="text-white mb-0">0.1mm</h3>
+                            <small class="text-gray text-uppercase">Laser Accuracy</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h5 class="text-neon">CAPABILITIES</h5>
+                <h2 class="mb-3">OUR <span class="text-gradient">EXPERTISE</span></h2>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="glass-card text-center">
+                        <i class="fas fa-crosshairs service-icon"></i>
+                        <h4 class="text-white">Laser Cutting</h4>
+                        <p class="text-gray mt-3">High-speed, micron-precise cutting for complex geometries in Acrylic, MDF, and Plywood.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="glass-card text-center">
+                        <i class="fas fa-microchip service-icon"></i>
+                        <h4 class="text-white">Deep Engraving</h4>
+                        <p class="text-gray mt-3">Permanent marking and texturing on surfaces. Ideal for branding, serialization, and art.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="glass-card text-center">
+                        <i class="far fa-lightbulb service-icon"></i>
+                        <h4 class="text-white">Illuminated Decor</h4>
+                        <p class="text-gray mt-3">Custom edge-lit signage, neon-style acrylics, and glowing architectural elements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Process Section -->
+    <section class="section-padding" style="background: linear-gradient(to bottom, #050505, #0a0a0a);">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="text-white">WORKFLOW <span class="text-neon">///</span></h2>
+            </div>
+            <div class="row text-center process-row">
+                <div class="col-md-3 process-step" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="step-number">01</div>
+                    <h5 class="text-white">CONCEPT</h5>
+                    <p class="small text-gray">Blueprint / Vector</p>
+                </div>
+                <div class="col-md-3 process-step" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="step-number">02</div>
+                    <h5 class="text-white">SETUP</h5>
+                    <p class="small text-gray">CAD Optimization</p>
+                </div>
+                <div class="col-md-3 process-step" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="step-number">03</div>
+                    <h5 class="text-white">LASER</h5>
+                    <p class="small text-gray">Precision Beam</p>
+                </div>
+                <div class="col-md-3 process-step" data-aos="zoom-in" data-aos-delay="450">
+                    <div class="step-number">04</div>
+                    <h5 class="text-white">FINISH</h5>
+                    <p class="small text-gray">Assembly & Light</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-right">
+                <div>
+                    <h5 class="text-neon">PORTFOLIO</h5>
+                    <h2 class="mb-0">RECENT <span class="text-gradient">WORKS</span></h2>
+                </div>
+                <a href="#" class="text-gray small">View All <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-sm-6" data-aos="fade-up">
+                    <div class="gallery-item">
+                        <img src="p1.png" alt="Neon Art">
+                        <div class="gallery-overlay position-absolute w-100 h-100 top-0 start-0 d-flex align-items-end p-4">
+                            <h5 class="text-white mb-0">Neon Acrylics</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="p2.png" alt="Wood Engraving">
+                        <div class="gallery-overlay position-absolute w-100 h-100 top-0 start-0 d-flex align-items-end p-4">
+                            <h5 class="text-white mb-0">Wood Etching</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="p3.png" alt="Light Fixture">
+                        <div class="gallery-overlay position-absolute w-100 h-100 top-0 start-0 d-flex align-items-end p-4">
+                            <h5 class="text-white mb-0">Light Fixtures</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festive Section -->
+    <section id="festive" class="section-padding festive-section">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="zoom-in">
+                    <span class="badge rounded-pill bg-black border border-info text-info mb-3 px-3 py-2">SISTER BRAND</span>
+                    <h2 class="text-white mb-4 display-5 fw-bold">FESTIVE COLLECTIONS</h2>
+                    <p class="lead text-light mb-5">Discover our exclusive range of illuminated stars, lanterns, and festival decor at <span class="text-neon">@fuego_luz_fabricante</span>.</p>
+                    
+                    <a href="https://instagram.com/fuego_luz_fabricante" target="_blank" class="btn btn-glow rounded-pill px-5 py-3">
+                        <i class="fab fa-instagram me-2"></i> VISIT STORE
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Info -->
+                <div class="col-lg-5" data-aos="fade-right">
+                    <h2 class="mb-4">START A <span class="text-gradient">PROJECT</span></h2>
+                    <p class="text-gray mb-5">Ready to bring your design to light? Reach out for a consultation.</p>
+                    
+                    <div class="d-flex mb-4 align-items-center">
+                        <div class="text-neon fs-4 me-4"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h6 class="text-white mb-0">HQ Location</h6>
+                            <p class="text-gray mb-0">Kunnamkulam, Kerala, India</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4 align-items-center">
+                        <div class="text-neon fs-4 me-4"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h6 class="text-white mb-0">Email Us</h6>
+                            <p class="text-gray mb-0">hello@fuegoaura.in</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="col-lg-7" data-aos="fade-left">
+                    <form class="p-4 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="text-gray small mb-1">Name</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="text-gray small mb-1">Contact</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="text-gray small mb-1">Message</label>
+                            <textarea class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-fuego w-100">SEND REQUEST</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container py-5">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
+                    <a class="navbar-brand d-inline-flex align-items-center mb-3" href="#">
+                        <img src="logo.jpg" alt="Logo" style="height: 30px; margin-right: 10px;">
+                        <span class="text-white fw-bold fs-5">FUEGO <span class="text-neon">AURA</span></span>
+                    </a>
+                    <p class="text-muted small mb-0">Precision Laser Cutting & Engraving Services.</p>
+                </div>
+                
+                <div class="col-md-4 text-center">
+                    <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+                </div>
+
+                <div class="col-md-4 text-center text-md-end mt-4 mt-md-0">
+                    <p class="text-muted small mb-0">&copy; 2025 Fuego Aura.</p>
+                    <p class="text-muted small mb-0">Designed in Kerala.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 50
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Interactive Spotlight (Desktop Only)
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            document.documentElement.style.setProperty('--cursor-x', x + 'px');
+            document.documentElement.style.setProperty('--cursor-y', y + 'px');
+        });
+
+        // Demo Form
+        $('form').submit(function(e) {
+            e.preventDefault();
+            const btn = $(this).find('button');
+            const originalText = btn.text();
+            btn.text('SENT!').addClass('btn-glow');
+            setTimeout(() => {
+                btn.text(originalText).removeClass('btn-glow');
+                alert('Request simulated. In production, this would email the team.');
+            }, 2000);
+        });
+
+        // Entrance Demo Popup: show on page load and close handlers
+        (function() {
+            const overlay = document.getElementById('demoPopupOverlay');
+            const closeBtn = document.getElementById('demoPopupClose');
+
+            function showPopup() {
+                if (!overlay) return;
+                // Small delay so it doesn't feel abrupt on slow loads
+                setTimeout(() => overlay.classList.add('show'), 250);
+            }
+
+            function closePopup() {
+                if (!overlay) return;
+                overlay.classList.remove('show');
+            }
+
+            // Show when DOM is ready
+            document.addEventListener('DOMContentLoaded', showPopup);
+
+            // Close button
+            if (closeBtn) closeBtn.addEventListener('click', closePopup);
+
+            // Click outside modal to close
+            if (overlay) {
+                overlay.addEventListener('click', (e) => {
+                    if (e.target === overlay) closePopup();
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
