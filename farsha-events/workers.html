@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FARSHA™ Workers Page</title>
+    <link rel="icon" href="assets/image.png" type="image/logo">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <link href="../bootstrap.css" rel="stylesheet">
+
+    <style>
+        /* --- Essential Styles for Interactions (Cannot be Inline) --- */
+        .navbar-glass {
+            background-color: rgba(18, 30, 32, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7) !important;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #D4AF37 !important; /* Accent Gold */
+        }
+
+        .btn-primary-custom {
+            background-color: #0F484F;
+            color: white;
+            border: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: white;
+            color: #0F484F;
+        }
+
+        /* Card Hover Effects */
+        .worker-card {
+            transition: all 0.3s ease;
+        }
+        .worker-card:hover {
+            border-color: rgba(212, 175, 55, 0.5) !important; /* Gold border on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Gold Button Hover */
+        .btn-gold {
+            background-color: #D4AF37;
+            color: black;
+            font-weight: 700;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background-color: #fce38a;
+            transform: scale(1.02);
+        }
+
+        /* Form Inputs in Dark Modal */
+        .form-control-dark {
+            background-color: #0F484F;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+        }
+        .form-control-dark:focus {
+            background-color: #0F484F;
+            color: white;
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
+        }
+        .form-control-dark::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Date Input Icon Fix for Dark Mode */
+        input[type="date"] {
+            color-scheme: dark;
+        }
+    </style>
+</head>
+<body style="background-color: #121e20; color: white; font-family: 'Manrope', sans-serif;">
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-glass navbar-dark">
+        <div class="container-fluid px-lg-5 px-3 py-2">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+                <img style="width: 5em;" src="assets/image.png" alt="FARSHA Logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4 text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Our Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menue.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="border-bottom: 2px solid #D4AF37;">Workers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.html">Login</a></li>
+                </ul>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary-custom rounded-3 px-4 py-2">
+                        Request a Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main style="padding-top: 100px;">
+        <div class="container py-5">
+            
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-5 border-bottom border-secondary pb-4">
+                <div class="d-flex align-items-center gap-3">
+                     <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUsBZ41iq2XUQRRU8eNA8UKI9B3xYL1KASQAA3CJH5evlDLJ6Cd88ds9ci8Q5q8bCji3xP2QAtvskQTjktY-BPqgzGidUjSxZnzTryHDVjRyIImKDKWKLlYFDggyOR__dD9zgJe8yBVwQlOsxvJtTexdqmpxFhNcXVP5plEzILkfs2EGX_Q6-DJSzXX-GDkOIlh8xKLWevCJm_-tR_d2L0EYczcNRcvGfQWroxKazE2tHDHIXIcEcj-88-2RK9PLfyPgjcGXhmpeQ" alt="FARSHA Logo" class="rounded-circle" style="width: 40px; height: 40px;">
+                    <h2 class="h5 fw-bold mb-0">FARSHA™️ EVENT CATERING</h2>
+                </div>
+            </div>
+
+            <div class="mb-5">
+                <h1 class="display-4 fw-bold" style="letter-spacing: -0.03em;">Available Work Events</h1>
+            </div>
+
+            <div class="row g-4">
+                
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 worker-card p-4 rounded-4" style="background-color: #145862; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined" style="color: rgba(255,255,255,0.8);">fmd_good</span>
+                                <h3 class="h5 fw-bold mb-0">The Grand Palace</h3>
+                            </div>
+                            <span class="badge rounded-pill text-dark" style="background-color: rgba(212, 175, 55, 0.2); color: #D4AF37 !important;">ID: 123</span>
+                        </div>
+                        
+                        <p class="text-white-50 ms-4 ps-2 mb-3">Main Auditorium</p>
+                        <hr style="border-color: rgba(255,255,255,0.1);">
+                        
+                        <div class="d-flex flex-column gap-2 mb-4">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined text-white-50">payments</span>
+                                <span class="fw-medium">₹ 5,000</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined text-white-50">schedule</span>
+                                <span class="fw-medium">8 Hours</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-gold w-100 rounded-3 py-2" data-bs-toggle="modal" data-bs-target="#joinModal" onclick="updateModalTitle('123')">
+                            Join Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 worker-card p-4 rounded-4" style="background-color: #145862; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined" style="color: rgba(255,255,255,0.8);">fmd_good</span>
+                                <h3 class="h5 fw-bold mb-0">The Royal Hall</h3>
+                            </div>
+                            <span class="badge rounded-pill text-dark" style="background-color: rgba(212, 175, 55, 0.2); color: #D4AF37 !important;">ID: 456</span>
+                        </div>
+                        
+                        <p class="text-white-50 ms-4 ps-2 mb-3">Downtown</p>
+                        <hr style="border-color: rgba(255,255,255,0.1);">
+                        
+                        <div class="d-flex flex-column gap-2 mb-4">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined text-white-50">payments</span>
+                                <span class="fw-medium">₹ 4,500</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined text-white-50">schedule</span>
+                                <span class="fw-medium">6 Hours</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-gold w-100 rounded-3 py-2" data-bs-toggle="modal" data-bs-target="#joinModal" onclick="updateModalTitle('456')">
+                            Join Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card h-100 worker-card p-4 rounded-4" style="background-color: #145862; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined" style="color: rgba(255,255,255,0.8);">fmd_good</span>
+                                <h3 class="h5 fw-bold mb-0">Lakeside Center</h3>
+                            </div>
+                            <span class="badge rounded-pill text-dark" style="background-color: rgba(212, 175, 55, 0.2); color: #D4AF37 !important;">ID: 789</span>
+                        </div>
+                        
+                        <p class="text-white-50 ms-4 ps-2 mb-3">&nbsp;</p> <hr style="border-color: rgba(255,255,255,0.1);">
+                        
+                        <div class="d-flex flex-column gap-2 mb-4">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined text-white-50">payments</span>
+                                <span class="fw-medium">₹ 6,000</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="material-symbols-outlined text-white-50">schedule</span>
+                                <span class="fw-medium">10 Hours</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-gold w-100 rounded-3 py-2" data-bs-toggle="modal" data-bs-target="#joinModal" onclick="updateModalTitle('789')">
+                            Join Now
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="joinModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4" style="background-color: #145862; border: 1px solid rgba(255,255,255,0.2);">
+                
+                <div class="modal-header border-bottom border-secondary">
+                    <h5 class="modal-title fw-bold" id="modalTitle">Join Event</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body p-4">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label small text-white-50">Full Name</label>
+                            <input type="text" class="form-control form-control-dark rounded-3" placeholder="Enter your full name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-white-50">Date of Birth</label>
+                            <input type="date" class="form-control form-control-dark rounded-3">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-white-50">Phone Number</label>
+                            <input type="tel" class="form-control form-control-dark rounded-3" placeholder="Enter your phone number">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-white-50">Work Experience (Years)</label>
+                            <input type="number" class="form-control form-control-dark rounded-3" placeholder="e.g., 5">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small text-white-50">Select Role</label>
+                            <select class="form-select form-control-dark rounded-3">
+                                <option>Server</option>
+                                <option>Chef</option>
+                                <option>Coordinator</option>
+                                <option>Support Staff</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small text-white-50">City</label>
+                            <input type="text" class="form-control form-control-dark rounded-3" placeholder="Enter your city">
+                        </div>
+
+                        <button type="submit" class="btn btn-gold w-100 rounded-3 py-2">Submit Application</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateModalTitle(id) {
+            document.getElementById('modalTitle').innerText = 'Join Event: ' + id;
+        }
+    </script>
+
+    <script src="../bootstrap.js"></script>
+</body>
+</html>

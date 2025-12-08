@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FARSHA™ Event Catering - Booking & Reviews</title>
+<link rel="icon" href="assets/image.png" type="image/logo">
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* --- Essential Styles for Interactions & Specific Layouts --- */
+        .navbar-glass {
+            background-color: rgba(18, 30, 32, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7) !important;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #D4AF37 !important; /* Accent Gold */
+        }
+
+        .btn-primary-custom {
+            background-color: #0F484F;
+            color: white;
+            border: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: white;
+            color: #0F484F;
+        }
+
+        /* Form Control Focus Override */
+        .form-control:focus {
+            background-color: #121e20;
+            color: white;
+            border-color: #0F484F;
+            box-shadow: 0 0 0 0.25rem rgba(15, 72, 79, 0.25);
+        }
+
+        /* Calendar Hover Effects */
+        .calendar-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Horizontal Scrollbar Hiding for Reviews */
+        .scroll-container {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+
+        .social-icon:hover {
+            color: white !important;
+        }
+
+        /* Review Card Hover */
+        .review-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+                input, .form-control{
+          background-color: white !important;
+        }
+    </style>
+</head>
+<body style="background-color: #121e20; color: white; font-family: 'Manrope', sans-serif;">
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-glass navbar-dark">
+        <div class="container-fluid px-lg-5 px-3 py-2">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="#">
+                <img style="width: 5em;" src="assets/image.png" alt="FARSHA Logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4 text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Our Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="menue.html">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html" style="border-bottom: 2px solid #D4AF37;">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="workers.html">Workers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.html">Login</a></li>
+                </ul>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary-custom rounded-3 px-4 py-2">
+                        Request a Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main style="padding-top: 100px;">
+        
+        <div class="container py-5">
+            
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold" style="letter-spacing: -0.03em;">Plan Your Perfect Event</h1>
+                <p class="lead" style="color: rgba(255,255,255,0.6); max-width: 700px; margin: 0 auto;">
+                    Tell us about your event or schedule a consultation with our experts. We're here to make your vision a reality.
+                </p>
+            </div>
+
+            <div class="row g-5 mb-5">
+                <div class="col-lg-7">
+                    <div class="p-4 rounded-4 h-100" style="background-color: #1c2e31; border: 1px solid rgba(255,255,255,0.05);">
+                        
+                        <div class="row g-4">
+                            <div class="col-12 col-md-6 mb-3">
+                                <p class="h5 fw-bold mb-3">Select a Date</p>
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <button class="btn btn-sm text-white rounded-circle"><span class="material-symbols-outlined">chevron_left</span></button>
+                                    <span class="fw-bold">July 2024</span>
+                                    <button class="btn btn-sm text-white rounded-circle"><span class="material-symbols-outlined">chevron_right</span></button>
+                                </div>
+                                
+                                <div class="d-grid text-center mb-2" style="grid-template-columns: repeat(7, 1fr); gap: 0.25rem;">
+                                    <small class="text-white-50 fw-bold">S</small>
+                                    <small class="text-white-50 fw-bold">M</small>
+                                    <small class="text-white-50 fw-bold">T</small>
+                                    <small class="text-white-50 fw-bold">W</small>
+                                    <small class="text-white-50 fw-bold">T</small>
+                                    <small class="text-white-50 fw-bold">F</small>
+                                    <small class="text-white-50 fw-bold">S</small>
+                                </div>
+                                
+                                <div class="d-grid" style="grid-template-columns: repeat(7, 1fr); gap: 0.25rem;">
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">1</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">2</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">3</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">4</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">5</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">6</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">7</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">8</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">9</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">10</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">11</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">12</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">13</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">14</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">15</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">16</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">17</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2" style="background-color: #0F484F;">18</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">19</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">20</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">21</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">22</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">23</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">24</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">25</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">26</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">27</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">28</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">29</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">30</button>
+                                    <button class="btn btn-sm text-white rounded-circle p-2 calendar-btn">31</button>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6 d-flex flex-column gap-3">
+                                <div>
+                                    <label class="form-label small fw-medium">Name</label>
+                                    <input type="text" class="form-control" placeholder="Enter your full name" style="background-color: #121e20; border: 1px solid #385c61; color: white;">
+                                </div>
+                                <div>
+                                    <label class="form-label small fw-medium">Phone</label>
+                                    <input type="text" class="form-control" placeholder="Enter your phone number" style="background-color: #121e20; border: 1px solid #385c61; color: white;">
+                                </div>
+                                <div>
+                                    <label class="form-label small fw-medium">Email</label>
+                                    <input type="email" class="form-control" placeholder="Enter your email address" style="background-color: #121e20; border: 1px solid #385c61; color: white;">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label small fw-medium">Message</label>
+                                <textarea class="form-control mb-4" rows="4" placeholder="Briefly describe your event..." style="background-color: #121e20; border: 1px solid #385c61; color: white;"></textarea>
+                                
+                                <button class="btn btn-primary-custom w-100 rounded-pill py-3">
+                                    Send Inquiry
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="d-flex flex-column gap-4">
+                        <div class="p-4 rounded-4" style="background-color: #1c2e31; border: 1px solid rgba(255,255,255,0.05);">
+                            <h3 class="h5 fw-bold mb-4">Contact Us Directly</h3>
+                            <div class="d-flex flex-column gap-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; background-color: rgba(15, 72, 79, 0.2); color: #0F484F;">
+                                        <span class="material-symbols-outlined" style="color: #D4AF37;">call</span>
+                                    </div>
+                                    <div>
+                                        <p class="small text-white-50 mb-0">Phone</p>
+                                        <a href="tel:09562462115" class="text-white text-decoration-none fw-semibold">09562462115</a>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; background-color: rgba(15, 72, 79, 0.2); color: #0F484F;">
+                                        <span class="material-symbols-outlined" style="color: #D4AF37;">chat_bubble</span>
+                                    </div>
+                                    <div>
+                                        <p class="small text-white-50 mb-0">WhatsApp</p>
+                                        <a href="https://wa.me/9562462115" class="text-white text-decoration-none fw-semibold">9562462115</a>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; background-color: rgba(15, 72, 79, 0.2); color: #0F484F;">
+                                        <span class="material-symbols-outlined" style="color: #D4AF37;">mail</span>
+                                    </div>
+                                    <div>
+                                        <p class="small text-white-50 mb-0">Email</p>
+                                        <a href="mailto:farshaeventsandcatering@gmail.com" class="text-white text-decoration-none fw-semibold">farshaeventsandcatering@gmail.com</a>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; background-color: rgba(15, 72, 79, 0.2); color: #0F484F;">
+                                        <span class="material-symbols-outlined" style="color: #D4AF37;">location_on</span>
+                                    </div>
+                                    <div>
+                                        <p class="small text-white-50 mb-0">Location</p>
+                                        <p class="text-white fw-semibold mb-0">Mundumuzhi, Malappuram, Kerala</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-4 overflow-hidden" style="height: 320px; background-color: #1c2e31;">
+                            <iframe allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.7138374241946!2d76.10444687591632!3d11.05948998917361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba6301a9327575d%3A0xb357778b059b8637!2sMundumuzhi!5e0!3m2!1sen!2sin!4v1721307613589!5m2!1sen!2sin" style="border:0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="py-5" style="background-color: rgba(0,0,0,0.2);">
+            <div class="container">
+                
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-2">What Our Clients Say</h2>
+                    <p class="text-white-50">Hear from those who've experienced the FARSHA™️ difference.</p>
+                </div>
+
+                <div class="position-relative">
+                    <div class="position-absolute top-50 start-0 translate-middle-y d-none d-md-flex align-items-center justify-content-center bg-white rounded-circle shadow" style="width: 48px; height: 48px; z-index: 10; cursor: pointer;">
+                        <span class="material-symbols-outlined text-dark">arrow_back</span>
+                    </div>
+                    <div class="position-absolute top-50 end-0 translate-middle-y d-none d-md-flex align-items-center justify-content-center bg-white rounded-circle shadow" style="width: 48px; height: 48px; z-index: 10; cursor: pointer;">
+                        <span class="material-symbols-outlined text-dark">arrow_forward</span>
+                    </div>
+
+                    <div class="d-flex overflow-auto scroll-container py-4 px-4" style="gap: 2rem; scroll-snap-type: x mandatory;">
+                        
+                        <div class="review-card p-4 rounded-4 d-flex flex-column align-items-center text-center flex-shrink-0" 
+                             style="background-color: #1c2e31; width: 100%; max-width: 400px; scroll-snap-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                            
+                            <div class="rounded-circle mb-4" style="width: 96px; height: 96px; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXh_kiII92GHUvxOOCn1jQOzBnv2CCudfeITfHGhPLAcMmf4sOJAUEx5DSpNSDuE7Bm37rRLkPMog10lFc5gxJ_ytah2cXc4CN_ozlAVWwGqYradudaPVKZicCDC7iQmNvUfc7ys_ZknEHtIFKE_ZuEv3JoIAyH-ZweFtRhgekcp5lBF64Bm-0Qjoqif_TItyWOo02eSYVEShzF51VZM_fBcDlDV8ZGhA9PDDWWkFuvM8lg9gP8IV58gY0JGRHvsjVLPyZVztRTF8'); background-size: cover; border: 2px solid #D4AF37;"></div>
+                            
+                            <div class="mb-3">
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+
+                            <blockquote class="fst-italic mb-4" style="color: rgba(255,255,255,0.8);">
+                                "The attention to detail and the quality of the food were exceptional. FARSHA™️ made our annual gala a night to remember."
+                            </blockquote>
+
+                            <div>
+                                <p class="fw-bold mb-0">Eleanor Vance</p>
+                                <p class="small text-white-50">Corporate Event Host</p>
+                            </div>
+                        </div>
+
+                        <div class="review-card p-4 rounded-4 d-flex flex-column align-items-center text-center flex-shrink-0" 
+                             style="background-color: #1c2e31; width: 100%; max-width: 400px; scroll-snap-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                            
+                            <div class="rounded-circle mb-4" style="width: 96px; height: 96px; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqKUhYeoaUcNHUqYH9FYgAZjgrsbhgpL62dGaevoJIbn9U2dn6rwG8ZxFQrCc9YUhj-uM-ixUTWyAStGAIennLeC6iUPrtf-xLX53FICKCRh9FGldT28pmSV5cTXQmC5MR8afnkJUgCPO4Pbcsprv8IQtPAEo4i2MSRV4klMjc5vBb1PhR6Vr1ihNm0fTnCAt53FhCzSi4RSqZRY7nWAJoXvMMhfKBjEmKGKM3T7IDV43lhOXDWPOSrMdfrkiCne2xXXSP3TqrydI'); background-size: cover; border: 2px solid #D4AF37;"></div>
+                            
+                            <div class="mb-3">
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+
+                            <blockquote class="fst-italic mb-4" style="color: rgba(255,255,255,0.8);">
+                                "Our wedding was a dream come true, and a huge part of that was the incredible catering. Every dish was a masterpiece."
+                            </blockquote>
+
+                            <div>
+                                <p class="fw-bold mb-0">Marcus Thorne</p>
+                                <p class="small text-white-50">Wedding Client</p>
+                            </div>
+                        </div>
+
+                        <div class="review-card p-4 rounded-4 d-flex flex-column align-items-center text-center flex-shrink-0" 
+                             style="background-color: #1c2e31; width: 100%; max-width: 400px; scroll-snap-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                            
+                            <div class="rounded-circle mb-4" style="width: 96px; height: 96px; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5VuGMRRkjMB9brBKjrmXPyO-T9enQ0Z5uwbnBPr_Kfahahmw9fTzrCvMobySgT1TBKB37e7GMXw8WgP1BVgndCWYOTnavBMzvV3BmobuvPoWmuPtiS2FHnIm_RenyL2pQ0Om4BP1y8_3WSGnvurcUlFTshDi8l48HpwkB3QEEP4TvcceHD33qkvlZWmo4HIjy0mRPG1Fnv94fSmW85mjRCfT_yme8fkF70KZXySQqYrAUMVxhAaaSj7W5eahBXBbWA4ptTnT9Exk'); background-size: cover; border: 2px solid #D4AF37;"></div>
+                            
+                            <div class="mb-3">
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="material-symbols-outlined" style="color: #D4AF37; font-variation-settings: 'FILL' 1;">star</span>
+                            </div>
+
+                            <blockquote class="fst-italic mb-4" style="color: rgba(255,255,255,0.8);">
+                                "Professional, reliable, and absolutely delicious. FARSHA™️ is our go-to for all corporate events. The service is impeccable."
+                            </blockquote>
+
+                            <div>
+                                <p class="fw-bold mb-0">Samantha Hayes</p>
+                                <p class="small text-white-50">CEO of Innovate Corp</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-2 mt-3">
+                    <div class="rounded-circle bg-white" style="width: 8px; height: 8px;"></div>
+                    <div class="rounded-circle bg-white opacity-25" style="width: 8px; height: 8px;"></div>
+                    <div class="rounded-circle bg-white opacity-25" style="width: 8px; height: 8px;"></div>
+                </div>
+
+                <div class="text-center mt-5 pt-4">
+                    <h2 class="h3 fw-bold mb-3">Ready to plan your unforgettable event?</h2>
+                    <p class="text-white-50 mb-4">Let us bring our passion for culinary excellence to your next gathering.</p>
+                    <button class="btn btn-primary-custom rounded-3 px-5 py-3">
+                        Get a Quote
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="background-color: #1c2e31; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container py-4">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                <p class="small text-white-50 mb-0">© 2024 FARSHA™️ Event Catering. All Rights Reserved.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="social-icon text-white-50 transition-colors"><svg style="width: 24px; height: 24px;" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" fill-rule="evenodd"></path></svg></a>
+                    <a href="#" class="social-icon text-white-50 transition-colors"><svg style="width: 24px; height: 24px;" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.33 9.69c.14 2.22-1.07 4.33-3.23 5.05s-4.33.05-5.56-1.88c-.02-.03 0-.06.02-.08.77.09 1.53-.16 2.05-.62-.73-.02-1.35-.5-1.57-1.18-.22.04-.44.06-.66.06.27-.04.53-.13.78-.26-.78-.16-1.37-.86-1.37-1.69v-.02c.23.13.49.21.75.22-.52-.35-.86-.94-.86-1.58 0-.34.09-.67.25-.95.84.97 2.08 1.6 3.44 1.74-.23-.97.16-2.04 1.1-2.59.93-.56 2.1-.33 2.78.58.4-.08.78-.22 1.13-.43-.13.41-.41.78-.78 1-.35-.04-.69-.13-1.02-.28.25.38.47.79.62 1.22z"></path></svg></a>
+                    <a href="#" class="social-icon text-white-50 transition-colors"><svg style="width: 24px; height: 24px;" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 1.48.324 2.868.883 4.125a.5.5 0 01-.128.52l-1.32 1.321a.5.5 0 00.354.853l1.78-.298a.5.5 0 01.447.143 9.942 9.942 0 004.984 1.332A10.001 10.001 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-2.13 12.67a.5.5 0 01-.71 0l-2.02-2.02a.5.5 0 010-.71l.35-.35a.5.5 0 01.71 0l1.48 1.48 3.5-4.49a.5.5 0 01.78-.15l.35.27a.5.5 0 01.15.78l-4.5 5.2z" fill-rule="evenodd"></path></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

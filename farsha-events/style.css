@@ -1,0 +1,139 @@
+        /* --- Custom Theme Configuration --- */
+        :root {
+            --primary-color: #0F484F;
+            --accent-gold: #D4AF37;
+            --font-display: 'Manrope', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-display);
+        }
+
+        /* Material Symbols Fix */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        /* Floating Chat Button */
+        .floating-chat {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1050;
+        }
+        .btn-chat {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+        }
+        .btn-chat:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        /* Navbar Customization */
+        .navbar-glass {
+            background-color: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: background-color 0.3s;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-gold) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(rgba(15, 72, 79, 0.7) 0%, rgba(18, 30, 32, 0.9) 100%), 
+                        url("https://lh3.googleusercontent.com/aida-public/AB6AXuCAXZyVdz4gAcw7y9FZMlYCC8ftMGcnNdPTaosSO-XJTrULEOOwQJpILYIAOL5BgwdSMh8KxH35csRqBSibFKz_9CACFqnEtXbbYixT_2ohXTTfKfvvta_y8uR_27dpsz7akswxTo9ZRGay7rQuxav7pknhOob6qQjauzykB4_M1gpuUnBLZ65rgr7KKEBWux8eMfcXgnGy5eaRctEbT2uTyLCDgP1aRtBnNC13lrrVF6ADnTpe8aYyLenmdqwSLAsU6R95FkDDxZs");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Custom Components */
+        .award-badge {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            color: white;
+            border-radius: 50rem;
+            padding: 0.5rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .text-accent-gold {
+            color: var(--accent-gold);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 6rem;
+            }
+        }
+
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: scale(1.02);
+        }
+
+        .btn-outline-custom {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: white;
+            color: var(--primary-color);
+            transform: scale(1.02);
+        }
+
+        /* Next section */
+
+        .active{
+            color: var(--accent-gold) !important;
+        }

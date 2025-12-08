@@ -1,18 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fuego Aura | Premium Laser & Light Works Demo</title>
     <link rel="icon" href="logo.jpg" type="image/logo">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Outfit:wght@300;400;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
     
+    <!-- Bootstrap 5 CSS -->
     <link href="../bootstrap.css" rel="stylesheet">
     
+    <!-- AOS Animation CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- FontAwesome Icons -->
@@ -21,13 +23,13 @@
     <style>
         /* --- Root Variables & Theme --- */
         :root {
-            --primary-color: #00AEED;
+            --primary-color: #00AEED; /* Requested Cyan Blue */
             --primary-dark: #007bb5;
             --accent-glow: #00ffea;
             --dark-bg: #050505;
             --card-bg: rgba(20, 20, 25, 0.6);
             --text-light: #ffffff;
-            --text-gray: #b0c4de;
+            --text-gray: #b0c4de; /* Blue-tinted gray */
             --neon-shadow: 0 0 15px rgba(0, 174, 237, 0.6);
             --glass-border: 1px solid rgba(0, 174, 237, 0.2);
             --cursor-x: 50%;
@@ -39,24 +41,21 @@
             font-family: 'Outfit', sans-serif;
             background-color: var(--dark-bg);
             color: var(--text-light);
-            overflow-x: hidden; /* Critical for mobile */
+            overflow-x: hidden;
             position: relative;
-            width: 100%;
         }
 
-        /* Interactive Spotlight Effect (Hidden on Mobile for performance) */
-        @media (min-width: 992px) {
-            body::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: radial-gradient(600px circle at var(--cursor-x) var(--cursor-y), rgba(0, 174, 237, 0.08), transparent 40%);
-                pointer-events: none;
-                z-index: 9999;
-            }
+        /* Interactive Spotlight Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(600px circle at var(--cursor-x) var(--cursor-y), rgba(0, 174, 237, 0.08), transparent 40%);
+            pointer-events: none;
+            z-index: 9999;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -66,7 +65,7 @@
         }
 
         h2 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Orbitron', sans-serif; /* Tech font for headers */
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -96,7 +95,7 @@
             color: var(--primary-color);
             border: 1px solid var(--primary-color);
             padding: 14px 35px;
-            border-radius: 4px;
+            border-radius: 4px; /* More industrial/sharp look */
             font-weight: 600;
             font-family: 'Orbitron', sans-serif;
             letter-spacing: 1px;
@@ -104,7 +103,6 @@
             overflow: hidden;
             transition: all 0.4s ease;
             box-shadow: 0 0 10px rgba(0, 174, 237, 0.2);
-            white-space: nowrap;
         }
 
         .btn-fuego::before {
@@ -125,7 +123,9 @@
             transform: translateY(-2px);
         }
 
-        .btn-fuego:hover::before { left: 100%; }
+        .btn-fuego:hover::before {
+            left: 100%;
+        }
 
         .btn-glow {
             background: var(--primary-color);
@@ -137,7 +137,6 @@
             font-family: 'Orbitron', sans-serif;
             box-shadow: 0 0 20px rgba(0, 174, 237, 0.5);
             transition: all 0.3s;
-            white-space: nowrap;
         }
 
         .btn-glow:hover {
@@ -148,21 +147,22 @@
 
         /* --- Navbar --- */
         .navbar {
-            background: rgba(5, 5, 5, 0.85); /* Slightly more opaque for mobile readability */
+            background: rgba(5, 5, 5, 0.7);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 15px 0;
+            padding: 20px 0;
             transition: 0.4s;
         }
         
         .navbar.scrolled {
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 0;
             border-bottom: 1px solid var(--primary-color);
             box-shadow: 0 10px 30px rgba(0, 174, 237, 0.1);
         }
 
         .navbar-brand img {
-            height: 40px;
+            height: 45px;
             margin-right: 12px;
             border-radius: 8px;
             border: 1px solid rgba(0, 174, 237, 0.3);
@@ -170,8 +170,8 @@
 
         .navbar-brand span {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
         }
 
         .nav-link {
@@ -188,34 +188,18 @@
             text-shadow: 0 0 8px rgba(0, 174, 237, 0.6);
         }
 
-        .navbar-toggler {
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-        
-        /* Fix for mobile menu background */
-        @media (max-width: 991px) {
-            .navbar-collapse {
-                background: #050505;
-                padding: 20px;
-                border-radius: 0 0 10px 10px;
-                border-bottom: 1px solid var(--primary-color);
-            }
-            .nav-link { margin-left: 0; margin-bottom: 10px; }
-        }
-
         /* --- Hero Section --- */
         .hero-section {
             min-height: 100vh;
+            /* darker, sleeker background */
             background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop') no-repeat center center;
             background-size: cover;
-            background-attachment: scroll; /* Changed from fixed for better mobile support */
+            background-attachment: fixed;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding-top: 80px; /* Prevent navbar overlap */
         }
 
         /* Moving light effect overlay */
@@ -249,17 +233,15 @@
             max-width: 900px;
             padding: 20px;
             text-align: center;
-            width: 100%;
         }
 
         .hero-title {
-            font-size: 4.5rem;
+            font-size: 4.5rem; /* Larger */
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 25px;
             text-shadow: 0 0 40px rgba(0, 174, 237, 0.4);
             letter-spacing: -2px;
-            word-wrap: break-word; /* Prevents text overflow */
         }
 
         .hero-subtitle {
@@ -273,13 +255,6 @@
             background: linear-gradient(90deg, rgba(0, 174, 237, 0.1), transparent);
         }
 
-        /* --- About Image Wrapper (Fixes overflow issue) --- */
-        .about-img-wrapper {
-            position: relative;
-            padding: 25px; /* Creates space for the borders */
-            display: inline-block;
-        }
-
         /* --- Cards (Services & About) --- */
         .glass-card {
             background: var(--card-bg);
@@ -291,7 +266,6 @@
             height: 100%;
             position: relative;
             overflow: hidden;
-            margin-bottom: 20px; /* Mobile stack spacing */
         }
 
         .glass-card::before {
@@ -312,7 +286,9 @@
             border-color: var(--primary-color);
         }
 
-        .glass-card:hover::before { transform: scaleX(1); }
+        .glass-card:hover::before {
+            transform: scaleX(1);
+        }
 
         .service-icon {
             font-size: 3.5rem;
@@ -351,7 +327,7 @@
             background: rgba(0,0,0,0.5);
             border: 2px solid var(--primary-color);
             color: var(--primary-color);
-            border-radius: 50%;
+            border-radius: 50%; /* Circle */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -365,8 +341,6 @@
             transition: 0.3s;
         }
         
-        .process-step { margin-bottom: 30px; }
-
         .process-step:hover .step-number {
             background: var(--primary-color);
             color: #000;
@@ -374,11 +348,12 @@
             transform: scale(1.1);
         }
 
+        /* Connect lines */
         .process-row { position: relative; }
         .process-row::before {
             content: '';
             position: absolute;
-            top: 55px;
+            top: 55px; /* Adjust based on icon height */
             left: 10%;
             width: 80%;
             height: 2px;
@@ -392,7 +367,6 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            margin-bottom: 15px;
         }
         
         .gallery-item img {
@@ -400,7 +374,7 @@
             width: 100%;
             height: 300px;
             object-fit: cover;
-            filter: grayscale(30%);
+            filter: grayscale(30%); /* Subtle premium touch */
         }
         
         .gallery-item:hover img {
@@ -416,12 +390,18 @@
 
         /* --- Festive Section --- */
         .festive-section {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1516053702120-7f2e46b0487c?q=80&w=2074&auto=format&fit=crop');
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1516053702120-7f2e46b0487c?q=80&w=2074&auto=format&fit=crop'); /* Lights background */
             background-size: cover;
             border-top: 1px solid var(--primary-color);
             border-bottom: 1px solid var(--primary-color);
         }
         
+        .festive-card {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--accent-glow);
+            box-shadow: 0 0 15px rgba(0, 255, 234, 0.1);
+        }
+
         /* --- Forms --- */
         .form-control {
             background-color: rgba(255, 255, 255, 0.05);
@@ -465,6 +445,11 @@
             transform: translateY(-5px);
         }
 
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .process-row::before { display: none; }
+            .navbar { background: rgba(0,0,0,0.95); }
+        }
         /* --- Entrance Popup (Demo Notice) --- */
         .demo-popup-overlay {
             position: fixed;
@@ -477,10 +462,12 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 240ms ease, visibility 240ms ease;
-            padding: 20px;
         }
 
-        .demo-popup-overlay.show { opacity: 1; visibility: visible; }
+        .demo-popup-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
 
         .demo-popup {
             background: linear-gradient(180deg, #0b0b0b, #0f0f12);
@@ -488,11 +475,14 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 174, 237, 0.05);
             color: #fff;
             max-width: 520px;
-            width: 100%;
+            width: 90%;
             padding: 22px 20px;
             border-radius: 12px;
             text-align: center;
         }
+
+        .demo-popup h3 { margin-top: 0; margin-bottom: 8px; font-size: 1.25rem; }
+        .demo-popup p { margin: 0 0 14px; color: var(--text-gray); }
 
         .demo-popup .demo-actions { display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
 
@@ -514,58 +504,27 @@
             border-radius: 8px;
         }
 
-        /* =========================================
-           MOBILE & RESPONSIVE FIXES (Crucial)
-           ========================================= */
-        @media (max-width: 768px) {
-            /* Fix Text Sizes */
-            .hero-title { font-size: 2.8rem; line-height: 1.2; }
-            .hero-subtitle { font-size: 1rem; border-left-width: 2px; }
-            h2 { font-size: 1.8rem; }
-            
-            /* Fix Spacing */
-            .section-padding { padding: 60px 0; }
-            
-            /* Center Alignment for stacked content */
-            .text-center-mobile { text-align: center; }
-            
-            /* Hide process connector line on mobile */
-            .process-row::before { display: none; }
-            
-            /* Buttons stack nicely */
-            .hero-content .d-flex {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px !important;
-            }
-            .hero-content .btn { width: 100%; max-width: 280px; }
-
-            /* Fix Gallery Overlay on Touch */
-            .gallery-overlay { opacity: 1; background: linear-gradient(to top, rgba(0, 174, 237, 0.8), transparent 70%); }
-            
-            /* About Section Image Fix */
-            .about-img-container { text-align: center; margin-bottom: 40px; }
-        }
-
         @media (max-width: 480px) {
-            .hero-title { font-size: 2.2rem; }
             .demo-popup { padding: 18px; border-radius: 10px; }
+            .demo-popup h3 { font-size: 1.05rem; }
         }
     </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100">
 
+    <!-- Demo Entrance Popup -->
     <div id="demoPopupOverlay" class="demo-popup-overlay" role="dialog" aria-modal="true" aria-labelledby="demoPopupTitle">
         <div class="demo-popup">
             <h3 id="demoPopupTitle">This is a demo website</h3>
             <p>This site is a demo developed by <strong>TEB Innovations</strong>. If you like it, contact TEB Innovations or visit our website.</p>
             <div class="demo-actions">
-                <a class="btn-visit" href="https://tebinnovations.in" target="_blank" rel="noopener">Visit TEB Innovations</a>
+                <a class="btn-visit" href="https://tebinnnovations.in" target="_blank" rel="noopener">Visit TEB Innovations</a>
                 <button class="btn-close" id="demoPopupClose">Close</button>
             </div>
         </div>
     </div>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark" id="mainNav">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
@@ -592,6 +551,7 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content container" data-aos="fade-up" data-aos-duration="1200">
@@ -609,22 +569,23 @@
         </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="section-padding" style="background: #080808;">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0 text-center-mobile about-img-container" data-aos="fade-right">
-                    <div class="about-img-wrapper">
-                        <div style="position: absolute; top:0; left:0; width: 60px; height: 60px; border-top: 3px solid var(--primary-color); border-left: 3px solid var(--primary-color);"></div>
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <div style="position: relative;">
+                        <div style="position: absolute; top:-20px; left:-20px; width: 100px; height: 100px; border-top: 3px solid var(--primary-color); border-left: 3px solid var(--primary-color);"></div>
                         <img src="laser.jpg" class="img-fluid rounded shadow-lg" style="border: 1px solid #333;" alt="Laser Tech">
-                        <div style="position: absolute; bottom:0; right:0; width: 60px; height: 60px; border-bottom: 3px solid var(--primary-color); border-right: 3px solid var(--primary-color);"></div>
+                        <div style="position: absolute; bottom:-20px; right:-20px; width: 100px; height: 100px; border-bottom: 3px solid var(--primary-color); border-right: 3px solid var(--primary-color);"></div>
                     </div>
                 </div>
-                <div class="col-lg-6 ps-lg-5 text-center-mobile" data-aos="fade-left">
+                <div class="col-lg-6 ps-lg-5" data-aos="fade-left">
                     <h5 class="text-neon mb-2">THE VISION</h5>
                     <h2 class="mb-4">PRECISION IN <span class="text-white">EVERY PHOTON</span></h2>
                     <p class="text-gray lead">Fuego Aura is where industrial precision meets artistic illumination. Located in Kunnamkulam, we utilize state-of-the-art laser technology to manipulate acrylic, wood, and metal into stunning visual experiences.</p>
                     
-                    <div class="tagline-box text-start">
+                    <div class="tagline-box">
                         <i class="fas fa-bolt me-2"></i> “Fuego ഇത് Light കത്തും”
                     </div>
                     
@@ -643,6 +604,7 @@
         </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="section-padding">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
@@ -676,28 +638,29 @@
         </div>
     </section>
 
+    <!-- Interactive Process Section -->
     <section class="section-padding" style="background: linear-gradient(to bottom, #050505, #0a0a0a);">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="text-white">WORKFLOW <span class="text-neon">///</span></h2>
             </div>
             <div class="row text-center process-row">
-                <div class="col-md-3 col-6 process-step" data-aos="zoom-in" data-aos-delay="0">
+                <div class="col-md-3 process-step" data-aos="zoom-in" data-aos-delay="0">
                     <div class="step-number">01</div>
                     <h5 class="text-white">CONCEPT</h5>
                     <p class="small text-gray">Blueprint / Vector</p>
                 </div>
-                <div class="col-md-3 col-6 process-step" data-aos="zoom-in" data-aos-delay="150">
+                <div class="col-md-3 process-step" data-aos="zoom-in" data-aos-delay="150">
                     <div class="step-number">02</div>
                     <h5 class="text-white">SETUP</h5>
                     <p class="small text-gray">CAD Optimization</p>
                 </div>
-                <div class="col-md-3 col-6 process-step" data-aos="zoom-in" data-aos-delay="300">
+                <div class="col-md-3 process-step" data-aos="zoom-in" data-aos-delay="300">
                     <div class="step-number">03</div>
                     <h5 class="text-white">LASER</h5>
                     <p class="small text-gray">Precision Beam</p>
                 </div>
-                <div class="col-md-3 col-6 process-step" data-aos="zoom-in" data-aos-delay="450">
+                <div class="col-md-3 process-step" data-aos="zoom-in" data-aos-delay="450">
                     <div class="step-number">04</div>
                     <h5 class="text-white">FINISH</h5>
                     <p class="small text-gray">Assembly & Light</p>
@@ -706,14 +669,15 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
     <section id="gallery" class="section-padding">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap" data-aos="fade-right">
+            <div class="d-flex justify-content-between align-items-end mb-5" data-aos="fade-right">
                 <div>
                     <h5 class="text-neon">PORTFOLIO</h5>
                     <h2 class="mb-0">RECENT <span class="text-gradient">WORKS</span></h2>
                 </div>
-                <a href="#" class="text-gray small mt-2 mt-md-0">View All <i class="fas fa-arrow-right ms-1"></i></a>
+                <a href="#" class="text-gray small">View All <i class="fas fa-arrow-right ms-1"></i></a>
             </div>
             
             <div class="row g-4">
@@ -745,6 +709,7 @@
         </div>
     </section>
 
+    <!-- Festive Section -->
     <section id="festive" class="section-padding festive-section">
         <div class="container text-center">
             <div class="row justify-content-center">
@@ -761,32 +726,35 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="section-padding">
         <div class="container">
-            <div class="row g-5 text-center-mobile">
+            <div class="row g-5">
+                <!-- Info -->
                 <div class="col-lg-5" data-aos="fade-right">
                     <h2 class="mb-4">START A <span class="text-gradient">PROJECT</span></h2>
                     <p class="text-gray mb-5">Ready to bring your design to light? Reach out for a consultation.</p>
                     
-                    <div class="d-flex mb-4 align-items-center justify-content-center justify-content-lg-start">
+                    <div class="d-flex mb-4 align-items-center">
                         <div class="text-neon fs-4 me-4"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="text-start">
+                        <div>
                             <h6 class="text-white mb-0">HQ Location</h6>
                             <p class="text-gray mb-0">Kunnamkulam, Kerala, India</p>
                         </div>
                     </div>
 
-                    <div class="d-flex mb-4 align-items-center justify-content-center justify-content-lg-start">
+                    <div class="d-flex mb-4 align-items-center">
                         <div class="text-neon fs-4 me-4"><i class="fas fa-envelope"></i></div>
-                        <div class="text-start">
+                        <div>
                             <h6 class="text-white mb-0">Email Us</h6>
                             <p class="text-gray mb-0">hello@fuegoaura.in</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- Form -->
                 <div class="col-lg-7" data-aos="fade-left">
-                    <form class="p-4 rounded-3 text-start" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
+                    <form class="p-4 rounded-3" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="text-gray small mb-1">Name</label>
@@ -808,11 +776,12 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container py-5">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-4 text-center text-md-start mb-4 mb-md-0">
-                    <a class="navbar-brand d-inline-flex align-items-center justify-content-center justify-content-md-start mb-3" href="#">
+                    <a class="navbar-brand d-inline-flex align-items-center mb-3" href="#">
                         <img src="logo.jpg" alt="Logo" style="height: 30px; margin-right: 10px;">
                         <span class="text-white fw-bold fs-5">FUEGO <span class="text-neon">AURA</span></span>
                     </a>
@@ -833,6 +802,7 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../bootstrap.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -856,15 +826,12 @@
         });
 
         // Interactive Spotlight (Desktop Only)
-        // Wrapped in media query check for performance on mobile
-        if (window.matchMedia("(min-width: 992px)").matches) {
-            document.addEventListener('mousemove', (e) => {
-                const x = e.clientX;
-                const y = e.clientY;
-                document.documentElement.style.setProperty('--cursor-x', x + 'px');
-                document.documentElement.style.setProperty('--cursor-y', y + 'px');
-            });
-        }
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            document.documentElement.style.setProperty('--cursor-x', x + 'px');
+            document.documentElement.style.setProperty('--cursor-y', y + 'px');
+        });
 
         // Demo Form
         $('form').submit(function(e) {
@@ -878,13 +845,14 @@
             }, 2000);
         });
 
-        // Entrance Demo Popup
+        // Entrance Demo Popup: show on page load and close handlers
         (function() {
             const overlay = document.getElementById('demoPopupOverlay');
             const closeBtn = document.getElementById('demoPopupClose');
 
             function showPopup() {
                 if (!overlay) return;
+                // Small delay so it doesn't feel abrupt on slow loads
                 setTimeout(() => overlay.classList.add('show'), 250);
             }
 
@@ -893,8 +861,13 @@
                 overlay.classList.remove('show');
             }
 
+            // Show when DOM is ready
             document.addEventListener('DOMContentLoaded', showPopup);
+
+            // Close button
             if (closeBtn) closeBtn.addEventListener('click', closePopup);
+
+            // Click outside modal to close
             if (overlay) {
                 overlay.addEventListener('click', (e) => {
                     if (e.target === overlay) closePopup();
