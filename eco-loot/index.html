@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco.Loot - Sustainable Living</title>
+    <link rel="icon" href="asstes/logo.jpg" type="image/logo">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="../../bootstrap.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #228B22; /* Forest Green */
+            --accent-color: #13ec49;  /* Bright Green */
+            --bg-light: #f6f8f6;
+            --bg-dark: #102215;
+            --text-main: #36454F;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Custom Animations --- */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* --- Styling Overrides --- */
+        .text-primary-custom { color: var(--primary-color) !important; }
+        .bg-primary-custom { background-color: var(--accent-color) !important; color: #111; }
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .btn-primary-custom:hover {
+            background-color: #1a6b1a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(34, 139, 34, 0.3);
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .nav-link {
+            position: relative;
+            color: var(--text-main);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .card {
+            border: none;
+            border-radius: 1rem;
+            background-color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .product-img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            cursor: pointer;
+        }
+        
+        .product-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .quick-view-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            border: none;
+            pointer-events: none; /* Let clicks pass through to container */
+        }
+
+        .card:hover .quick-view-btn {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDRj_GGNyvaYnhnyweFPNznLVx02kN2YYfyOBrEL6v2KqsJ2LueJhe_t68xTon6eR4ovVUHVYEwpkzAxDqYBfpPOrEXmexM0vI-pdPawwDyYPCBHUSUbtynAnQTiEri1l_I_eXH-Fj4-yd1Drl5IJYTJOJ0T2-243Xv7C3WHociZxHhz3nAXlvYm1RPJVBVYLxa7gCKZpo49PQbyLeaJ44cT5f1pwO8S1_Ke9zt7lYNxZYOG3OIQLck_YxdBlXh0QQD1jNu3Bxk5Nc");
+            background-size: cover;
+            background-position: center;
+            min-height: 60vh;
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            height: 100%;
+        }
+
+        /* Cart Styling */
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            background: #f0f0f0;
+            border-radius: 20px;
+            padding: 2px 8px;
+        }
+        .quantity-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+        .quantity-input {
+            width: 30px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            font-weight: 600;
+        }
+
+        /* Page Transitions */
+        .page-section {
+            display: none;
+            animation: fadeInPage 0.4s ease-in-out;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .toast-container {
+            z-index: 1100;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Animation -->
+    <div id="loader">
+        <div class="text-center">
+            <span class="material-symbols-outlined text-primary-custom" style="font-size: 64px; animation: spin 2s infinite linear;">recycling</span>
+            <h4 class="mt-3 font-family-heading">Eco.Loot</h4>
+            <style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body d-flex align-items-center gap-2">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span id="toastMessage">Item added to cart!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Improved Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-lg-4" href="#" onclick="showPage('home')">
+                <span class="material-symbols-outlined text-primary-custom fs-2">eco</span>
+                <span class="fw-bold fs-4">Eco.Loot</span>
+            </a>
+
+            <!-- Mobile: Cart & Toggler (Visible on Right) -->
+            <!-- Desktop: Order 3 (Right side) -->
+            <div class="d-flex align-items-center gap-2 order-lg-3 ms-auto ms-lg-0">
+                 <!-- Cart Button -->
+                <button class="btn position-relative p-0 me-2" onclick="showPage('cart')">
+                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; transition: background 0.3s;">
+                        <span class="material-symbols-outlined text-dark">shopping_bag</span>
+                    </div>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success" id="cartBadge">0</span>
+                </button>
+                
+                <!-- Profile (Hidden on very small screens, visible on desktop) -->
+                <!-- <div class="rounded-circle bg-secondary d-none d-sm-block" style="width: 40px; height: 40px; background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBqzwRU8dcHXJbJYLXqVAg4slg5hR-cEI5MBLot0haF2Z4eICaXXrADhm-K0tp-OOU0cGIfQezdq5_HlsfLv0l2wqu_bgbMNXCJAdtcUEtpfaYMeja18TVQU4gNHZruYRbfMSqCLwdmoarN9NeaeJhoW3I3j6246R13jD9P-V8bVHsJMu9G-6YPii6Cju8dKMWFxKvakztLcvzDIHwDB_3wXLkoPD-uW3uqjxfnj8g8OC7pqbjObiMZZNr1aG8U4DDBEq9GIIFoM3k'); background-size: cover; cursor: pointer;"></div> -->
+                
+                <!-- Toggler (Visible only on mobile) -->
+                <button class="navbar-toggler border-0 p-1 ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="material-symbols-outlined fs-1">menu</span>
+                </button>
+            </div>
+
+            <!-- Links (Collapsible) -->
+            <!-- Desktop: Order 2 (Center) -->
+            <div class="collapse navbar-collapse order-lg-2 justify-content-center" id="navbarNav">
+                <ul class="navbar-nav gap-lg-4 text-center mt-3 mt-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#" onclick="showPage('home')">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#" onclick="showPage('products')">Products</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="container my-4">
+
+        <!-- === HOME VIEW === -->
+        <section id="home-view" class="page-section active">
+            <!-- Hero -->
+            <div class="hero-section mb-5 fade-in-section">
+                <div class="container">
+                    <h1 class="display-3 fw-bold mb-3">Treasure from Nature 🌿</h1>
+                    <p class="lead mb-4">Switch to a greener lifestyle ♻️ 100% Eco-friendly</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <button class="btn btn-primary-custom" onclick="showPage('products')">Shop Now</button>
+                        <button class="btn btn-light rounded-pill px-4 fw-bold">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bestsellers Header -->
+            <div class="d-flex justify-content-between align-items-end mb-4 fade-in-section">
+                <h2 class="fw-bold m-0">Our Bestsellers</h2>
+                <a href="#" class="text-success text-decoration-none fw-bold" onclick="showPage('products')">View All -></a>
+            </div>
+
+            <!-- Bestsellers Grid (Subset of products) -->
+            <div class="row g-4 mb-5" id="bestsellers-grid">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Features -->
+            <div class="row g-4 mb-5 fade-in-section">
+                <div class="col-12 text-center mb-2">
+                    <h2>Why Choose Eco.Loot?</h2>
+                    <p class="text-muted">High-quality, sustainable alternatives to everyday products.</p>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="feature-box">
+                        <span class="material-symbols-outlined fs-1 text-primary-custom mb-2">spa</span>
+                        <h5>Sustainable</h5>
+                        <p class="small text-muted mb-0">100% organic, fast-growing bamboo.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-6">
+                    <div class="feature-box">
+                        <span class="material-symbols-outlined fs-1 text-primary-custom mb-2">eco</span>
+                        <h5>Zero-Plastic</h5>
+                        <p class="small text-muted mb-0">Packaging free of plastics.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="feature-box">
+                        <span class="material-symbols-outlined fs-1 text-primary-custom mb-2">recycling</span>
+                        <h5>Biodegradable</h5>
+                        <p class="small text-muted mb-0">Safely returns to the earth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Awareness Banner -->
+            <div class="card bg-success-subtle border-0 mb-5 p-4 fade-in-section">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9LKtE5MkcQJylq_AgsuYv6IL7zo_VAAi8jAXosjtaaa9U1y6YAmLTRR83KMMwroyGs2CjUDN4cdhDid14fgDokFN2m1mrtCW5PVq99velRLstpAcWNSwlk-A7D1AJhrY-KSeR8xk7llxVEs5A3t6YBIpP_m2525P6CrK4SHcB39tuhIN_k10YaBiduOVdEal1wCDhq8G4pCHySe5ZuZqdXpIK3qDgdjZAcBPwSBYgkDQlmD4gk7HC9G9goX3CRyXa68SyDTxxnYQ" class="img-fluid rounded-3 shadow" alt="Turtle">
+                    </div>
+                    <div class="col-md-6 ps-md-5">
+                        <h2 class="fw-bold mb-3">Join the Movement</h2>
+                        <p class="text-secondary">Every year, 8 million metric tons of plastic enter our oceans. By making small changes, like switching to a bamboo toothbrush, we can collectively make a massive difference.</p>
+                        <button class="btn btn-primary-custom mt-2" onclick="showPage('products')">Take Action</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="row mb-5 fade-in-section" id="contact">
+                <div class="col-md-6">
+                    <h2 class="fw-bold mb-3">Get In Touch</h2>
+                    <p class="text-muted">Have a question? We'd love to hear from you.</p>
+                    <ul class="list-unstyled mt-4">
+                        <li class="d-flex gap-3 mb-3"><span class="material-symbols-outlined text-primary-custom">location_on</span> 123 Green Way, Natureville</li>
+                        <li class="d-flex gap-3 mb-3"><span class="material-symbols-outlined text-primary-custom">mail</span> hello@ecoloot.com</li>
+                        <li class="d-flex gap-3"><span class="material-symbols-outlined text-primary-custom">call</span> +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-sm">
+                        <form onsubmit="event.preventDefault(); showToast('Message sent! We will reply soon.');">
+                            <div class="mb-3"><input type="text" class="form-control" placeholder="Name" required></div>
+                            <div class="mb-3"><input type="email" class="form-control" placeholder="Email" required></div>
+                            <div class="mb-3"><textarea class="form-control" rows="4" placeholder="Message"></textarea></div>
+                            <button class="btn btn-primary-custom w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === PRODUCTS VIEW === -->
+        <section id="products-view" class="page-section">
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold">Our Collection</h1>
+                <p class="text-muted">Sustainable choices for every part of your life.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="d-flex overflow-auto gap-2 mb-4 pb-2 justify-content-md-center">
+                <button class="btn btn-outline-success active rounded-pill px-4" onclick="filterProducts('all', this)">All</button>
+                <button class="btn btn-outline-success rounded-pill px-4" onclick="filterProducts('kitchen', this)">Kitchen</button>
+                <button class="btn btn-outline-success rounded-pill px-4" onclick="filterProducts('bath', this)">Bath</button>
+                <button class="btn btn-outline-success rounded-pill px-4" onclick="filterProducts('travel', this)">Travel</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="row g-4" id="all-products-grid">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- === PRODUCT DETAILS VIEW === -->
+        <section id="product-details-view" class="page-section">
+            <div class="container">
+                <button class="btn btn-link text-muted text-decoration-none mb-4 ps-0" onclick="showPage('products')">
+                    <span class="material-symbols-outlined align-middle fs-5">arrow_back</span> Back to Products
+                </button>
+                <div class="row g-5">
+                    <div class="col-md-6">
+                        <img id="detail-img" src="" class="img-fluid rounded-4 shadow-sm w-100 object-fit-cover" alt="Product">
+                    </div>
+                    <div class="col-md-6 d-flex flex-column justify-content-center">
+                        <span class="badge bg-success-subtle text-success border border-success-subtle w-auto align-self-start mb-3 text-uppercase" id="detail-category">Category</span>
+                        <h1 class="display-5 fw-bold mb-3" id="detail-title">Product Name</h1>
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <h3 class="text-success m-0" id="detail-price">$0.00</h3>
+                            <div class="d-flex text-warning align-items-center">
+                                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                                <span class="ms-1 text-muted fw-bold" id="detail-rating">0.0</span>
+                            </div>
+                        </div>
+                        <p class="lead text-muted mb-5" id="detail-desc">Description</p>
+                        
+                        <div class="mb-5">
+                            <h6 class="fw-bold mb-3">Key Features:</h6>
+                            <ul class="list-unstyled text-muted" id="detail-features">
+                                <li class="d-flex gap-2 mb-2"><span class="material-symbols-outlined text-success">check_circle</span> Eco-friendly material</li>
+                                <li class="d-flex gap-2 mb-2"><span class="material-symbols-outlined text-success">check_circle</span> Plastic-free packaging</li>
+                                <li class="d-flex gap-2 mb-2"><span class="material-symbols-outlined text-success">check_circle</span> Carbon neutral shipping</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-flex gap-3 mt-auto">
+                            <div class="quantity-control border py-2 px-3 rounded-pill">
+                                <button class="quantity-btn" onclick="adjustDetailQty(-1)">-</button>
+                                <input type="text" id="detail-qty" class="quantity-input" value="1" readonly>
+                                <button class="quantity-btn" onclick="adjustDetailQty(1)">+</button>
+                            </div>
+                            <button class="btn btn-primary-custom flex-grow-1 rounded-pill shadow-lg" id="detail-add-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === CART VIEW === -->
+        <section id="cart-view" class="page-section">
+            <h1 class="fw-bold mb-4">Your Cart</h1>
+            <div class="row">
+                <div class="col-lg-8" id="cart-items-container">
+                    <!-- Cart items injected here -->
+                    <div class="text-center py-5">
+                        <span class="material-symbols-outlined fs-1 text-muted">shopping_cart_off</span>
+                        <p class="mt-3">Your cart is empty.</p>
+                        <button class="btn btn-primary-custom" onclick="showPage('products')">Start Shopping</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card p-4 shadow-sm sticky-top" style="top: 100px;">
+                        <h4 class="fw-bold mb-4">Order Summary</h4>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Subtotal</span>
+                            <span id="cart-subtotal">$0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Shipping</span>
+                            <span id="cart-shipping">$0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted">Taxes</span>
+                            <span id="cart-tax">$0.00</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="fw-bold fs-5">Total</span>
+                            <span class="fw-bold fs-5 text-success" id="cart-total">$0.00</span>
+                        </div>
+                        <button class="btn btn-primary-custom w-100 py-2" onclick="checkout()">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-top py-4 mt-auto">
+        <div class="container text-center text-md-start">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p class="text-muted mb-2 mb-md-0">© 2025 Eco.Loot — Treasure from Nature 🌿</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="text-muted text-decoration-none hover-green">Privacy</a>
+                    <a href="#" class="text-muted text-decoration-none hover-green">Terms</a>
+                    <a href="#" class="text-muted text-decoration-none hover-green">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="../../bootstrap.js"></script>
+
+    <script>
+        // --- DATA ---
+        const products = [
+            {
+                id: 1,
+                name: "Bamboo Toothbrush",
+                category: "bath",
+                price: 5.99,
+                rating: 4.8,
+                image: "asstes/brush.jpg",
+                desc: "Biodegradable handle with charcoal infused bristles."
+            },
+            {
+                id: 2,
+                name: "Travel Case",
+                category: "travel",
+                price: 7.50,
+                rating: 4.5,
+                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAZtNy47o83R9lPnqckngTTK8KRhk_57zQnEjESAJFSzc1h0dvSVn8GuXquTSWOhANKIprqsXXW7EXVlhppJ9NcKA2gDfZaZVnOVpZkEmAcr_tIy7BuzU2gOyLG3wcdwazN5SBsnCXw4B_X51MRCYMbIC4pLgNevTqwHEU9kMHOh1B4siCjvGMcD30O-cEnyHxE6DUSwp9ZDs5w36eNm7j8lyU-OSF9TNmRop3UuOW388MJldd5pvAneUvfbgqTYdFPyypE80uBZ8g",
+                desc: "Keep your toothbrush clean on the go with this bamboo case."
+            },
+            {
+                id: 3,
+                name: "Reusable Bag",
+                category: "travel",
+                price: 15.50,
+                rating: 4.9,
+                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAyy9PexjDWwkdRMheDoIP8Aq56_lBXfa9TSdV_4fcGIk1lQ8PKFFOWowk5VdpF9raBSlkE97d6zIQoIjT-J8mrfMK64aaPWB3akpwwxeo_zs60DSG5UBi3zTZj4SFYPT7UlVK3ytDLObs5ifoOlaHwvaVYL_Apq6Bb9Yt7oEZ2YW-2Y0Ll21Li_fwRi0sxfZZlYndUkL7AUAb3J1WgU3W2GZ7rDtkNEEI54RgS9rrHHIgwYLwhWF0a-saLxKFqkCF3O513RO7Ba34",
+                desc: "Sturdy organic cotton bag for your daily shopping needs."
+            },
+            {
+                id: 4,
+                name: "Loofah Sponge",
+                category: "bath",
+                price: 8.00,
+                rating: 4.7,
+                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDtTSGDz-fxt2pvsqpbAsRHCBOQDvXuF7Ouff4aX7lI24UJYkewIAEuCZZxwwPdmS1ECzxaBsPW7h3vOco6_4hlqjwUMl5yRSsoYOCWI_htzHCXLEaTpnFjsQ4fRp42jEQugShykpxG3tHExUe9yDcZoBxNF00bg5o_o9To4er6sKYautacKnux0CoLSqhTXUNVpkQdindCJmDoMTMvSi79JjEO-jcyc1OszbnchY_ZGRIavOFw9deleMwNw3u3g2I8x5vWnVEH9-U",
+                desc: "Natural exfoliation that is gentle on your skin and the planet."
+            },
+            {
+                id: 5,
+                name: "Glass Tumbler",
+                category: "kitchen",
+                price: 18.00,
+                rating: 4.6,
+                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuABkTX1SwC3895fGnXy_aPpf_1X4sa4zFjWRLrt2GCeh9GWeaoJC75GDqYqobh6AY6oSGfPCRxQeYycAceijt8oNgBSB6CssIAiUT2BJ2-BbLXLq7ChtpMHN44PwOUyCXYv7PugGX6qVid6QNfFsc0hjNe5Fx1szLVbn1Z87OEnkriZu2G4jrZUlJaim56NK9sETDsupPDpir_IrG5q63kwFs0MGp6xvaytC2gc3L8JB9GDxSyXDJQUiad1MZCklZ9ro8eEXwIBLFc",
+                desc: "Recycled glass made into beautiful, durable drinkware."
+            },
+            {
+                id: 6,
+                name: "Steel Straws",
+                category: "kitchen",
+                price: 9.99,
+                rating: 4.9,
+                image: "https://lh3.googleusercontent.com/aida-public/AB6AXuByNfFjFVtWzsB9fpkw7G_pSzSxntugHmp2h4KSdMdZ1ZG2VaBpw5hKtAZyoL5G3PYRwymN-Io5BjpB2RREnD-LJmMSoOeSTSafGgSC0-QtDxJ3S5n1nUoJKUarfMnfH-krOaUFY5TYksey9E5u_QEGE4aqIYXCVevWJHpJctKrWuuQExrXM2QIocRgYeUjO3ZH2cpGTYsrvbPKyCgZ7CNtVJZ2pyku-CHE4tRzvTxjTcbLtfQMJ0oEOpCo3frAWg5aq2Ul6Qp80jI",
+                desc: "Say no to plastic straws forever. Includes cleaning brush."
+            }
+        ];
+
+        // --- STATE ---
+        let cart = [];
+        let detailProduct = null;
+        let currentDetailQty = 1;
+
+        // --- INIT ---
+        window.addEventListener('load', () => {
+            // Remove Loader Animation
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => document.getElementById('loader').remove(), 500);
+            }, 1000);
+
+            renderProducts();
+            
+            // Scroll Observer for Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        // --- NAVIGATION LOGIC ---
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+            
+            // Show requested page
+            const target = document.getElementById(pageId + '-view');
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+            
+            // Close mobile menu if open
+            const navBarCollapse = document.getElementById('navbarNav');
+            if(navBarCollapse.classList.contains('show')) {
+                new bootstrap.Collapse(navBarCollapse).hide();
+            }
+
+            // Specific refresh logic
+            if (pageId === 'cart') renderCart();
+        }
+
+        // --- PRODUCT RENDERING ---
+        function createProductCard(product) {
+            return `
+                <div class="col-md-4 col-sm-6">
+                    <div class="card h-100 shadow-sm">
+                        <!-- Image Container with Click Event -->
+                        <div class="product-img-container" onclick="showProductDetails(${product.id})">
+                            <img src="${product.image}" class="product-img" alt="${product.name}">
+                            <button class="quick-view-btn">View Details</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title fw-bold m-0">${product.name}</h5>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">$${product.price.toFixed(2)}</span>
+                            </div>
+                            <div class="d-flex text-warning mb-2">
+                                <span class="material-symbols-outlined" style="font-size: 18px; font-variation-settings: 'FILL' 1;">star</span>
+                                <small class="text-muted ms-1">${product.rating}</small>
+                            </div>
+                            <button class="btn btn-outline-success w-100 rounded-pill btn-sm fw-bold" onclick="addToCart(${product.id}, 1)">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProducts() {
+            // Render Bestsellers (First 3)
+            const bestContainer = document.getElementById('bestsellers-grid');
+            bestContainer.innerHTML = products.slice(0, 3).map(createProductCard).join('');
+
+            // Render All Products
+            const allContainer = document.getElementById('all-products-grid');
+            allContainer.innerHTML = products.map(createProductCard).join('');
+        }
+
+        function filterProducts(category, btnElement) {
+            // Update button styles
+            document.querySelectorAll('#products-view .btn-outline-success').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // Filter logic
+            const container = document.getElementById('all-products-grid');
+            const filtered = category === 'all' 
+                ? products 
+                : products.filter(p => p.category === category);
+            
+            // Simple animation for filter change
+            container.style.opacity = '0';
+            setTimeout(() => {
+                container.innerHTML = filtered.length 
+                    ? filtered.map(createProductCard).join('') 
+                    : '<div class="col-12 text-center text-muted">No products found in this category.</div>';
+                container.style.opacity = '1';
+            }, 200);
+        }
+
+        // --- PRODUCT DETAILS LOGIC ---
+        function showProductDetails(id) {
+            detailProduct = products.find(p => p.id === id);
+            currentDetailQty = 1;
+
+            if(detailProduct) {
+                document.getElementById('detail-img').src = detailProduct.image;
+                document.getElementById('detail-category').innerText = detailProduct.category;
+                document.getElementById('detail-title').innerText = detailProduct.name;
+                document.getElementById('detail-price').innerText = `$${detailProduct.price.toFixed(2)}`;
+                document.getElementById('detail-rating').innerText = detailProduct.rating;
+                document.getElementById('detail-desc').innerText = detailProduct.desc;
+                document.getElementById('detail-qty').value = 1;
+                
+                // Set OnClick for Add Button inside Details View
+                const btn = document.getElementById('detail-add-btn');
+                btn.onclick = () => {
+                    addToCart(detailProduct.id, currentDetailQty);
+                };
+
+                showPage('product-details');
+            }
+        }
+
+        function adjustDetailQty(change) {
+            const newQty = currentDetailQty + change;
+            if(newQty >= 1) {
+                currentDetailQty = newQty;
+                document.getElementById('detail-qty').value = currentDetailQty;
+            }
+        }
+
+        // --- CART LOGIC ---
+        function addToCart(productId, qty) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if(existingItem) {
+                existingItem.qty += qty;
+            } else {
+                cart.push({ ...product, qty: qty });
+            }
+
+            updateCartBadge();
+            showToast(`${product.name} added to cart!`);
+        }
+
+        function updateCartBadge() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartBadge').innerText = totalItems;
+        }
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const taxEl = document.getElementById('cart-tax');
+            const totalEl = document.getElementById('cart-total');
+            const shippingEl = document.getElementById('cart-shipping');
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-5">
+                        <span class="material-symbols-outlined fs-1 text-muted">shopping_cart_off</span>
+                        <p class="mt-3">Your cart is empty.</p>
+                        <button class="btn btn-primary-custom" onclick="showPage('products')">Start Shopping</button>
+                    </div>
+                `;
+                subtotalEl.innerText = "$0.00";
+                taxEl.innerText = "$0.00";
+                totalEl.innerText = "$0.00";
+                return;
+            }
+
+            let html = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const totalItemPrice = item.price * item.qty;
+                subtotal += totalItemPrice;
+                html += `
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <img src="${item.image}" class="cart-item-img me-3" alt="${item.name}">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-0 fw-bold">${item.name}</h6>
+                                    <small class="text-muted">$${item.price.toFixed(2)} each</small>
+                                </div>
+                                <div class="quantity-control me-3">
+                                    <button class="quantity-btn" onclick="updateCartItem(${item.id}, -1)">-</button>
+                                    <input type="text" class="quantity-input" value="${item.qty}" readonly>
+                                    <button class="quantity-btn" onclick="updateCartItem(${item.id}, 1)">+</button>
+                                </div>
+                                <button class="btn btn-link text-danger p-0" onclick="removeCartItem(${item.id})">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            const shipping = subtotal > 50 ? 0 : 5.00; // Free shipping over $50
+            const tax = subtotal * 0.08;
+            const total = subtotal + shipping + tax;
+
+            subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
+            shippingEl.innerText = shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`;
+            taxEl.innerText = `$${tax.toFixed(2)}`;
+            totalEl.innerText = `$${total.toFixed(2)}`;
+        }
+
+        function updateCartItem(id, change) {
+            const item = cart.find(i => i.id === id);
+            if(item) {
+                const newQty = item.qty + change;
+                if(newQty > 0) {
+                    item.qty = newQty;
+                } else {
+                    removeCartItem(id);
+                    return; // exit to avoid re-rendering twice
+                }
+            }
+            updateCartBadge();
+            renderCart();
+        }
+
+        function removeCartItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartBadge();
+            renderCart();
+        }
+
+        function checkout() {
+            if(cart.length === 0) {
+                showToast("Your cart is empty!");
+                return;
+            }
+            showToast("Processing order... (Demo)");
+            setTimeout(() => {
+                cart = [];
+                updateCartBadge();
+                renderCart();
+                alert("Thank you for your order! 🌿");
+                showPage('home');
+            }, 1500);
+        }
+
+        // --- UTILS ---
+        function showToast(msg) {
+            document.getElementById('toastMessage').innerText = msg;
+            const toastEl = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+
+            alert("This is a demo website. please contact TEB Innovations for more information.");
+    </script>
+</body>
+</html>
