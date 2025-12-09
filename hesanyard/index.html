@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hesanyard</title>
+        <title>Hesanyard</title>
     <link rel="icon" href="assets/465193019_906723108052061_3634152199928693377_n.jpg" type="image/logo">
 
     <!-- Bootstrap 5 CSS -->
@@ -43,8 +43,8 @@
 
         /* --- Navbar --- */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid #e5e7eb;
             padding-top: 1rem;
             padding-bottom: 1rem;
@@ -98,7 +98,7 @@
 
         .btn-primary-custom:hover {
             opacity: 0.9;
-            background-color: var(--brand-primary); /* Keep color, just opacity change */
+            background-color: var(--brand-primary);
             color: #000;
         }
 
@@ -118,8 +118,34 @@
 
         /* --- Layout Helpers --- */
         .section-padding {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-padding {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+        }
+        
+        /* Marquee */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: var(--brand-accent);
+            color: white;
+            padding: 0.5rem 0;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* Image Aspect Ratios & Covers */
@@ -132,7 +158,7 @@
         .aspect-3-4 {
             aspect-ratio: 3/4;
         }
-
+        
         /* --- Category Cards --- */
         .category-card {
             position: relative;
@@ -147,7 +173,15 @@
             transition: transform 0.3s ease;
         }
 
-        .category-card:hover .category-text {
+        .category-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 60%);
+            transition: opacity 0.3s ease;
+        }
+
+        .category-card:hover {
             transform: translateY(-5px);
         }
 
@@ -157,7 +191,45 @@
             font-size: 1.25rem;
             position: relative;
             z-index: 2;
-            transition: transform 0.3s ease;
+        }
+
+        /* --- Curated Collections Banner --- */
+        .collection-banner {
+            position: relative;
+            height: 300px; /* Smaller height on mobile default */
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .collection-banner {
+                height: 400px;
+            }
+        }
+        
+        .collection-banner img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .collection-banner:hover img {
+            transform: scale(1.1);
+        }
+        
+        .collection-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            max-width: 90%;
         }
 
         /* Text colors */
@@ -169,13 +241,87 @@
         .feature-icon-box {
             width: 48px;
             height: 48px;
-            background-color: rgba(175, 254, 39, 0.2); /* Primary with opacity */
+            background-color: rgba(175, 254, 39, 0.2);
             color: var(--brand-accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1rem;
+        }
+
+        /* Countdown */
+        .countdown-box {
+            background: #fff;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            min-width: 60px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        
+        @media (min-width: 768px) {
+            .countdown-box {
+                padding: 1rem;
+                min-width: 80px;
+            }
+        }
+
+        /* Blog Card */
+        .blog-card {
+            border: none;
+            transition: transform 0.3s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        .blog-card img {
+            border-radius: 0.5rem;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        /* Instagram Grid */
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        /* Mobile adjustment for 2 columns */
+        @media (max-width: 380px) {
+            .insta-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .insta-item {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .insta-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .insta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(139, 32, 187, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+        }
+        .insta-item:hover .insta-overlay {
+            opacity: 1;
+        }
+        .insta-item:hover img {
+            transform: scale(1.1);
         }
 
         /* Form */
@@ -192,7 +338,7 @@
 
         footer {
             border-top: 1px solid #e5e7eb;
-            margin-top: 6rem;
+            margin-top: 4rem;
             padding: 2rem 0;
         }
 
@@ -204,9 +350,24 @@
             color: var(--brand-accent);
         }
 
+        /* Typography Responsive */
+        .display-responsive-1 {
+            font-size: calc(2.5rem + 2.5vw);
+        }
+        .display-responsive-4 {
+            font-size: calc(1.5rem + 1.5vw);
+        }
+
     </style>
 </head>
 <body>
+
+    <!-- Marquee Bar -->
+    <div class="marquee-container">
+        <div class="marquee-content fw-bold text-uppercase small" style="letter-spacing: 1px;">
+            <span>Free Shipping on Orders Over $100 &nbsp; • &nbsp; New Drops Every Friday &nbsp; • &nbsp; Sustainable Fashion for Everyone &nbsp; • &nbsp; Free Shipping on Orders Over $100 &nbsp; • &nbsp; New Drops Every Friday &nbsp; • &nbsp; Sustainable Fashion for Everyone &nbsp; • &nbsp;</span>
+        </div>
+    </div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md sticky-top">
@@ -227,7 +388,7 @@
 
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-md-0 gap-md-4">
-                    <li class="nav-item"><a class="nav-link  text-accent fw-bold" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-accent fw-bold" href="#">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="product.html">Shop</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -243,26 +404,30 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="section-padding px-4 px-lg-5">
+        <section class="section-padding px-4 px-lg-5 pt-5">
             <div class="container-fluid">
                 <div class="row align-items-center gy-5">
                     <!-- Left Content -->
-                    <div class="col-md-6 text-center text-md-start" data-aos="fade-right">
-                        <h1 class="display-3 fw-bold mb-4 lh-1" style="letter-spacing: -2px;">Style That Tells a Story</h1>
-                        <p class="lead text-secondary mb-4">Discover unique, curated thrift clothing for the modern individual.</p>
-                        <button class="btn btn-primary-custom btn-lg w-100 w-sm-auto" style="max-width: 480px;">Shop Now</button>
+                    <div class="col-lg-6 text-center text-lg-start" data-aos="fade-right">
+                        <span class="badge bg-light text-dark border mb-3 px-3 py-2 rounded-pill fw-bold">🔥 New Winter Collection Live</span>
+                        <h1 class="display-responsive-1 fw-bold mb-4 lh-1" style="letter-spacing: -2px;">Style That Tells a Story</h1>
+                        <p class="lead text-secondary mb-4 fs-6 fs-md-5">Discover unique, curated thrift clothing for the modern individual. Ethical fashion that doesn't compromise on style.</p>
+                        <div class="d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
+                            <button class="btn btn-primary-custom btn-lg px-4 px-md-5">Shop Now</button>
+                            <button class="btn btn-outline-dark btn-lg fw-bold border-2 px-4 px-md-5" style="border-radius: 0.5rem;">View Lookbook</button>
+                        </div>
                     </div>
 
                     <!-- Right Images -->
-                    <div class="col-md-6" data-aos="fade-left">
+                    <div class="col-lg-6" data-aos="fade-left">
                         <div class="row g-3">
-                            <div class="col-6">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3ukcK5l_NxG2Qp4x_iZdLbP1TGgGju-gYWQybJdNfJTvt0MemmSezlZdFzyHAjc65eV_6DM_Eze1XaWoyvqqv1_vH-HcvK73M4k2NwYH9hd9WETCJ3c2hzwwK0atzPCZOEMYB0l9WcOeEyEb1F-a2qzVESmDFz5b1-P4FouP0-iwkYMwSc_2RnrIpktFonmiomD4cs8EyqdaUTYIdd_ObMY749Yz7SFmdi0SnzA1w4BsV1HBccL27S7NfcI-aHJLLWjQBEuHNZ-w" 
-                                     class="img-fluid img-cover aspect-3-4" alt="Vintage clothes rack">
+                            <div class="col-6 mt-3 mt-md-5">
+                                <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop" 
+                                     class="img-fluid img-cover aspect-3-4 shadow" alt="Vintage clothes rack">
                             </div>
-                            <div class="col-6">
+                            <div class="col-6 mb-3 mb-md-5">
                                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT5Djd7qwDSX2fV3FK7NTbcntYp3xScjq0HNVNlT3zISogsvsK1xVssStxTfifv77YLlLLWqt4TuxrkPJ4vVJviQHtEnA5zXLLtN8pyW4ovmN6XReCJgPDeXL8Ac7THr2VeBbeznTKRO6RThDsoq8_AANbLms4xGRcT1Hgq5nXE_TIZsTdp_lWGeSAO0IcDQAJ7-MMbsguk4AdORSZp5eyLmATYLEi_8CeqyGnicCUGNydTMj06cLah0fXFNSLoKSfEOkdL6oXVIw" 
-                                     class="img-fluid img-cover aspect-3-4" alt="Folded jeans">
+                                     class="img-fluid img-cover aspect-3-4 shadow" alt="Folded jeans">
                             </div>
                         </div>
                     </div>
@@ -273,30 +438,63 @@
         <!-- Shop by Category -->
         <section class="section-padding px-4 px-lg-5 bg-white">
             <div class="container-fluid">
-                <h2 class="h1 fw-bold text-center mb-5" data-aos="fade-up">Shop by Category</h2>
-                <div class="row g-4">
-                    <!-- Item 1 -->
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 mb-md-5">
+                    <h2 class="h1 fw-bold mb-2 mb-md-0" data-aos="fade-right">Shop by Category</h2>
+                    <a href="#" class="text-decoration-none text-dark fw-bold d-none d-sm-block">View All Categories &rarr;</a>
+                </div>
+                
+                <div class="row g-3 g-md-4">
                     <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
-                        <div class="category-card" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnpSozoVpNdDy1cxBHX8M99Fi7LDao73KfeYssHZHnMEl5mQcrv2aNVB4Sc_eDzf2Vxo2shhoVQTMoSGR-5K1-wYJaX0LCBFxxGhvOYOwykjVZRGBwiITc3lkXlB_crsDciGNS6NG-ijNyufu58PaWxct5Oy750Ute_moU9RwLul2uMPRWFttR1JxzZMiGY9Tx7GXp-zlfESt6CpLTcdtRF1bYu1EjzqqELtrEe2VqGk_oNyEAZDfk0NTcjXa81xEAH1PpH50wqys');">
+                        <div class="category-card" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnpSozoVpNdDy1cxBHX8M99Fi7LDao73KfeYssHZHnMEl5mQcrv2aNVB4Sc_eDzf2Vxo2shhoVQTMoSGR-5K1-wYJaX0LCBFxxGhvOYOwykjVZRGBwiITc3lkXlB_crsDciGNS6NG-ijNyufu58PaWxct5Oy750Ute_moU9RwLul2uMPRWFttR1JxzZMiGY9Tx7GXp-zlfESt6CpLTcdtRF1bYu1EjzqqELtrEe2VqGk_oNyEAZDfk0NTcjXa81xEAH1PpH50wqys');">
                             <p class="category-text mb-0">Vintage</p>
                         </div>
                     </div>
-                    <!-- Item 2 -->
                     <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="category-card" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCWzITzaq8SMUwLYeFhMM36pDXNhRrUYixAfFBraU4ska-WT_fjJCig3oGGR5TxJIRbYsxkeUDGYwbMmMkW9uDEXnJt3rGb2pwAT3xA93b3V3WyBPrIixOA0zIVI7o3gucU_4r5VJAzw8_ygsPvVwveqmExEaeSg4gxVUJKDQneS4RYoDnD_yo8gzqieRKZHhzEsgiPJKaiOCgoKl3sUqg78YyruM8J7HAyR6bZUlAS3f7wnD2BztgCLv1es2s8hMjy_QA3rMJQeU');">
+                        <div class="category-card" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCCWzITzaq8SMUwLYeFhMM36pDXNhRrUYixAfFBraU4ska-WT_fjJCig3oGGR5TxJIRbYsxkeUDGYwbMmMkW9uDEXnJt3rGb2pwAT3xA93b3V3WyBPrIixOA0zIVI7o3gucU_4r5VJAzw8_ygsPvVwveqmExEaeSg4gxVUJKDQneS4RYoDnD_yo8gzqieRKZHhzEsgiPJKaiOCgoKl3sUqg78YyruM8J7HAyR6bZUlAS3f7wnD2BztgCLv1es2s8hMjy_QA3rMJQeU');">
                             <p class="category-text mb-0">Surplus</p>
                         </div>
                     </div>
-                    <!-- Item 3 -->
                     <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="category-card" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuD8OP_DnOS4EkdduBnKXPuS0YSYdCgyeZnBQZjCBh7dOBtAeAsTAqJzFspj8w4XJfoCoNZNYYklZkgn6ohM_C1RMJlfMzhyzMTLgICfSF6yXXw2Uo3U2OoEEgSLm1WLMOeZqtI8ZQEGusatsWXCpGglsmnE0dJ2kHIXhyz4lTSBwWDc7OJj9xgzegy-pOmItaJWWrztmhbKW_g-uzteXUBKPFvWZjKIhiz_XbTEKNy1h6506sYjELdAAREt9WyPLICA_iAu5P8VI5s');">
+                        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop');">
                             <p class="category-text mb-0">Oversized</p>
                         </div>
                     </div>
-                    <!-- Item 4 -->
                     <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="category-card" style="background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDBRx2OK9XFAEwhFqq3QW5EvbQi1UQDKOlflN7N6DxZjL-CsygejD0k0ZUVYHgRdCYgyimJffdJ82961fmAFj1yy76zFV1-cnJWPOYHfpMG673Omh4SJfLx-QxreLGpZvBbEqgwEskHNQox7R7VIUGYJOieN7k6vp6tXvv9Ri76hzE2v6OfcplAOqF8JdB7ejU6UYw2K4D4gAZATcRNPtIj1_us-7rEN3-y3cIAGEe5DzBPIy-n4qXGcZs-3UltIbIhqGxz04yxRk');">
+                        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1576188973526-0e5d7047b0cf?q=80&w=800&auto=format&fit=crop');">
                             <p class="category-text mb-0">Accessories</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile only link -->
+                <div class="mt-4 text-center d-block d-sm-none">
+                    <a href="#" class="btn btn-outline-dark w-100">View All Categories</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Curated Collections -->
+        <section class="section-padding px-4 px-lg-5">
+            <div class="container-fluid">
+                <div class="row g-4">
+                    <div class="col-md-6" data-aos="fade-right">
+                        <div class="collection-banner">
+                            <img src="https://i.pinimg.com/736x/f8/64/dd/f864dde0f8a780b1a8226b24808724d4.jpg" alt="90s Grunge">
+                            <div class="collection-content">
+                                <h3 class="fw-bold display-6 mb-1">90s Grunge</h3>
+                                <p class="mb-3 d-none d-sm-block">Flannel, denim, and attitude.</p>
+                                <button class="btn btn-outline-dark fw-bold btn-sm btn-md-lg">Explore</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" data-aos="fade-left">
+                        <div class="collection-banner">
+                            <img src="https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F04428614-e069-4bfa-8de8-c1e72e3666f6.jpg?source=next-article&fit=scale-down&quality=highest&width=700&dpr=1" alt="Y2K Pop">
+                            <div class="collection-content">
+                                <h3 class="fw-bold display-6 mb-1">Y2K Pop</h3>
+                                <p class="mb-3 d-none d-sm-block">Bright colors and bold prints.</p>
+                                <button class="btn btn-outline-dark fw-bold btn-sm btn-md-lg">Explore</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -304,24 +502,28 @@
         </section>
 
         <!-- Featured Finds -->
-        <section class="section-padding px-4 px-lg-5">
+        <section class="section-padding px-4 px-lg-5 bg-white">
             <div class="container-fluid">
                 <h2 class="h1 fw-bold text-center mb-5" data-aos="fade-up">Featured Finds</h2>
-                
                 <div class="row g-4">
                     <!-- Product 1 -->
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="0">
                         <div class="card h-100 border-0">
-                            <div class="overflow-hidden rounded-3 mb-3">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy31OVTzMpeONjTUDn6D9R-hx6gAD3JBh8u3RSHVd-VJh_BiS9YtItrtcF3H-8sAmUHe6jnht7bYUffHp_DWTwsqzQhmVgOmTS8p2Xtzx-75-5LWIq3NyUMkIO1EX5jsPvdB8o6yltmxfcjjKjdoJfmqSsJoQlquq2GohR3BqBBvc6GkT3BFLzhgfWbPBNuidTLc_T-i7nTQ8v95XkgTeICzo7qL-UoSe2aIOO7gmcpOnuFbCLKoTHw6I48cMICkJ5y60lRdct4r8" class="img-fluid img-cover aspect-3-4" alt="Retro Band Tee">
+                            <div class="overflow-hidden rounded-3 mb-3 position-relative">
+                                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=800&auto=format&fit=crop" class="img-fluid img-cover aspect-3-4" alt="Retro Band Tee">
+                                <div class="position-absolute top-0 end-0 p-2">
+                                    <span class="badge bg-white text-dark shadow-sm">Hot</span>
+                                </div>
                             </div>
                             <div class="d-flex justify-content-between align-items-start">
-                                <h5 class="fw-semibold mb-0">Retro Band Tee</h5>
+                                <div>
+                                    <h5 class="fw-semibold mb-0 text-truncate" style="max-width: 150px;">Retro Band Tee</h5>
+                                    <small class="text-secondary">Tops</small>
+                                </div>
                                 <span class="fw-bold text-accent">$35.00</span>
                             </div>
                         </div>
                     </div>
-
                     <!-- Product 2 -->
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
                         <div class="card h-100 border-0">
@@ -329,33 +531,40 @@
                                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm3gPFzP_dc_lXuqJ_76BmTNE2DNqECcjGNo_VgSXpzjoAIGm2KwJkgeqAoBXbbAsp0TZVRLtSjjYkPgzbo-ImWYs8l59VXtxrWB4gtpB3sgp2DFN0wuZQ_tKEkddtvdYnF0txwv2xGA4ajuaPw168mdGJgipu5wliVRWa5YxLYFSWvx2oFv9EfkBihYWFOGKgSWCRDwfD9f77oaAczaiU_7mATq_0Rrgu7rIQWj-4M7o8x0xLls5PLVJOUFKd6W9hwd8HYUTkqcc" class="img-fluid img-cover aspect-3-4" alt="Denim Jacket">
                             </div>
                             <div class="d-flex justify-content-between align-items-start">
-                                <h5 class="fw-semibold mb-0">Classic Denim Jacket</h5>
+                                <div>
+                                    <h5 class="fw-semibold mb-0">Classic Denim</h5>
+                                    <small class="text-secondary">Outerwear</small>
+                                </div>
                                 <span class="fw-bold text-accent">$75.00</span>
                             </div>
                         </div>
                     </div>
-
                     <!-- Product 3 -->
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
                         <div class="card h-100 border-0">
                             <div class="overflow-hidden rounded-3 mb-3">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-CkcD7NZFBr_jpLRWyPj3snST62yiFM3g9Txs7w33WDd50ScfcsQ8pVuOhcmAl6qQmt_zBOSNY4kCLaVfxEhXMzAdqjvSi7GyO5EeQ0bsU2mHUxwpGTy8rDIYLorupNuAyYWM5tSNejkdGuLNAyyEypNd2d1AcwFmdULd5nEtqQLQ7YBfgmV_dAfydt70Sjj_ISBq0ATFHpKY_yklutYJL4uY6XxOeb1uGYSWsJjfvfXW37APc5Jw21N9Jd_DjN3RpC3bw834huA" class="img-fluid img-cover aspect-3-4" alt="High-Waisted Jeans">
+                                <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop" class="img-fluid img-cover aspect-3-4" alt="High-Waisted Jeans">
                             </div>
                             <div class="d-flex justify-content-between align-items-start">
-                                <h5 class="fw-semibold mb-0">High-Waisted Jeans</h5>
+                                <div>
+                                    <h5 class="fw-semibold mb-0">High-Waisted</h5>
+                                    <small class="text-secondary">Bottoms</small>
+                                </div>
                                 <span class="fw-bold text-accent">$60.00</span>
                             </div>
                         </div>
                     </div>
-
                     <!-- Product 4 -->
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300">
                         <div class="card h-100 border-0">
                             <div class="overflow-hidden rounded-3 mb-3">
-                                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRrfwjtpgvpUNjaM4wd5Jzqgl8gI-goqbHJtJE8phMOjRHkvFwJvtWrQ9TClUf9RrMrkiTpHbbdPfPYkZC6UzmqD2L4EMfjpXmIreftzUa1HYryGTx9mLfRTuwdJm_GMNIW26TwRRkCvKARbMgMqcvVFO8lJEgSkyoCW1pl-MU3reAso2jEORBrK600CKW9FvMWWgd_q4bD4o3vKLh2QBhqQl-Hp2Q7YluF23TD5o62IIVRYpljAbrxAy_gyChQQA-c75isAkKG7E" class="img-fluid img-cover aspect-3-4" alt="Oversized Sweatshirt">
+                                <img src="https://images.unsplash.com/photo-1620799140188-3b2a02fd9a77?q=80&w=800&auto=format&fit=crop" class="img-fluid img-cover aspect-3-4" alt="Oversized Sweatshirt">
                             </div>
                             <div class="d-flex justify-content-between align-items-start">
-                                <h5 class="fw-semibold mb-0">Oversized Sweatshirt</h5>
+                                <div>
+                                    <h5 class="fw-semibold mb-0">Oversized Sweat</h5>
+                                    <small class="text-secondary">Tops</small>
+                                </div>
                                 <span class="fw-bold text-accent">$45.00</span>
                             </div>
                         </div>
@@ -364,7 +573,44 @@
             </div>
         </section>
 
-        <!-- Features (Why Hesanyard) -->
+        <!-- Deal of the Week -->
+        <section class="section-padding px-4 px-lg-5 text-white" style="background-color: var(--brand-bg-dark);">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                        <span class="text-uppercase text-accent fw-bold" style="letter-spacing: 2px;">Flash Sale</span>
+                        <h2 class="display-responsive-4 fw-bold mt-2 mb-4">Deal of the Week</h2>
+                        <p class="lead mb-4 text-white-50">Grab our exclusive bundle of vintage accessories at 30% off. Limited time offer.</p>
+                        
+                        <div class="d-flex gap-2 gap-md-4 text-center mb-5 flex-wrap">
+                            <div class="countdown-box text-dark">
+                                <div class="fw-bold fs-3">02</div>
+                                <div class="small text-secondary">Days</div>
+                            </div>
+                            <div class="countdown-box text-dark">
+                                <div class="fw-bold fs-3">14</div>
+                                <div class="small text-secondary">Hours</div>
+                            </div>
+                            <div class="countdown-box text-dark">
+                                <div class="fw-bold fs-3">45</div>
+                                <div class="small text-secondary">Mins</div>
+                            </div>
+                            <div class="countdown-box text-dark">
+                                <div class="fw-bold fs-3">12</div>
+                                <div class="small text-secondary">Secs</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary-custom btn-lg w-100 w-sm-auto">Shop The Deal</button>
+                    </div>
+                    <div class="col-lg-6" data-aos="zoom-in">
+                        <img src="https://images.unsplash.com/photo-1576188973526-0e5d7047b0cf?auto=format&fit=crop&q=80&w=1200" 
+                             class="img-fluid rounded-4 shadow-lg w-100" alt="Flash Sale Item">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Hesanyard -->
         <section class="section-padding px-4 px-lg-5 bg-white">
             <div class="container-fluid" style="max-width: 1100px;">
                 <h2 class="h1 fw-bold text-center mb-5" data-aos="fade-up">Why Hesanyard?</h2>
@@ -396,10 +642,118 @@
             </div>
         </section>
 
+        <!-- Community Love -->
+        <section class="section-padding px-4 px-lg-5" style="background-color: #f9fafb;">
+            <div class="container-fluid">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="h1 fw-bold">Community Love</h2>
+                    <p class="text-secondary">Hear from our happy thrifters.</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                        <div class="card border-0 p-4 h-100 shadow-sm">
+                            <div class="text-accent mb-3">
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                            </div>
+                            <p class="mb-4 text-secondary">"The quality of the clothes is amazing. I found a vintage jacket I've been looking for for years!"</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-secondary rounded-circle" style="width: 40px; height: 40px; background-image: url('https://randomuser.me/api/portraits/women/44.jpg'); background-size: cover;"></div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Sarah J.</h6>
+                                    <small class="text-secondary">Los Angeles, CA</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card border-0 p-4 h-100 shadow-sm">
+                            <div class="text-accent mb-3">
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                            </div>
+                            <p class="mb-4 text-secondary">"Fast shipping and eco-friendly packaging. Hesanyard is my go-to for sustainable fashion."</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-secondary rounded-circle" style="width: 40px; height: 40px; background-image: url('https://randomuser.me/api/portraits/men/32.jpg'); background-size: cover;"></div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Mike T.</h6>
+                                    <small class="text-secondary">Austin, TX</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card border-0 p-4 h-100 shadow-sm">
+                            <div class="text-accent mb-3">
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                                <span class="material-symbols-outlined">star</span>
+                            </div>
+                            <p class="mb-4 text-secondary">"Love the unique selection! It feels great to shop knowing I'm helping the planet."</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-secondary rounded-circle" style="width: 40px; height: 40px; background-image: url('https://randomuser.me/api/portraits/women/65.jpg'); background-size: cover;"></div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Emily R.</h6>
+                                    <small class="text-secondary">New York, NY</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- From the Journal -->
+        <section class="section-padding px-4 px-lg-5 bg-white">
+            <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-end mb-5">
+                    <h2 class="h1 fw-bold mb-0" data-aos="fade-right">From The Journal</h2>
+                    <a href="#" class="text-decoration-none text-dark fw-bold d-none d-sm-block">Read All Stories &rarr;</a>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4" data-aos="fade-up">
+                        <div class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?auto=format&fit=crop&q=80&w=600" class="w-100" alt="Blog 1">
+                            <small class="text-accent fw-bold text-uppercase">Sustainability</small>
+                            <h4 class="fw-bold mt-2">Why Vintage is the Future</h4>
+                            <p class="text-secondary small">Exploring the environmental impact of fast fashion vs thrift.</p>
+                            <a href="#" class="text-dark fw-bold small text-decoration-none">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=600" class="w-100" alt="Blog 2">
+                            <small class="text-accent fw-bold text-uppercase">Style Guide</small>
+                            <h4 class="fw-bold mt-2">How to Style Oversized Tees</h4>
+                            <p class="text-secondary small">Tips and tricks to look chic in baggy comfort.</p>
+                            <a href="#" class="text-dark fw-bold small text-decoration-none">Read More</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="blog-card">
+                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=600" class="w-100" alt="Blog 3">
+                            <small class="text-accent fw-bold text-uppercase">Behind the Scenes</small>
+                            <h4 class="fw-bold mt-2">A Day in the Life of a Curator</h4>
+                            <p class="text-secondary small">See how we hunt for the perfect pieces for you.</p>
+                            <a href="#" class="text-dark fw-bold small text-decoration-none">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Newsletter -->
         <section class="section-padding px-4 px-lg-5">
             <div class="container-fluid">
-                <div class="bg-light p-5 rounded-4 text-center mx-auto" style="max-width: 800px;" data-aos="zoom-in">
+                <div class="bg-light p-4 p-md-5 rounded-4 text-center mx-auto" style="max-width: 800px;" data-aos="zoom-in">
                     <h2 class="h2 fw-bold mb-4">Get 10% Off Your First Order</h2>
                     <p class="text-secondary mb-4">Join our newsletter for exclusive deals, new arrivals, and style inspiration.</p>
                     
@@ -410,6 +764,38 @@
                 </div>
             </div>
         </section>
+
+        <!-- Instagram Feed Mockup -->
+        <section class="pb-5 px-2">
+            <h4 class="text-center fw-bold mb-4">@Hesanyard on Instagram</h4>
+            <div class="insta-grid">
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=300" alt="Insta 1">
+                    <div class="insta-overlay"><span class="material-symbols-outlined">favorite</span></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://i.pinimg.com/736x/f1/27/8b/f1278b1ee707b9ead0dc7afd562abac2.jpg" alt="Insta 2">
+                    <div class="insta-overlay"><span class="material-symbols-outlined">favorite</span></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://vjvnow.com/cdn/shop/articles/summer-fashion-outfits-and-style-trends-for-summer-fashion-2024-vjv-now.jpg?v=1721129533" alt="Insta 3">
+                    <div class="insta-overlay"><span class="material-symbols-outlined">favorite</span></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=300" alt="Insta 4">
+                    <div class="insta-overlay"><span class="material-symbols-outlined">favorite</span></div>
+                </div>
+                <div class="insta-item d-none d-md-block">
+                    <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&q=80&w=300" alt="Insta 5">
+                    <div class="insta-overlay"><span class="material-symbols-outlined">favorite</span></div>
+                </div>
+                <div class="insta-item d-none d-md-block">
+                    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&q=80&w=300" alt="Insta 6">
+                    <div class="insta-overlay"><span class="material-symbols-outlined">favorite</span></div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -449,7 +835,7 @@
     </script>
 
     <script>
-      alert("This is a demo website, please contact TEB Innovations for more information.");
+      alert("This is a demo website , please contact TEB Innovations for more information.");
     </script>
 </body>
 </html>
