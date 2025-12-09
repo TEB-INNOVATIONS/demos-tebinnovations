@@ -6,7 +6,7 @@
         <title>Hesanyard</title>
     <link rel="icon" href="assets/465193019_906723108052061_3634152199928693377_n.jpg" type="image/logo">
 
-    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap 5 CSS (CDN for immediate preview) -->
     <link href="../bootstrap.css" rel="stylesheet">
     
     <!-- AOS Animation CSS -->
@@ -29,10 +29,11 @@
             --brand-font: 'Plus Jakarta Sans', sans-serif;
         }
 
-        body {
+        html, body {
             font-family: var(--brand-font);
             color: #1A1A1A;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Critical for AOS responsiveness */
+            width: 100%;
         }
 
         /* Material Symbols Helper */
@@ -43,11 +44,63 @@
 
         /* --- Navbar --- */
         .navbar {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #e5e7eb;
             padding-top: 1rem;
             padding-bottom: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1030;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add padding to body to account for fixed navbar */
+        body {
+            padding-top: 0;
+        }
+
+        /* Adjust marquee position when navbar is fixed */
+        .marquee-container {
+            position: relative;
+            z-index: 1025;
+        }
+
+        /* Responsive navbar padding */
+        @media (max-width: 767px) {
+            .navbar {
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+
+            .navbar-brand {
+                font-size: 1rem;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .navbar {
+                padding-top: 1.25rem;
+                padding-bottom: 1.25rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+
+            .nav-link {
+                font-size: 0.95rem;
+                padding: 0.5rem 0.25rem !important;
+            }
         }
         
         .navbar-brand {
@@ -60,13 +113,24 @@
 
         .nav-link {
             font-weight: 500;
-            font-size: 0.9rem;
             color: #1A1A1A;
             transition: color 0.2s;
+            white-space: nowrap;
         }
 
-        .nav-link:hover {
+        .nav-link:hover,
+        .nav-link.active {
             color: var(--brand-accent);
+        }
+
+        /* Mobile navbar toggler styling */
+        .navbar-toggler {
+            padding: 0.25rem 0.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(139, 32, 187, 0.25);
         }
 
         .btn-icon {
@@ -79,10 +143,18 @@
             background-color: #f3f4f6;
             border: none;
             transition: background 0.2s;
+            position: relative;
         }
         
         .btn-icon:hover {
             background-color: #e5e7eb;
+        }
+
+        /* Responsive gap for nav items */
+        @media (min-width: 768px) {
+            .navbar-nav.gap-md-4 {
+                gap: 1rem !important;
+            }
         }
 
         /* --- Buttons --- */
@@ -169,8 +241,14 @@
             background-position: center;
             display: flex;
             align-items: flex-end;
-            padding: 1.5rem;
+            padding: 1rem;
             transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .category-card {
+                padding: 1.5rem;
+            }
         }
 
         .category-card::before {
@@ -188,15 +266,21 @@
         .category-text {
             color: white;
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             position: relative;
             z-index: 2;
+        }
+        
+        @media (min-width: 768px) {
+            .category-text {
+                font-size: 1.25rem;
+            }
         }
 
         /* --- Curated Collections Banner --- */
         .collection-banner {
             position: relative;
-            height: 300px; /* Smaller height on mobile default */
+            height: 250px; /* Smaller height on mobile */
             border-radius: 1rem;
             overflow: hidden;
             display: flex;
@@ -207,7 +291,7 @@
         
         @media (min-width: 768px) {
             .collection-banner {
-                height: 400px;
+                height: 400px; /* Larger on desktop */
             }
         }
         
@@ -253,7 +337,7 @@
         /* Countdown */
         .countdown-box {
             background: #fff;
-            padding: 0.75rem;
+            padding: 0.5rem;
             border-radius: 0.5rem;
             min-width: 60px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
@@ -284,13 +368,19 @@
         /* Instagram Grid */
         .insta-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: repeat(2, 1fr); /* 2 columns mobile */
             gap: 10px;
         }
-        /* Mobile adjustment for 2 columns */
-        @media (max-width: 380px) {
+        
+        @media (min-width: 576px) {
             .insta-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .insta-grid {
+                grid-template-columns: repeat(6, 1fr);
             }
         }
 
@@ -352,27 +442,49 @@
 
         /* Typography Responsive */
         .display-responsive-1 {
-            font-size: calc(2.5rem + 2.5vw);
+            font-size: 2.5rem;
         }
         .display-responsive-4 {
-            font-size: calc(1.5rem + 1.5vw);
+            font-size: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .display-responsive-1 { font-size: 4rem; }
+            .display-responsive-4 { font-size: 2.5rem; }
+        }
+
+        /* Main content padding for fixed navbar */
+        main {
+            margin-top: 140px;
+        }
+
+        @media (max-width: 767px) {
+            main {
+                margin-top: 110px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            main {
+                margin-top: 130px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            main {
+                margin-top: 140px;
+            }
         }
 
     </style>
 </head>
 <body>
 
-    <!-- Marquee Bar -->
-    <div class="marquee-container">
-        <div class="marquee-content fw-bold text-uppercase small" style="letter-spacing: 1px;">
-            <span>Free Shipping on Orders Over $100 &nbsp; • &nbsp; New Drops Every Friday &nbsp; • &nbsp; Sustainable Fashion for Everyone &nbsp; • &nbsp; Free Shipping on Orders Over $100 &nbsp; • &nbsp; New Drops Every Friday &nbsp; • &nbsp; Sustainable Fashion for Everyone &nbsp; • &nbsp;</span>
-        </div>
-    </div>
-
-    <!-- Navbar -->
+   
+   <!-- Navbar -->
     <nav class="navbar navbar-expand-md sticky-top">
         <div class="container-fluid px-4 px-lg-5">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <div style="width: 24px; height: 24px;">
                     <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor"/>
@@ -393,14 +505,18 @@
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
-                <div class="d-flex align-items-center">
-                    <button class="btn-icon">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
                         <span class="material-symbols-outlined">shopping_bag</span>
+                        <span class="cart-badge" id="navbarCartCount" style="display: none;">0</span>
                     </button>
+                    <!-- User Profile Placeholder -->
                 </div>
             </div>
         </div>
     </nav>
+ <!-- Marquee Bar -->
+
 
     <main>
         <!-- Hero Section -->
@@ -434,11 +550,15 @@
                 </div>
             </div>
         </section>
-
+    <div class="marquee-container">
+        <div class="marquee-content fw-bold text-uppercase small" style="letter-spacing: 1px;">
+            <span>Free Shipping on Orders Over $100 &nbsp; • &nbsp; New Drops Every Friday &nbsp; • &nbsp; Sustainable Fashion for Everyone &nbsp; • &nbsp; Free Shipping on Orders Over $100 &nbsp; • &nbsp; New Drops Every Friday &nbsp; • &nbsp; Sustainable Fashion for Everyone &nbsp; • &nbsp;</span>
+        </div>
+    </div>
         <!-- Shop by Category -->
         <section class="section-padding px-4 px-lg-5 bg-white">
             <div class="container-fluid">
-                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-4 mb-md-5">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-end mb-4 mb-md-5 text-center text-md-start">
                     <h2 class="h1 fw-bold mb-2 mb-md-0" data-aos="fade-right">Shop by Category</h2>
                     <a href="#" class="text-decoration-none text-dark fw-bold d-none d-sm-block">View All Categories &rarr;</a>
                 </div>
@@ -481,7 +601,7 @@
                         <div class="collection-banner">
                             <img src="https://i.pinimg.com/736x/f8/64/dd/f864dde0f8a780b1a8226b24808724d4.jpg" alt="90s Grunge">
                             <div class="collection-content">
-                                <h3 class="fw-bold display-6 mb-1">90s Grunge</h3>
+                                <h3 class="fw-bold h2 mb-1">90s Grunge</h3>
                                 <p class="mb-3 d-none d-sm-block">Flannel, denim, and attitude.</p>
                                 <button class="btn btn-outline-dark fw-bold btn-sm btn-md-lg">Explore</button>
                             </div>
@@ -491,7 +611,7 @@
                         <div class="collection-banner">
                             <img src="https://images.ft.com/v3/image/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F04428614-e069-4bfa-8de8-c1e72e3666f6.jpg?source=next-article&fit=scale-down&quality=highest&width=700&dpr=1" alt="Y2K Pop">
                             <div class="collection-content">
-                                <h3 class="fw-bold display-6 mb-1">Y2K Pop</h3>
+                                <h3 class="fw-bold h2 mb-1">Y2K Pop</h3>
                                 <p class="mb-3 d-none d-sm-block">Bright colors and bold prints.</p>
                                 <button class="btn btn-outline-dark fw-bold btn-sm btn-md-lg">Explore</button>
                             </div>
@@ -714,7 +834,7 @@
         <!-- From the Journal -->
         <section class="section-padding px-4 px-lg-5 bg-white">
             <div class="container-fluid">
-                <div class="d-flex justify-content-between align-items-end mb-5">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center align-items-md-end mb-4 mb-md-5 text-center text-md-start">
                     <h2 class="h1 fw-bold mb-0" data-aos="fade-right">From The Journal</h2>
                     <a href="#" class="text-decoration-none text-dark fw-bold d-none d-sm-block">Read All Stories &rarr;</a>
                 </div>
@@ -830,12 +950,12 @@
         AOS.init({
             duration: 800,
             once: true,
-            offset: 50
+            offset: 50,
+            disable: 'mobile' // Prevents animations from running on mobile devices to fix responsiveness
         });
     </script>
-
     <script>
-      alert("This is a demo website , please contact TEB Innovations for more information.");
+      alert("This is a demo website, please contact TEB Innovations for more information.");
     </script>
 </body>
 </html>
