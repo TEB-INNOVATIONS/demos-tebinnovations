@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <title>Hesanyard</title>
+    <link rel="icon" href="assets/465193019_906723108052061_3634152199928693377_n.jpg" type="image/logo">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Custom Variables --- */
+        :root {
+            --brand-primary: #AFFE27;
+            --brand-accent: #8B20BB;
+            --brand-bg-dark: #1A1A1A;
+            --brand-font: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--brand-font);
+            color: #1A1A1A;
+            overflow-x: hidden;
+            background-color: #fff;
+        }
+
+        /* Material Symbols Helper */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        /* --- Navbar (Consistent) --- */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e5e7eb;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #1A1A1A;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active-link {
+            color: var(--brand-accent);
+        }
+
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f4f6;
+            border: none;
+            transition: background 0.2s;
+            position: relative;
+        }
+        
+        .btn-icon:hover {
+            background-color: #e5e7eb;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--brand-accent);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* --- Contact Form Styling --- */
+        .form-control {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .form-control:focus {
+            background-color: #fff;
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 0 0.25rem rgba(175, 254, 39, 0.25);
+        }
+
+        .btn-primary-custom {
+            background-color: var(--brand-primary);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: opacity 0.2s;
+        }
+        .btn-primary-custom:hover {
+            background-color: #9ee520;
+            color: #000;
+        }
+
+        .contact-link {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1A1A1A;
+            text-decoration: none;
+            border-bottom: 2px solid var(--brand-primary);
+            transition: border-color 0.2s;
+        }
+        
+        .contact-link:hover {
+            border-color: var(--brand-accent);
+        }
+
+        .contact-icon-box {
+            width: 56px;
+            height: 56px;
+            background-color: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .contact-icon-box:hover {
+            background-color: #e5e7eb;
+        }
+        
+        .contact-icon-box .material-symbols-outlined {
+            font-size: 28px;
+            color: #1A1A1A;
+        }
+        
+        .contact-icon-box:hover .material-symbols-outlined {
+            color: var(--brand-accent);
+        }
+
+        /* --- Footer --- */
+        footer {
+            border-top: 1px solid #e5e7eb;
+            margin-top: 5rem;
+            padding: 2rem 0;
+        }
+
+        .social-link {
+            color: #6b7280;
+            transition: color 0.2s;
+        }
+        .social-link:hover {
+            color: var(--brand-primary);
+        }
+        
+        .text-accent {
+            color: var(--brand-accent) !important;
+        }
+        
+        .text-primary-custom {
+            color: #8abf1f !important; /* Slightly darker for text visibility */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md sticky-top">
+        <div class="container-fluid px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">
+                <div style="width: 24px; height: 24px;">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                Hesanyard
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-md-0 gap-md-4">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-accent fw-bold" href="#">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                        <span class="cart-badge" id="navbarCartCount" style="display: none;">0</span>
+                    </button>
+                    <!-- User Profile Placeholder -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-5 px-4 px-lg-5">
+        <div class="container-fluid" style="max-width: 960px;">
+            
+            <!-- Header Section -->
+            <div class="text-center mb-5 pb-4" data-aos="fade-down">
+                <p class="text-primary-custom fw-bold text-uppercase tracking-wider mb-2" style="letter-spacing: 0.1em;">Let's Talk</p>
+                <h1 class="display-3 fw-bolder mb-3" style="letter-spacing: -2px;">Get in Touch</h1>
+                <p class="text-secondary mx-auto" style="max-width: 500px;">
+                    Have a question, a suggestion, or just want to say hello? We'd love to hear from you. Drop us a line.
+                </p>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="row g-5">
+                
+                <!-- Contact Form -->
+                <div class="col-lg-7" data-aos="fade-right" data-aos-delay="100">
+                    <form>
+                        <div class="mb-4">
+                            <label for="name" class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-bold">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="form-label fw-bold">Phone</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label fw-bold">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="How can we help?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100">Submit Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-lg-5 d-flex flex-column gap-5 pt-lg-4" data-aos="fade-left" data-aos-delay="200">
+                    
+                    <div class="text-start text-lg-end">
+                        <h3 class="h5 fw-bold mb-2">Email Us</h3>
+                        <a href="mailto:hello@hesanyard.com" class="contact-link">hello@hesanyard.com</a>
+                        <p class="text-secondary small mt-2">We usually respond within 24 hours.</p>
+                    </div>
+
+                    <div class="text-start text-lg-end">
+                        <h3 class="h5 fw-bold mb-4">Or reach out directly</h3>
+                        <div class="d-flex justify-content-start justify-content-lg-end gap-3">
+                            <a href="#" class="contact-icon-box text-decoration-none">
+                                <span class="material-symbols-outlined">chat_bubble</span>
+                            </a>
+                            <a href="#" class="contact-icon-box text-decoration-none">
+                                <span class="material-symbols-outlined">call</span>
+                            </a>
+                            <a href="#" class="contact-icon-box text-decoration-none">
+                                <span class="material-symbols-outlined">location_on</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Additional Info (Optional visual filler) -->
+                    <div class="mt-auto p-4 bg-light rounded-3 d-none d-lg-block text-center">
+                        <span class="material-symbols-outlined text-accent fs-1 mb-2">volunteer_activism</span>
+                        <h5 class="fw-bold">Community First</h5>
+                        <p class="text-secondary small mb-0">Join our newsletter for updates on local pop-up events!</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="px-4 px-lg-5">
+        <div class="container-fluid">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-3">
+                <p class="small text-secondary mb-0">© 2024 Hesanyard. All rights reserved.</p>
+                
+                <div class="d-flex gap-4">
+                    <a href="#" class="social-link">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.585-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.585.07-4.85c.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.441 1.441 1.441 1.441-.645 1.441-1.441-.645-1.44-1.441-1.44z"></path></svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.46.67.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.22-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"></path></svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M.06 6.94c.04-.26.24-.46.5-.5h2.9c.26 0 .46.2.5.46l.52 3.5c.09.6.14 1.22.14 1.86 0 .54-.03 1.09-.1 1.63l-.5 3.5c-.05.26-.25.46-.5.46h-2.9c-.26 0-.46-.2-.5-.46l-.52-3.5C.02 13.09 0 12.56 0 12c0-.56.03-1.09.1-1.63L.06 6.94zM13.2 24c2.58 0 4.1-1.4 4.1-3.2 0-2.4-2.13-3.05-4.24-3.05h-2.1v6.25h2.24zM10.87 9.32h2.2c2.27 0 3.63 1.25 3.63 3.03 0 1.1-.63 2.12-1.87 2.4v.05c1.5.2 2.2.98 2.2 2.5 0 2.1-1.83 3.38-4.5 3.38h-1.66V9.3zM24 12c0-6.62-5.38-12-12-12S0 5.38 0 12s5.38 12 12 12 12-5.38 12-12z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Offcanvas (Visual Placeholder) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold" id="cartOffcanvasLabel">Your Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <div class="flex-grow-1 overflow-auto d-flex align-items-center justify-content-center">
+                <p class="text-secondary">Cart functionality is on the Shop page.</p>
+            </div>
+            <div class="border-top pt-3 mt-3">
+                <a href="products.html" class="btn btn-primary-custom w-100 py-3 rounded-3 text-decoration-none text-center">Go to Shop</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="../bootstrap.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize Animate On Scroll
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+    </script>
+</body>
+</html>
