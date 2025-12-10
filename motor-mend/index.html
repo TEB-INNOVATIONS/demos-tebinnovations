@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Mend — Premium Car Care</title>
+    <link rel="icon" href="assets/logo.jpg" type="image/logo">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #ea2a33;
+            --bg-dark: #111111;
+            --surface-dark: #222222;
+            --text-muted: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+
+        /* Material Icon Settings */
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: rgba(17, 17, 17, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(34, 34, 34, 0.5);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary-color);
+            width: 24px;
+            height: 24px;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 70vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDkcLF4TiAtZyWpTjgKkxrwhQYpHEq4ERUX3KeJUISj5OzncvJ88-WLTssVqc3N7hJJbSllJq-sw1Yyh-2DC_Y1E7yv3LS4fJpzyg_jxPrUWClWITy0kgAsQbjfqQosXae8tmKjiWXdmUOvc8o0ZllnhY29lkuZmZ6ufFgADkQ7LOekF7tHtwOi7Prjr9dBkf0pMd3ZEXk0HSt8cSd6P0Ic1Mz09w80fB71IXEyKOo4rVZKjIdKLZ8Z9u6SDLnxNJjP0qgBSaPrb6Rj");
+            background-size: cover;
+            background-position: center;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        .btn-custom-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            padding: 12px 32px;
+            font-weight: 700;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-custom-primary:hover {
+            transform: scale(1.05);
+            background-color: #d6252d;
+            color: white;
+        }
+
+        /* Services Cards */
+        .service-card {
+            background-color: var(--surface-dark);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            border-color: rgba(234, 42, 51, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Images Gallery */
+        .gallery-img-container {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-img-container:hover .gallery-img {
+            transform: scale(1.05);
+        }
+
+        /* Aspect Ratios for Gallery */
+        .aspect-square { aspect-ratio: 1/1; }
+        .aspect-video { aspect-ratio: 16/9; }
+
+        /* Form Styling */
+        .form-control, .form-select {
+            background-color: var(--bg-dark);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: var(--bg-dark);
+            border-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 0 0.25rem rgba(234, 42, 51, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: #777;
+        }
+
+        .contact-box {
+            background-color: var(--surface-dark);
+            border-radius: 0.75rem;
+        }
+
+        /* Utilities */
+        .text-muted-custom { color: var(--text-muted); }
+        .divider { height: 4px; width: 6rem; background: linear-gradient(to right, var(--primary-color), rgba(234, 42, 51, 0.5)); margin: 0 auto; }
+        
+        section { padding-top: 5rem; padding-bottom: 2rem; }
+
+        /* Mobile Nav Toggler */
+        .navbar-toggler {
+            border-color: rgba(255,255,255,0.1);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarMain" data-bs-offset="100">
+
+    <!-- Navigation -->
+    <nav id="navbarMain" class="navbar navbar-expand-lg fixed-top">
+        <div class="container-xxl">
+            <a class="navbar-brand" href="#">
+                <div class="logo-icon">
+                    <img class="img-fluid" src="assets/logo.png" alt="">
+                </div>
+                Motor Mend
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav gap-lg-4">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#work">Work</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#why-us">Why Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-xxl pb-5">
+        
+        <!-- Hero Section -->
+        <div id="home" class="hero-section" data-aos="fade-in" data-aos-duration="1000">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <h1 class="hero-title mb-3" data-aos="fade-up" data-aos-delay="100">Motor Mend — Premium Car Care</h1>
+                        <h2 class="fs-4 fw-normal text-muted-custom mb-4" data-aos="fade-up" data-aos-delay="200">Your Car. Our Expertise.</h2>
+                        <a href="#contact" class="btn btn-custom-primary" data-aos="zoom-in" data-aos-delay="300">Book Now</a>
+                        
+                        <div class="position-absolute bottom-0 start-0 w-100 pb-4 d-none d-sm-block">
+                            <p class="text-white-50 small fw-bold letter-spacing-2 text-uppercase mb-0">CAR WASH • DETAILING • CERAMIC COATING • ACCESSORIES</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <section id="services">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold fs-2">Our Services</h2>
+                <p class="text-muted-custom">Comprehensive solutions for every inch of your vehicle.</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Service 1 -->
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card h-100">
+                        <span class="material-symbols-outlined service-icon">local_car_wash</span>
+                        <h3 class="h5 fw-bold mb-2">Car Wash</h3>
+                        <p class="text-muted-custom small mb-0">Expert exterior cleaning for a pristine finish.</p>
+                    </div>
+                </div>
+                <!-- Service 2 -->
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card h-100">
+                        <span class="material-symbols-outlined service-icon">imagesearch_roller</span>
+                        <h3 class="h5 fw-bold mb-2">Denting & Painting</h3>
+                        <p class="text-muted-custom small mb-0">Restoring your car's body to perfection.</p>
+                    </div>
+                </div>
+                <!-- Service 3 -->
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card h-100">
+                        <span class="material-symbols-outlined service-icon">auto_awesome</span>
+                        <h3 class="h5 fw-bold mb-2">Car Detailing</h3>
+                        <p class="text-muted-custom small mb-0">Meticulous interior and exterior rejuvenation.</p>
+                    </div>
+                </div>
+                <!-- Service 4 -->
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card h-100">
+                        <span class="material-symbols-outlined service-icon">shield</span>
+                        <h3 class="h5 fw-bold mb-2">Ceramic Coating</h3>
+                        <p class="text-muted-custom small mb-0">Long-lasting protective shine and gloss.</p>
+                    </div>
+                </div>
+                <!-- Service 5 -->
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card h-100">
+                        <span class="material-symbols-outlined service-icon">layers</span>
+                        <h3 class="h5 fw-bold mb-2">Graphene Coating</h3>
+                        <p class="text-muted-custom small mb-0">The ultimate in paint protection technology.</p>
+                    </div>
+                </div>
+                <!-- Service 6 -->
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card h-100">
+                        <span class="material-symbols-outlined service-icon">water_drop</span>
+                        <h3 class="h5 fw-bold mb-2">Polymer Coating</h3>
+                        <p class="text-muted-custom small mb-0">Durable, high-gloss hydrophobic coating.</p>
+                    </div>
+                </div>
+                <!-- Service 7 -->
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card h-100">
+                        <span class="material-symbols-outlined service-icon">sprinkler</span>
+                        <h3 class="h5 fw-bold mb-2">Underbody Coating</h3>
+                        <p class="text-muted-custom small mb-0">Protect your vehicle from rust and corrosion.</p>
+                    </div>
+                </div>
+                <!-- Service 8 -->
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-card h-100">
+                        <span class="material-symbols-outlined service-icon">shopping_bag</span>
+                        <h3 class="h5 fw-bold mb-2">Car Accessories</h3>
+                        <p class="text-muted-custom small mb-0">Premium accessories to enhance your drive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Showcase Work -->
+        <section id="work">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold fs-2">Showcase Of Our Work</h2>
+                <p class="text-muted-custom">See the quality and craftsmanship in every detail.</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Img 1: Square -->
+                <div class="col-md-4" data-aos="zoom-in">
+                    <div class="gallery-img-container aspect-square">
+                        <img class="gallery-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3-u9ID9rwmeuzSnUKg1jjtf2HWzv0IULPGAKMVSmx31oCXmJyyKnlrv4_xxmd1NZ24v9tfcC8I2r8QU8dTzlNCXNrDkSu4FpJzyspcof80Sp6Jp8Ik-YaJeDDMYRfUEi-_eA6JF_CYCNkLXICLhBv3rBNpIQSskTGywVMmy_4vTnJTwa_OYfJvLToIgCnYLCk_DRuZAJ3Uf42XEODczbfP91WcR9IviTKxDgQJ_9Fa3BsGHmJgk1NtgF1MXeILZi82zw5XKW7kCAY" alt="Headlight detail">
+                    </div>
+                </div>
+                <!-- Img 2: Landscape -->
+                <div class="col-md-8" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="gallery-img-container aspect-video h-100">
+                        <img class="gallery-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyKdt1aUz0gzSI3f3gkBf-QY0rLycugmx6fjhw86uPM2Huvx7kbmfQjQO27wdHbOP9rx-6CLDcGjwig0Q_3nys1s5B01bdqZaT07UNqPWgpJOiJOlkzLaJP6gfuIWigdAwB771ZFcv4kU06jde4y9fMhSr_d7-MdvKIcFTNHTaHxEGzITQ9fZIHnBERdqktNgC0W3kkZC315CoTOkM14cGPWi8dQDV8j-MrFHP2AccsIIDois8Yu-djK_gCUw1KqviDKRxFyybIp0A" alt="Side profile white car">
+                    </div>
+                </div>
+                <!-- Img 3: Landscape -->
+                <div class="col-md-8" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="gallery-img-container aspect-video h-100">
+                        <img class="gallery-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOGcCbFK7kXagUNByP9UMD1u-V7mABKEt_8lUg3Tl9kIZiWlpvDji6f1cNnzZoELQ6s7zF-h4ZhkAG9Vo6IWPoSht9jl3PtSGDa6zuPCt42ncibWl5Y_RvMg-2F68bYaW4igkikEVpChe4fjaY4oP7dpPtE9UJWjiSddNdN_gRbU1vriXXLZTh4CNqDEa3dtse7nFKx4990Jge5nrr9ZBfgnM6QQK4B1v_u3Wnvh75Jipxf5AF-A-ygofz9c7HtVsoTsubZtHP-nBj" alt="Person detailing car">
+                    </div>
+                </div>
+                <!-- Img 4: Square -->
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="gallery-img-container aspect-square">
+                        <img class="gallery-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApZFY4VdGUGNbDTlcqSNLTLVQi2RhfPXJWQnpc4chspimACtXofWxDBTvAxJleeUlaWRtu4EvzIbWsfhKFTAqSl-1yooLk1orDwWDZVAFGkk7YWgJ-8dl0MviZYYEMEIQUvguflRw6ZA3549tv-nu24-IpLEI9b7SAS3W-eJD7BPRiIN4fhtgWHI1ASD_tNg3pBd4nvRCRlIMh0pJ943Dzdj_o0ux8O69br5DdIBKVtoDjjIk56qyPILEAS-LXrDYYuHsOngWr5yeU" alt="Wheel cleaning before after">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section id="why-us">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="fw-bold fs-2">Why Choose Motor Mend?</h2>
+                <div class="divider mt-3"></div>
+            </div>
+
+            <div class="row g-5 text-center">
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <span class="material-symbols-outlined text-danger display-4 mb-3">groups</span>
+                    <h3 class="h5 fw-bold">Professional Technicians</h3>
+                    <p class="text-muted-custom small">Our certified experts use state-of-the-art techniques.</p>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <span class="material-symbols-outlined text-danger display-4 mb-3">biotech</span>
+                    <h3 class="h5 fw-bold">Advanced Technologies</h3>
+                    <p class="text-muted-custom small">We use the latest in graphene and ceramic coating tech.</p>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <span class="material-symbols-outlined text-danger display-4 mb-3">verified</span>
+                    <h3 class="h5 fw-bold">Quality Guaranteed</h3>
+                    <p class="text-muted-custom small">We stand behind our work with a satisfaction guarantee.</p>
+                </div>
+                <div class="col-sm-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <span class="material-symbols-outlined text-danger display-4 mb-3">timer</span>
+                    <h3 class="h5 fw-bold">Fast & Reliable Service</h3>
+                    <p class="text-muted-custom small">Efficient, professional service to get you back on the road.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" data-aos="fade-up">
+            <div class="contact-box p-4 p-md-5">
+                <div class="row g-5">
+                    <!-- Form Column -->
+                    <div class="col-lg-6">
+                        <h2 class="fw-bold fs-2 mb-2">Get In Touch</h2>
+                        <p class="text-muted-custom mb-4">Ready to give your car the treatment it deserves? Book your appointment today.</p>
+                        
+                        <form class="row g-3" onsubmit="event.preventDefault(); alert('Request submitted!');">
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-12">
+                                <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            </div>
+                            <div class="col-12">
+                                <select class="form-select">
+                                    <option selected>Select a Service</option>
+                                    <option>Car Wash</option>
+                                    <option>Car Detailing</option>
+                                    <option>Ceramic Coating</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-custom-primary w-100 mt-2">Submit Request</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Info Column -->
+                    <div class="col-lg-6 d-flex flex-column">
+                        <div class="mb-4">
+                            <!-- WhatsApp -->
+                            <a href="#" class="d-flex align-items-center gap-3 text-decoration-none text-white mb-3">
+                                <span class="material-symbols-outlined text-success fs-2">sms</span>
+                                <div>
+                                    <p class="fw-bold mb-0">Message us on WhatsApp</p>
+                                    <p class="small text-muted-custom mb-0">+1 (555) 123-4567</p>
+                                </div>
+                            </a>
+                            <!-- Phone -->
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="material-symbols-outlined text-danger fs-2">call</span>
+                                <div>
+                                    <p class="fw-bold mb-0">Support Number</p>
+                                    <p class="small text-danger fw-bold mb-0">+1 (555) 765-4321</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Map -->
+                        <div class="flex-grow-1 rounded overflow-hidden border border-secondary border-opacity-25" style="min-height: 250px;">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4sCsJwkpiMivjejyLeExido_lzg_m4nOlpnh6d52FpzCC7TPy5lcBty7YUgWaJe5INI35UbDC2ZPuE8Wuoo3UgpMn4qMpxrzJx2FMp-yD5qpOfzyFc_cG6QXOkzTzo5JO9AMWDyq2bghVlLLwJRle-DqCTIhM6qO6bU-vZB4HcZ0YEr1JTNbC1s5yg8DK0Yrkuj1Gu0wxxdLWZmohOpSGMYCRiyQo-q05Ig3945L39V1n0aNckr-vNAd2fKgbc_NIghLhMy-9tUhR" alt="Map Location" class="w-100 h-100 object-fit-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap Bundle JS -->
+    <script src="../bootstrap.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize AOS
+            AOS.init({
+                once: true, // Animations happen only once
+                offset: 100, // Offset (in px) from the original trigger point
+                duration: 800, // Duration of animation
+                easing: 'ease-out-cubic',
+            });
+
+            // Smooth scrolling for anchor links (Bootstrap scrollspy handles active state)
+            $('a[href^="#"]').on('click', function(event) {
+                var target = $(this.getAttribute('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 80 // Adjust for fixed navbar
+                    }, 800);
+                    
+                    // Close mobile menu on click
+                    $('.navbar-collapse').collapse('hide');
+                }
+            });
+
+            // Optional: Navbar background change on scroll
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 50) {
+                    $('.navbar').addClass('shadow');
+                } else {
+                    $('.navbar').removeClass('shadow');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
