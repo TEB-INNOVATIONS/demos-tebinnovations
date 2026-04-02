@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOSPIN | Demo Website by TEB Innovations</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="icon" href="assets/logo.jpg" type="image/logo">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#ffb3ac",
+                        "tertiary": "#005f7b",
+                        "tertiary-container": "#00799c",
+                        "on-tertiary-fixed": "#001f2a",
+                        "primary": "#af101a",
+                        "tertiary-fixed": "#bee9ff",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#5b403d",
+                        "surface-tint": "#ba1a20",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#e9f7ff",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-primary-fixed-variant": "#930010",
+                        "surface-dim": "#dbdcc3",
+                        "surface-container-highest": "#e4e4cc",
+                        "outline": "#8f6f6c",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface-variant": "#e4e4cc",
+                        "background": "#fbfbe2",
+                        "inverse-on-surface": "#f2f2d9",
+                        "surface-container": "#efefd7",
+                        "surface-container-high": "#eaead1",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-surface": "#1b1d0e",
+                        "on-tertiary-fixed-variant": "#004d65",
+                        "on-primary-container": "#fff2f0",
+                        "surface-bright": "#fbfbe2",
+                        "secondary-container": "#e2dfde",
+                        "inverse-primary": "#ffb3ac",
+                        "on-secondary-container": "#636262",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#fbfbe2",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "primary-container": "#d32f2f",
+                        "outline-variant": "#e4beba",
+                        "surface-container-low": "#f5f5dc",
+                        "inverse-surface": "#303221",
+                        "secondary": "#5f5e5e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#410003",
+                        "on-background": "#1b1d0e",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#7bd1f8",
+                        "primary-fixed": "#ffdad6"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes loading-progress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .grid-bg {
+            background-image: radial-gradient(circle, #e4beba 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .text-outline {
+            -webkit-text-stroke: 1.5px #af101a;
+            color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-white">
+<!-- Loading Screen -->
+<div id="loading-screen" class="fixed inset-0 z-[9999] bg-[#fbfbe2] dark:bg-neutral-900 flex flex-col items-center justify-center transition-all duration-700">
+    <img src="assets/logo.jpg" alt="DOSPIN Loading" class="h-24 w-auto object-contain animate-pulse mb-8 drop-shadow-xl rounded-md">
+    <div class="w-48 h-1 bg-surface-variant overflow-hidden rounded-full">
+        <div class="h-full bg-[#d32f2f] w-1/2 rounded-full" style="animation: loading-progress 1.5s ease-in-out infinite;"></div>
+    </div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fbfbe2]/70 dark:bg-neutral-900/70 backdrop-blur-xl transition-all duration-300">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-full">
+<div class="flex items-center gap-3">
+<img src="assets/logo.jpg" alt="DOSPIN Logo" class="h-10 w-auto object-contain rounded-md" />
+<div class="text-3xl font-black text-[#d32f2f] italic font-headline uppercase tracking-tighter hidden sm:block">DOSPIN</div>
+</div>
+<div class="hidden md:flex gap-12 items-center">
+<a class="nav-link font-headline uppercase tracking-tighter text-[#d32f2f] border-b-4 border-[#d32f2f] pb-1 transition-colors duration-150" href="#home" data-target="home">Home</a>
+<a class="nav-link font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f] transition-colors duration-150" href="#how-it-works" data-target="how-it-works">How it Works</a>
+<a class="nav-link font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f] transition-colors duration-150" href="#shop" data-target="shop">Shop</a>
+<a class="nav-link font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f] transition-colors duration-150" href="customizer.html">Customizer</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="scale-95 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined text-[#d32f2f]">shopping_cart</span>
+</div>
+<button class="md:hidden text-[#d32f2f]" id="mobile-menu-btn">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="hidden flex-col items-center gap-6 pb-6 w-full bg-[#fbfbe2] dark:bg-neutral-900 shadow-lg" id="mobile-menu">
+<a class="mobile-nav-link font-headline uppercase tracking-tighter text-[#d32f2f] border-b-2 border-[#d32f2f] pb-1" href="#home" data-target="home">Home</a>
+<a class="mobile-nav-link font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f]" href="#how-it-works" data-target="how-it-works">How it Works</a>
+<a class="mobile-nav-link font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f]" href="#shop" data-target="shop">Shop</a>
+<a class="font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f]" href="customizer.html">Customizer</a>
+</div>
+</nav>
+<main id="home" class="grid-bg min-h-screen pt-24">
+<!-- Hero Section -->
+<section class="relative px-6 py-20 lg:py-32 overflow-hidden">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="relative z-10" data-aos="fade-right">
+<h1 class="font-headline text-5xl sm:text-7xl md:text-9xl font-black uppercase leading-[0.85] tracking-tighter mb-6">
+<span class="block">CREATE</span>
+<span class="block text-outline">YOUR</span>
+<span class="block text-primary">CASE</span>
+</h1>
+<p class="font-label text-xl uppercase tracking-widest text-secondary mb-10">
+                        Don't Stick it, just Pin it 📌
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="customizer.html"><button class="bg-primary text-on-primary px-10 py-5 font-headline font-bold uppercase tracking-tighter hover:bg-primary-container transition-all active:scale-95">
+                            Customize Now
+                        </button></a>
+<a href="#shop"><button class="border-2 border-primary text-primary px-10 py-5 font-headline font-bold uppercase tracking-tighter hover:bg-primary hover:text-white transition-all active:scale-95">
+                            Shop Now
+                        </button></a>
+</div>
+</div>
+<div class="relative group" data-aos="fade-left" data-aos-delay="200">
+<!-- Parallax-like floating mockup elements -->
+<div class="relative aspect-square w-full max-w-md mx-auto">
+<div class="absolute inset-0 bg-primary/5 rotate-3 -z-10"></div>
+<img alt="Futuristic phone case display" class="w-full h-full object-cover shadow-2xl transition-transform duration-500 group-hover:-translate-y-4" data-alt="Modern smartphone in a premium clear case with floating red graphic inserts and streetwear aesthetic stickers on a minimalist podium" src="assets/product (1).jpg"/>
+<div class="absolute -top-6 -right-6 bg-primary p-4 text-on-primary font-headline uppercase font-bold text-sm tracking-tighter rotate-12">
+                            Archive Drop v.1
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section id="how-it-works" class="bg-surface-container-low py-24">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-end mb-16 border-b-2 border-primary pb-4">
+<h2 class="font-headline text-4xl font-black uppercase tracking-tighter" data-aos="fade-up">HOW IT WORKS</h2>
+<span class="font-label text-xs uppercase opacity-50 mb-1">Methodology / 03 Steps</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-0">
+<!-- Step 1 -->
+<div class="p-10 border-b-2 md:border-b-0 md:border-r-2 border-primary/10 group hover:bg-surface-container-highest transition-colors" data-aos="fade-up" data-aos-delay="100">
+<div class="mb-8">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="palette">palette</span>
+</div>
+<div class="font-label text-xs font-bold text-primary mb-2">STEP 01</div>
+<h3 class="font-headline text-2xl font-bold uppercase mb-4">Pick your design</h3>
+<p class="text-secondary leading-relaxed">Choose from our curated archive of streetwear graphics or upload your own vision.</p>
+</div>
+<!-- Step 2 -->
+<div class="p-10 border-b-2 md:border-b-0 md:border-r-2 border-primary/10 group hover:bg-surface-container-highest transition-colors" data-aos="fade-up" data-aos-delay="200">
+<div class="mb-8">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="smartphone">smartphone</span>
+</div>
+<div class="font-label text-xs font-bold text-primary mb-2">STEP 02</div>
+<h3 class="font-headline text-2xl font-bold uppercase mb-4">Choose your case</h3>
+<p class="text-secondary leading-relaxed">Select from armored clear cases or tactical black frames engineered for protection.</p>
+</div>
+<!-- Step 3 -->
+<div class="p-10 group hover:bg-surface-container-highest transition-colors" data-aos="fade-up" data-aos-delay="300">
+<div class="mb-8">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="published_with_changes">published_with_changes</span>
+</div>
+<div class="font-label text-xs font-bold text-primary mb-2">STEP 03</div>
+<h3 class="font-headline text-2xl font-bold uppercase mb-4">Pin &amp; swap anytime</h3>
+<p class="text-secondary leading-relaxed">The pin-system allows for instant swaps. Change your aesthetic as fast as you change clothes.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Shop Section -->
+<section id="shop" class="py-24 max-w-7xl mx-auto px-6">
+<div class="mb-16" data-aos="fade-up">
+<h2 class="font-headline text-4xl md:text-5xl font-black uppercase tracking-tighter">The Archive</h2>
+<p class="font-label text-secondary uppercase tracking-widest mt-2">Latest Releases</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+<div class="relative overflow-hidden bg-surface-container-low aspect-[3/4] mb-4">
+<img alt="Product 01" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Clear phone case with red futuristic blueprint graphic insert showing tech details and industrial typography" src="assets/product (1).jpg"/>
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity"></div>
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-bold px-2 py-1 uppercase font-label">New Arrival</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline font-bold uppercase tracking-tight text-lg">Cyber Red Insert</h4>
+<p class="font-label text-xs text-secondary">ARCHIVE-ID: 2024-RED</p>
+</div>
+<p class="font-headline font-black text-primary text-xl">₹249</p>
+</div>
+<button class="mt-6 w-full border-2 border-on-surface py-3 font-label text-xs font-bold uppercase tracking-widest hover:bg-on-surface hover:text-white transition-all">View Product</button>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+<div class="relative overflow-hidden bg-surface-container-low aspect-[3/4] mb-4">
+<img alt="Product 02" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="iPhone case with glitch art style graphic insert in black and white with neon red accent lines" src="assets/product (2).jpg"/>
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline font-bold uppercase tracking-tight text-lg">Glitch Mesh Core</h4>
+<p class="font-label text-xs text-secondary">ARCHIVE-ID: 2024-GLT</p>
+</div>
+<p class="font-headline font-black text-primary text-xl">₹249</p>
+</div>
+<button class="mt-6 w-full border-2 border-on-surface py-3 font-label text-xs font-bold uppercase tracking-widest hover:bg-on-surface hover:text-white transition-all">View Product</button>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+<div class="relative overflow-hidden bg-surface-container-low aspect-[3/4] mb-4">
+<img alt="Product 03" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Smartphone case with botanical illustration transformed into dark gothic streetwear aesthetic with red outlines" src="assets/product (3).jpg"/>
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline font-bold uppercase tracking-tight text-lg">Neo-Flora Shadow</h4>
+<p class="font-label text-xs text-secondary">ARCHIVE-ID: 2024-FLO</p>
+</div>
+<p class="font-headline font-black text-primary text-xl">₹249</p>
+</div>
+<button class="mt-6 w-full border-2 border-on-surface py-3 font-label text-xs font-bold uppercase tracking-widest hover:bg-on-surface hover:text-white transition-all">View Product</button>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer" data-aos="fade-up" data-aos-delay="400">
+<div class="relative overflow-hidden bg-surface-container-low aspect-[3/4] mb-4">
+<img alt="Product 04" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Phone case with bold typography print saying 'DOSPIN' in a layered futuristic font over a cream background" src="assets/product (1).jpg"/>
+<div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity"></div>
+<div class="absolute top-4 right-4 bg-on-surface text-white text-[10px] font-bold px-2 py-1 uppercase font-label">Limited</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline font-bold uppercase tracking-tight text-lg">Logo-Type Heavy</h4>
+<p class="font-label text-xs text-secondary">ARCHIVE-ID: 2024-LOG</p>
+</div>
+<p class="font-headline font-black text-primary text-xl">₹249</p>
+</div>
+<button class="mt-6 w-full border-2 border-on-surface py-3 font-label text-xs font-bold uppercase tracking-widest hover:bg-on-surface hover:text-white transition-all">View Product</button>
+</div>
+</div>
+</section>
+<!-- Conversion Section -->
+<section class="bg-primary py-24 relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 pointer-events-none grid-bg invert"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div data-aos="fade-right">
+<h2 class="font-headline text-4xl sm:text-5xl md:text-7xl font-black text-white uppercase leading-tight tracking-tighter mb-8">
+                        DESIGN YOUR CASE NOW 📌
+                    </h2>
+<div class="flex gap-4">
+<a class="bg-white text-primary flex items-center gap-3 px-8 py-5 font-headline font-bold uppercase tracking-tighter transition-all hover:translate-x-2" href="#">
+<span class="material-symbols-outlined">chat</span>
+                            WhatsApp Support
+                        </a>
+</div>
+</div>
+<div class="bg-surface p-6 sm:p-10 shadow-[10px_10px_0px_0px_rgba(27,29,14,1)] sm:shadow-[20px_20px_0px_0px_rgba(27,29,14,1)]" data-aos="fade-left" data-aos-delay="200">
+<h3 class="font-headline text-2xl font-bold uppercase mb-8 border-b-2 border-primary-container pb-2">Quick Order Form</h3>
+<form class="space-y-6">
+<div>
+<label class="font-label text-[10px] font-bold uppercase text-secondary mb-1 block">Your Name</label>
+<input class="w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 font-body transition-colors" placeholder="ENTER NAME..." type="text"/>
+</div>
+<div>
+<label class="font-label text-[10px] font-bold uppercase text-secondary mb-1 block">Phone Model</label>
+<input class="w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 font-body transition-colors" placeholder="IPHONE 15 PRO, ETC..." type="text"/>
+</div>
+<div>
+<label class="font-label text-[10px] font-bold uppercase text-secondary mb-1 block">Design Concept</label>
+<textarea class="w-full bg-transparent border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 font-body transition-colors" placeholder="DESCRIBE YOUR VIBE..."></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-5 font-headline font-bold uppercase tracking-tighter hover:bg-primary-container transition-all">Submit Archive Request</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#fbfbe2] dark:bg-neutral-950 border-t-2 border-[#d32f2f] grid grid-cols-1 md:grid-cols-4 gap-8 px-10 py-16 w-full">
+<div class="col-span-1 md:col-span-1">
+<div class="text-xl font-bold text-neutral-900 dark:text-white uppercase mb-4">DOSPIN</div>
+<p class="font-label text-xs text-neutral-600 dark:text-neutral-400 uppercase leading-loose">
+                REDEFINING ACCESSORIES FOR THE DIGITAL GENERATION.
+            </p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<h5 class="font-label text-xs font-bold text-[#d32f2f] mb-4">NAV</h5>
+<ul class="space-y-2 font-label text-xs uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
+<li><a class="hover:text-[#d32f2f] hover:underline transition-all duration-200" href="#">Shop</a></li>
+<li><a class="hover:text-[#d32f2f] hover:underline transition-all duration-200" href="#">How it Works</a></li>
+<li><a class="hover:text-[#d32f2f] hover:underline transition-all duration-200" href="#">Customizer</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label text-xs font-bold text-[#d32f2f] mb-4">LEGAL</h5>
+<ul class="space-y-2 font-label text-xs uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
+<li><a class="hover:text-[#d32f2f] hover:underline transition-all duration-200" href="#">Terms</a></li>
+<li><a class="hover:text-[#d32f2f] hover:underline transition-all duration-200" href="#">Privacy</a></li>
+<li><a class="hover:text-[#d32f2f] hover:underline transition-all duration-200" href="#">Shipping</a></li>
+</ul>
+</div>
+</div>
+<div class="col-span-1">
+<h5 class="font-label text-xs font-bold text-[#d32f2f] mb-4">CONTACT</h5>
+<p class="font-label text-xs uppercase text-neutral-600 dark:text-neutral-400">SUPPORT@DOSPIN.ARCHIVE</p>
+<p class="font-label text-xs uppercase text-neutral-600 dark:text-neutral-400 mt-2">DIRECT MESSAGE: +91 XXXX XXXX</p>
+</div>
+<div class="col-span-1 md:col-span-4 border-t border-primary/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label text-[10px] uppercase tracking-widest text-neutral-600 dark:text-neutral-400">
+                © 2024 DOSPIN ARCHIVE. ALL RIGHTS RESERVED.
+            </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-sm opacity-50">qr_code</span>
+<span class="material-symbols-outlined text-sm opacity-50">fingerprint</span>
+</div>
+</div>
+</footer>
+<!-- SideNavBar (Floating Support) -->
+<div class="fixed bottom-8 right-8 z-[100] animate-pulse">
+<button class="bg-[#25D366] text-white fixed bottom-8 right-8 rounded-none w-16 h-16 flex flex-col items-center justify-center font-['Be_Vietnam_Pro'] font-bold shadow-[4px_4px_0px_0px_rgba(211,47,47,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+<span class="text-[8px] uppercase">Support</span>
+</button>
+</div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+    });
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+        
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+    }
+
+    // Smooth Scrolling & Active State
+    document.documentElement.style.scrollBehavior = 'smooth';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('main#home, section#how-it-works, section#shop');
+        const desktopLinks = document.querySelectorAll('.nav-link');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        const allNavLinks = [...desktopLinks, ...mobileLinks];
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-30% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    if (!id) return;
+
+                    allNavLinks.forEach(link => {
+                        const targetId = link.getAttribute('data-target');
+                        if (!targetId) return;
+                        
+                        if (targetId === id) {
+                            link.classList.add('text-[#d32f2f]');
+                            link.classList.remove('text-neutral-900', 'dark:text-neutral-100', 'opacity-80');
+                            if (link.classList.contains('nav-link')) {
+                                link.classList.add('border-b-4', 'border-[#d32f2f]', 'pb-1');
+                            } else {
+                                link.classList.add('border-b-2', 'border-[#d32f2f]', 'pb-1');
+                            }
+                        } else {
+                            link.classList.remove('text-[#d32f2f]', 'border-b-4', 'border-[#d32f2f]', 'border-b-2', 'pb-1');
+                            link.classList.add('text-neutral-900', 'dark:text-neutral-100', 'opacity-80');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            if (section.id) observer.observe(section);
+        });
+    });
+
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('loading-screen');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.pointerEvents = 'none';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 700);
+        }
+    });
+</script>
+<script 
+  src="https://haseefmuhammed.github.io/teb-site-hook/teb-controller.js"
+  data-site="teb138">
+</script>
+</body></html>

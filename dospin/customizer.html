@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DOSPIN | Demo Website by TEB Innovations</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;800;900&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;family=Manrope:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="icon" href="assets/logo.jpg" type="image/logo">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-container": "#636262",
+                        "inverse-primary": "#ffb3ac",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#e2dfde",
+                        "surface-bright": "#fbfbe2",
+                        "on-primary-container": "#fff2f0",
+                        "on-background": "#1b1d0e",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#7bd1f8",
+                        "primary-fixed": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#fbfbe2",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#410003",
+                        "surface-container-low": "#f5f5dc",
+                        "primary-container": "#d32f2f",
+                        "outline-variant": "#e4beba",
+                        "inverse-surface": "#303221",
+                        "secondary": "#5f5e5e",
+                        "surface-tint": "#ba1a20",
+                        "on-surface-variant": "#5b403d",
+                        "error": "#ba1a1a",
+                        "tertiary": "#005f7b",
+                        "tertiary-container": "#00799c",
+                        "primary-fixed-dim": "#ffb3ac",
+                        "tertiary-fixed": "#bee9ff",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001f2a",
+                        "primary": "#af101a",
+                        "surface-container-high": "#eaead1",
+                        "surface-container": "#efefd7",
+                        "inverse-on-surface": "#f2f2d9",
+                        "on-tertiary-fixed-variant": "#004d65",
+                        "on-surface": "#1b1d0e",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-dim": "#dbdcc3",
+                        "surface-container-highest": "#e4e4cc",
+                        "secondary-fixed": "#e5e2e1",
+                        "outline": "#8f6f6c",
+                        "on-primary-fixed-variant": "#930010",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-tertiary-container": "#e9f7ff",
+                        "surface-variant": "#e4e4cc",
+                        "background": "#fbfbe2"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes loading-progress {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-grid {
+            background-image: radial-gradient(circle, #e4e4cc 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .text-outline {
+            -webkit-text-stroke: 1px currentColor;
+            color: transparent;
+        }
+        .ease-out-expo {
+            transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface bg-grid">
+<!-- Loading Screen -->
+<div id="loading-screen" class="fixed inset-0 z-[9999] bg-[#fbfbe2] dark:bg-black flex flex-col items-center justify-center transition-all duration-700">
+    <img src="assets/logo.jpg" alt="DOSPIN Loading" class="h-24 w-auto object-contain animate-pulse mb-8 drop-shadow-xl rounded-md">
+    <div class="w-48 h-1 bg-[#e4e4cc] dark:bg-neutral-800 overflow-hidden rounded-full">
+        <div class="h-full bg-[#d32f2f] w-1/2 rounded-full" style="animation: loading-progress 1.5s ease-in-out infinite;"></div>
+    </div>
+</div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-[#fbfbe2]/70 backdrop-blur-xl dark:bg-black/70 border-b-2 border-[#d32f2f]/10 z-50 transition-all duration-300">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<img src="assets/logo.jpg" alt="DOSPIN Logo" class="h-10 w-auto object-contain rounded-md" />
+<div class="text-2xl font-black italic tracking-widest text-[#d32f2f] font-headline hidden sm:block">Creative Studio</div>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f] transition-colors duration-150" href="index.html#home">Home</a>
+<a class="font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f] transition-colors duration-150" href="index.html#how-it-works">How it Works</a>
+<a class="font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f] transition-colors duration-150" href="index.html#shop">Shop</a>
+<a class="font-headline uppercase tracking-tighter text-[#d32f2f] border-b-4 border-[#d32f2f] pb-1 transition-colors duration-150" href="customizer.html">Customizer</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="scale-95 active:scale-90 transition-transform text-[#d32f2f]"><span class="material-symbols-outlined">shopping_cart</span></button>
+<button class="scale-95 active:scale-90 transition-transform text-[#d32f2f]"><span class="material-symbols-outlined">person</span></button>
+<button class="md:hidden text-[#d32f2f]" id="mobile-menu-btn"><span class="material-symbols-outlined">menu</span></button>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="hidden flex-col items-center gap-6 pb-6 w-full bg-[#fbfbe2] dark:bg-black shadow-lg" id="mobile-menu">
+<a class="font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f]" href="index.html#home">Home</a>
+<a class="font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f]" href="index.html#how-it-works">How it Works</a>
+<a class="font-headline uppercase tracking-tighter text-neutral-900 dark:text-neutral-100 opacity-80 hover:text-[#d32f2f]" href="index.html#shop">Shop</a>
+<a class="font-headline uppercase tracking-tighter text-[#d32f2f] border-b-2 border-[#d32f2f] pb-1" href="customizer.html">Customizer</a>
+</div>
+</header>
+<main class="pt-24 pb-32 min-h-screen container mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Live Preview Area -->
+<section id="preview-section" class="lg:col-span-7 lg:sticky top-24 z-10" data-aos="fade-right">
+<div class="flex flex-col space-y-6">
+<div class="flex justify-between items-end">
+<h1 class="font-headline text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none">
+                            THE ARCHIVE <br/>
+<span class="text-outline text-primary">PREVIEW</span>
+</h1>
+<div class="text-right font-label text-[10px] uppercase font-black tracking-widest text-primary pb-2">
+                            STATUS: LIVE_RENDER_V.02
+                        </div>
+</div>
+<div class="relative aspect-square bg-surface-container-low border-2 border-primary/5 flex items-center justify-center group overflow-hidden">
+<!-- Corner Accents -->
+<div class="absolute top-0 right-0 w-12 h-12 border-t-4 border-r-4 border-primary"></div>
+<div class="absolute bottom-0 left-0 w-12 h-12 border-b-4 border-l-4 border-primary"></div>
+<!-- Technical Overlay -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<div class="h-px w-full bg-primary absolute top-1/4"></div>
+<div class="h-px w-full bg-primary absolute top-3/4"></div>
+<div class="w-px h-full bg-primary absolute left-1/4"></div>
+<div class="w-px h-full bg-primary absolute left-3/4"></div>
+</div>
+<img alt="3D Mockup Smartphone Case" class="w-4/5 h-4/5 object-contain drop-shadow-2xl transform transition-transform duration-500 group-hover:scale-105" data-alt="Close-up 3D render of a futuristic smartphone case with sharp edges and technical details in a clean laboratory setting with dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2NDrq0wXS0D6uvcRtpCEPqWQEzAUUYltYcQFzJKALDRKu7EbhNX3nLNABNXF6oUT0pqQm11DPs8haWt7AHEEojMtaXRBTPPd-ElHt7T7ck1RMaEUzRf0T53IvOPpAslW_ue9M0IkYq6o2BRoAXk0GnClK0y9rEGI4NrfLH5ybMkVQ_ZmMvJ5nVFQudlzERXrwLLWe4BlqACcRABKl892E87UnzQ9a3M36fRjqTt8UReddaMl-yOha4SVAx951fSq9uz0OFiFvxDPN"/>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-surface-container-highest p-2 sm:p-4 flex flex-col overflow-hidden text-center sm:text-left">
+<span class="font-label text-[8px] font-black uppercase text-primary">SKU_REF</span>
+<span class="font-headline font-bold text-xs sm:text-base truncate">DS-X</span>
+</div>
+<div class="bg-surface-container-highest p-2 sm:p-4 flex flex-col overflow-hidden text-center sm:text-left">
+<span class="font-label text-[8px] font-black uppercase text-primary">DURABILITY</span>
+<span class="font-headline font-bold text-xs sm:text-base truncate">MIL-810G</span>
+</div>
+<div class="bg-surface-container-highest p-2 sm:p-4 flex flex-col overflow-hidden text-center sm:text-left">
+<span class="font-label text-[8px] font-black uppercase text-primary">FINISH</span>
+<span class="font-headline font-bold text-xs sm:text-base truncate">MATTE</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interaction Area -->
+<section class="lg:col-span-5 space-y-12" data-aos="fade-left">
+<!-- Section 1: Chassis -->
+<div id="chassis-section" class="space-y-6 scroll-mt-28">
+<div class="flex items-center gap-4">
+<span class="font-headline text-3xl font-black text-primary">01</span>
+<h2 class="font-headline text-2xl font-black uppercase tracking-tight">CHASSIS SELECTION</h2>
+</div>
+<div class="flex flex-col gap-3">
+<label class="group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+<input checked="" class="hidden peer" name="chassis" type="radio"/>
+<div class="flex justify-between items-center p-6 bg-surface-container-low border-2 border-transparent peer-checked:border-primary transition-all duration-150">
+<div class="flex flex-col">
+<span class="font-headline font-extrabold tracking-tight">ANTI-YELLOW / PC</span>
+<span class="font-label text-[10px] text-on-secondary-container">OPTICAL GRADE CLEAR POLYCARBONATE</span>
+</div>
+<span class="font-label font-black text-primary">₹199</span>
+</div>
+</label>
+<label class="group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+<input class="hidden peer" name="chassis" type="radio"/>
+<div class="flex justify-between items-center p-6 bg-surface-container-low border-2 border-transparent peer-checked:border-primary transition-all duration-150">
+<div class="flex flex-col">
+<span class="font-headline font-extrabold tracking-tight">SPIGEN HYBRID</span>
+<span class="font-label text-[10px] text-on-secondary-container">SHOCK ABSORPTION AIR CUSHION TECH</span>
+</div>
+<span class="font-label font-black text-primary">₹219</span>
+</div>
+</label>
+<label class="group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
+<input class="hidden peer" name="chassis" type="radio"/>
+<div class="flex justify-between items-center p-6 bg-surface-container-low border-2 border-transparent peer-checked:border-primary transition-all duration-150">
+<div class="flex flex-col">
+<span class="font-headline font-extrabold tracking-tight">BLACK EDGE / ARMOR</span>
+<span class="font-label text-[10px] text-on-secondary-container">REINFORCED EDGES MAXIMUM PROTECTION</span>
+</div>
+<span class="font-label font-black text-primary">₹249</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Section 2: Aesthetic -->
+<div id="aesthetic-section" class="space-y-6 scroll-mt-28">
+<div class="flex items-center gap-4">
+<span class="font-headline text-3xl font-black text-primary">02</span>
+<h2 class="font-headline text-2xl font-black uppercase tracking-tight">AESTHETIC MODULE</h2>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Custom Upload -->
+<button class="col-span-2 border-2 border-dashed border-primary/30 p-8 flex flex-col items-center justify-center gap-2 hover:bg-primary/5 hover:border-primary transition-all duration-150 group" data-aos="zoom-in" data-aos-delay="100">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">cloud_upload</span>
+<span class="font-headline font-bold uppercase tracking-widest text-sm">CUSTOM UPLOAD</span>
+</button>
+<!-- Graphic Options -->
+<div class="relative group cursor-pointer aspect-[3/4] bg-surface-container-highest border-2 border-primary overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+<img alt="Cyber Red Insert" class="w-full h-full object-cover" data-alt="Futuristic red and black abstract digital art with glitch effects and tech patterns for a phone case insert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh7AihlkL5xlzKoEkCA9zLBSIE8SV9RZ-9FfLFoDCkqF5wx8utnLTx09pLcvcZB0lOluhwd8PKPGytqtWHH4VYRHnQugzO4ehf45qRjw-RMqZIJXPuVgI0n4PprLbB9gS4wY1rzPJwGSc4HwNB-gOR96fM6AbW4be9UnC_6OTEdDw6SKlI9MmPbcqIv49KdBzGP4zFJkZ_1BeKGzal5p18Lc0EQE5Yz7qo1_D6PEz6wrMo67MEskqa7fyjaR_rmr-PgfgtK6QV-c9V"/>
+<div class="absolute bottom-0 left-0 right-0 p-3 bg-primary text-white">
+<span class="font-headline font-bold text-xs uppercase tracking-tighter">CYBER RED</span>
+</div>
+<div class="absolute top-2 right-2 bg-white text-primary p-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="relative group cursor-pointer aspect-[3/4] bg-surface-container-highest border-2 border-transparent hover:border-primary transition-all overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+<img alt="Glitch Mesh Insert" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Monochrome digital mesh pattern with white distortion and signal noise artifacts for a streetwear aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuFIq66sD2ZQl0EEGSBsNG5ErbkCWEQWMIRSx7YQgFMgX22PKiNokQ7DrUi84CfS1RcXzkxRiplPO9VpIkfhgxdUBd40MYdYb0xcA_AzR_InEoEwgV9Bd136x-t6rqwR_XRX8EeDN0BpsFwgNrXnAZ5UTZbuGXxYqB6V9U6kKtxSFRtzzUBEQ_ioOjW-UwkyIMaLm5fm9Ve8jG94lYZ5IgYm-Zg76Zi4byR1Uq2mJ3gN739YCDLMf5H1oKXIgtxqTh4lmCx4_-XQWw"/>
+<div class="absolute bottom-0 left-0 right-0 p-3 bg-black/80 text-white group-hover:bg-primary transition-colors">
+<span class="font-headline font-bold text-xs uppercase tracking-tighter">GLITCH MESH</span>
+</div>
+</div>
+<div class="relative group cursor-pointer aspect-[3/4] bg-surface-container-highest border-2 border-transparent hover:border-primary transition-all overflow-hidden" data-aos="zoom-in" data-aos-delay="400">
+<img alt="Neo-Flora Insert" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Digital surrealist floral pattern with neon pink and electric blue outlines on a deep black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7vaysuESlnvdw4BVZURW57QvP-uCLOTSULm5sitRGVtAQWC1u3rAqyjTzADpbRlQBjcaajnf4WL-K9DYoqqoDLfEOOrFqNIH4GhcmbZbzVz1K0ttgvlvNUnCiyAJyHZVAJzHhQ5pQq3_39fx4bH9gT6wNt6yrANP3ZXZY-qBFBP6fb9UzNprVqdtiqVFycD1JKxHqszhrz-7RDFPEsq56hqfkL7Vh01ChBIB5fthFzgUkCI8JmBreC9Bt987Z4erKCxago03u1D3l"/>
+<div class="absolute bottom-0 left-0 right-0 p-3 bg-black/80 text-white group-hover:bg-primary transition-colors">
+<span class="font-headline font-bold text-xs uppercase tracking-tighter">NEO-FLORA</span>
+</div>
+</div>
+<div class="relative group cursor-pointer aspect-[3/4] bg-surface-container-highest border-2 border-transparent hover:border-primary transition-all overflow-hidden" data-aos="zoom-in" data-aos-delay="500">
+<img alt="Void Gradient Insert" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Abstract gradient blending deep maroon into sharp technical black with minimal geometric white lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFFgdjeXJYSsP8VcufbNNVmh0kCd3p2Eq5NqVMnz6sLENRgWqOu_BvTw-VwJ4Sn5JVHHPBfIaaDgbNrk0W9vK_y6s9rfMjg8zJpmcyECPVykWxu-WBop_PVLj42xNsbu7C0hz-6vTeTGI1aXNl0xwK0blWViIeuEj5L9nrzT2I0z8A4i4R_SFHeAF8MWJJfaM1lHgS1yPC9P-_ppsV1HNg68pehqGghgZtDyh1HesPrOrbPMwGimAEPB5ufa2c17SxefpF3B_dwSAw"/>
+<div class="absolute bottom-0 left-0 right-0 p-3 bg-black/80 text-white group-hover:bg-primary transition-colors">
+<span class="font-headline font-bold text-xs uppercase tracking-tighter">VOID GRADIENT</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<div id="order-section" class="pt-8 scroll-mt-28" data-aos="fade-up" data-aos-offset="0">
+<button class="w-full bg-primary text-white py-8 px-6 flex justify-between items-center group active:scale-[0.98] transition-transform">
+<span class="font-headline text-4xl font-black uppercase tracking-tighter">ORDER NOW</span>
+<div class="flex items-center gap-4">
+<span class="font-label font-black text-xl">₹448</span>
+<span class="material-symbols-outlined text-4xl group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</button>
+<p class="font-label text-[10px] text-center mt-4 opacity-40 uppercase tracking-[0.2em]">ALL SALES ARE FINAL. CUSTOM ARCHIVE ITEM NO: 4882-DS</p>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-stretch h-20 bg-[#fbfbe2] dark:bg-black border-t-2 border-[#d32f2f] z-50">
+<button onclick="document.getElementById('preview-section').scrollIntoView({behavior: 'smooth'})" data-target="preview-section" class="nav-btn flex flex-col items-center justify-center bg-[#d32f2f] text-white p-4 flex-1 transition-colors relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<span class="font-['Manrope'] text-[10px] font-black uppercase tracking-widest mt-1">PREVIEW</span>
+</button>
+<button onclick="document.getElementById('chassis-section').scrollIntoView({behavior: 'smooth'})" data-target="chassis-section" class="nav-btn flex flex-col items-center justify-center text-on-surface dark:text-white p-4 flex-1 hover:bg-surface-variant dark:hover:bg-zinc-900 transition-colors relative">
+<span class="material-symbols-outlined">developer_board</span>
+<span class="font-['Manrope'] text-[10px] font-black uppercase tracking-widest mt-1">SELECT</span>
+</button>
+<button onclick="document.getElementById('aesthetic-section').scrollIntoView({behavior: 'smooth'})" data-target="aesthetic-section" class="nav-btn flex flex-col items-center justify-center text-on-surface dark:text-white p-4 flex-1 hover:bg-surface-variant dark:hover:bg-zinc-900 transition-colors relative">
+<span class="material-symbols-outlined">palette</span>
+<span class="font-['Manrope'] text-[10px] font-black uppercase tracking-widest mt-1">GRAPHICS</span>
+</button>
+<button onclick="document.getElementById('order-section').scrollIntoView({behavior: 'smooth'})" data-target="order-section" class="nav-btn flex flex-col items-center justify-center text-on-surface dark:text-white p-4 flex-1 hover:bg-surface-variant dark:hover:bg-zinc-900 transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-['Manrope'] text-[10px] font-black uppercase tracking-widest mt-1">ORDER</span>
+</button>
+</footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+    });
+
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+        
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+    }
+
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('loading-screen');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.pointerEvents = 'none';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 700);
+        }
+    });
+
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('#preview-section, #chassis-section, #aesthetic-section, #order-section');
+        const navBtns = document.querySelectorAll('.nav-btn');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    
+                    navBtns.forEach(btn => {
+                        const target = btn.getAttribute('data-target');
+                        if (target === id) {
+                            btn.classList.add('bg-[#d32f2f]', 'text-white');
+                            btn.classList.remove('text-on-surface', 'dark:text-white', 'hover:bg-surface-variant', 'dark:hover:bg-zinc-900');
+                        } else {
+                            btn.classList.remove('bg-[#d32f2f]', 'text-white');
+                            btn.classList.add('text-on-surface', 'dark:text-white', 'hover:bg-surface-variant', 'dark:hover:bg-zinc-900');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
+<script 
+  src="https://haseefmuhammed.github.io/teb-site-hook/teb-controller.js"
+  data-site="teb138">
+</script>
+</body></html>
