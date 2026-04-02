@@ -97,7 +97,7 @@
       }
     </style>
 </head>
-<body class="bg-surface text-on-surface font-body antialiased">
+<body class="bg-surface text-on-surface font-body antialiased overflow-x-hidden w-full">
 <!-- Preloader -->
 <div id="preloader" class="fixed inset-0 z-[9999] bg-surface flex flex-col items-center justify-center transition-opacity duration-1000">
     <img src="assets/logo.jpg" alt="AY Luxe Events Logo Loading" class="h-24 md:h-32 w-auto animate-pulse object-contain rounded-md drop-shadow-xl">
@@ -140,35 +140,33 @@
 </div>
 </nav>
 <!-- Hero Section -->
-<section class="relative min-h-[85dvh] md:min-h-[100dvh] flex items-center overflow-hidden pt-28 pb-16 md:pt-0 md:pb-0" id="home">
+<section class="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden pt-20 pb-10 sm:pt-0 sm:pb-0" id="home">
 <div class="absolute inset-0 z-0">
 <img alt="Luxury Event Setup" class="w-full h-full object-cover object-center sm:object-[center_top]" data-alt="Stunning ultra-high-end luxury wedding reception in a grand ballroom with crystal chandeliers and white floral arrangements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI5_CIN2aLZyWf3CLZmOV0UYSOLXDObi1hXnTSx4SBSXKMbAIpdHebMGKkwBOhrG01R5swNGN-QgS5gDKc_30GBE23Ll9d9uNtc7_ZjSP3IEjwr9pLCIEEPcLhFstrXWgWzo2v7i8M07ZqCcPHnl6_JBfBPvEs1R3rddiPiLfp2UmW8z3CGr1fQcn_8bhM9Qp31-YicejyGmQi4hJDfUDiAL4I3MI_DNVpWqhaEAikCMEC5vm_MYRhhXxcMaN-CJ1Fi5fyD47akYgE"/>
-<div class="absolute inset-0 bg-on-surface/50 md:bg-on-surface/40"></div>
+<div class="absolute inset-0 bg-on-surface/60 md:bg-on-surface/40"></div>
 </div>
-<div class="relative z-10 w-full max-w-screen-2xl mx-auto px-5 sm:px-6 md:px-24 text-white text-center md:text-left mt-8 md:mt-0">
-<div class="max-w-3xl mx-auto md:mx-0" data-aos="fade-up">
-<span class="inline-block mb-3 sm:mb-4 font-label text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-primary-fixed">Crafting something extraordinary... ✨</span>
-<h1 class="font-headline text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 leading-[1.15] sm:leading-[1.1] -tracking-widest">
-                    Crafting <br class="hidden sm:block"/>
-<span class="italic font-light">Extraordinary</span> <br class="hidden sm:block"/>
-                    Experiences
+<div class="relative z-10 w-full max-w-screen-2xl mx-auto px-6 sm:px-8 md:px-24 text-white text-center md:text-left mt-12 sm:mt-0">
+<div class="max-w-2xl mx-auto md:mx-0 flex flex-col items-center md:items-start" data-aos="fade-up">
+<span class="inline-block mb-4 sm:mb-6 font-label text-[10px] sm:text-sm uppercase tracking-widest sm:tracking-[0.3em] text-primary-fixed drop-shadow-md text-center max-w-full break-words">Crafting something extraordinary... ✨</span>
+<h1 class="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 leading-[1.1] sm:leading-[1.1] tracking-tight drop-shadow-lg max-w-full break-words">
+                    Crafting <span class="italic font-light text-primary-fixed">Extraordinary</span> Experiences
                 </h1>
-<p class="text-base sm:text-xl md:text-2xl font-light mb-8 sm:mb-12 text-surface-container-lowest/90 leading-relaxed max-w-xl mx-auto md:mx-0">
+<p class="text-base sm:text-lg md:text-2xl font-light mb-10 sm:mb-12 text-surface-container-lowest/95 leading-relaxed max-w-lg mx-auto md:mx-0 drop-shadow-md">
                     Where bespoke luxury meets meticulous execution. We design timeless moments for the world's most discerning hosts.
                 </p>
-<div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 sm:gap-6">
-<a class="w-full sm:w-auto gold-gradient text-on-primary px-8 py-4 sm:px-10 sm:py-5 text-center font-label text-xs sm:text-sm uppercase tracking-widest hover:scale-95 hover:shadow-[0_0_25px_rgba(119,90,25,0.7)] transition-all duration-300" href="#contact">
+<div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 sm:gap-6 w-full sm:w-auto">
+<a class="w-full sm:w-auto gold-gradient text-on-primary px-8 py-4 sm:px-10 sm:py-5 text-center font-label text-xs sm:text-sm uppercase tracking-widest hover:scale-[0.98] hover:shadow-[0_0_25px_rgba(119,90,25,0.7)] transition-all duration-300" href="#contact">
                         Book Your Event
                     </a>
-<a class="w-full sm:w-auto backdrop-blur-md bg-white/10 border border-white/20 text-white px-8 py-4 sm:px-10 sm:py-5 text-center font-label text-xs sm:text-sm uppercase tracking-widest hover:bg-white/20 transition-all" href="#portfolio">
+<a class="w-full sm:w-auto backdrop-blur-md bg-white/10 border border-white/20 text-white px-8 py-4 sm:px-10 sm:py-5 text-center font-label text-xs sm:text-sm uppercase tracking-widest hover:bg-white/20 transition-all duration-300" href="#portfolio">
                         View Gallery
                     </a>
 </div>
 </div>
 </div>
-<div class="absolute bottom-12 right-12 hidden lg:flex flex-col items-end text-white/60" data-aos="fade-up" data-aos-delay="800">
+<div class="absolute bottom-8 right-8 hidden md:flex flex-col items-end text-white/60" data-aos="fade-up" data-aos-delay="800">
 <span class="rotate-90 origin-right translate-x-full font-label text-xs tracking-widest mb-16 uppercase">Scroll to Explore</span>
-<div class="w-[1px] h-24 bg-white/30"></div>
+<div class="w-[1px] h-24 bg-white/30 hidden lg:block"></div>
 </div>
 </section>
 <!-- About Section -->
