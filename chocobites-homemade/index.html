@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocobites Homemades Demo by TEB Innovations</title>
+    <link rel="icon" href="assets/logo.jpg" type="image/logo">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="../bootstrap.css" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --choco-dark: #2F1B17;
+            --choco-med: #4A2E2A;
+            --choco-light: #7B5047;
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --bg-cream: #FDFBF7;
+            --bg-alt: #F4EFEA;
+            --text-main: #1D1110;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-cream);
+            /* Prevent horizontal overflow scrolling universally */
+            overflow-x: hidden; 
+        }
+
+        /* 1. Global Wrapper to strictly trap any absolute element overflow */
+        .site-wrapper {
+            position: relative;
+            overflow: clip;
+            overflow-x: hidden;
+            width: 100vw;
+            max-width: 100%;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Noto Serif', serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        /* 4. Elegant Loading Screen */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--choco-dark);
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+        }
+        .loader-curtain {
+            position: absolute;
+            background: var(--choco-med);
+            width: 50vw;
+            height: 100%;
+            top: 0;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: -1;
+        }
+        .curtain-left { left: 0; }
+        .curtain-right { right: 0; }
+        
+        .loader-logo-wrap {
+            text-align: center;
+            color: var(--gold);
+            animation: breathe 3s ease-in-out infinite;
+        }
+        .loader-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            margin-bottom: 2rem;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* 2. Custom Crafted Navigation Bar */
+        .custom-navbar {
+            background: rgba(253, 251, 247, 0.85); /* Glassmorphism */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.4);
+            margin: 20px auto;
+            border-radius: 50px;
+            width: 90%;
+            max-width: 1200px;
+            box-shadow: 0 10px 30px rgba(47, 27, 23, 0.08);
+            transition: all 0.4s ease;
+        }
+        .custom-navbar.scrolled {
+            margin: 10px auto;
+            background: rgba(253, 251, 247, 0.98);
+            width: 95%;
+        }
+        .custom-navbar .navbar-brand {
+            color: var(--choco-dark);
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        .custom-navbar .nav-link {
+            color: var(--choco-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            margin: 0 10px;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .custom-navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gold);
+            transition: width 0.3s;
+        }
+        .custom-navbar .nav-link:hover::after,
+        .custom-navbar .nav-link.active::after {
+            width: 100%;
+        }
+        .custom-navbar .nav-link:hover, .custom-navbar .nav-link.active {
+            color: var(--choco-dark);
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--choco-dark);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.65rem;
+            font-weight: bold;
+        }
+
+        /* 5. Super Hero Section Redesign */
+        .hero-section {
+            height: 100vh;
+            min-height: 700px;
+            background-image: url('https://images.unsplash.com/photo-1549007994-cb92caebd54b?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(47,27,23,0.9), rgba(47,27,23,0.4));
+            z-index: 1;
+        }
+        .hero-glass-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 4rem;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            color: white;
+            margin-top: 50px;
+        }
+
+        /* Buttons */
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--choco-dark) !important;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
+        }
+        .btn-outline-gold {
+            background-color: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline-gold:hover {
+            background-color: var(--gold);
+            color: var(--choco-dark);
+        }
+
+        /* Formatting */
+        .section-padding { padding: 100px 0; }
+        .text-choco { color: var(--choco-dark) !important; }
+        .text-gold { color: var(--gold) !important; }
+        .bg-alt { background-color: var(--bg-alt) !important; }
+
+        /* Story Chapter Watermarks adjusted for responsive scale */
+        .story-chapter {
+            position: absolute;
+            color: rgba(47, 27, 23, 0.03); 
+            font-size: 15vw; /* Fixed from hard rem to vw to prevent overflow */
+            line-height: 1;
+            white-space: nowrap;
+            top: 2%;
+            z-index: 0;
+            font-family: 'Noto Serif', serif;
+            font-weight: 900;
+            pointer-events: none;
+            user-select: none;
+        }
+        .chapter-content { position: relative; z-index: 2; }
+
+        /* 8. Fix Product Showcase Bug */
+        .product-card {
+            border: none;
+            border-radius: 16px;
+            background: white;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            /* Removed invalid CSS group: hover */
+            height: 100%;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(47, 27, 23, 0.1);
+        }
+        .product-img-wrapper {
+            position: relative;
+            overflow: hidden; /* Fix for scaling breaking borders */
+            border-radius: 16px; /* explicitly inherited border radius */
+            transform: translateZ(0); /* Force GPU render for Safari bug */
+        }
+        .product-img {
+            height: 350px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.8s ease;
+        }
+        .product-card:hover .product-img {
+            transform: scale(1.08); /* Smoother hover scale */
+        }
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(47, 27, 23, 0.9), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 2rem;
+            z-index: 2;
+        }
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        /* 3. Customer Feedback Elements */
+        .review-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(47, 27, 23, 0.05);
+            position: relative;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+        .review-quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 4rem;
+            color: rgba(212, 175, 55, 0.1); /* faded gold */
+            line-height: 1;
+            font-family: serif;
+        }
+
+        /* 7. Mega Footer Redesign */
+        .mega-footer {
+            background-color: var(--choco-dark);
+            color: var(--bg-alt);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        .mega-footer h5 {
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a {
+            color: rgba(244, 239, 234, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+        .footer-socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            color: var(--gold);
+            transition: all 0.3s;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        .footer-socials a:hover {
+            background: var(--gold);
+            color: var(--choco-dark);
+            transform: translateY(-5px);
+        }
+
+        /* FAB */
+        .fab-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+        .fab-wa:hover { transform: scale(1.1); color: white; }
+
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+
+<!-- 1. Strict Outer Wrapper -->
+<div class="site-wrapper">
+
+    <!-- 4. Modernized Loader -->
+    <div id="loader">
+        <div class="loader-curtain curtain-left" id="curtainL"></div>
+        <div class="loader-curtain curtain-right" id="curtainR"></div>
+        <div class="loader-logo-wrap" id="loaderContent">
+            <img src="assets/logo.jpg" alt="Chocobites Logo" class="loader-img" onerror="this.src='https://images.unsplash.com/photo-1542840410-3092f99611a3?w=300&auto=format&fit=crop'">
+            <h4 class="font-serif fw-bold">Tempering Chocolate</h4>
+            <div class="progress mt-3 mx-auto bg-dark" style="height: 4px; width: 200px;">
+                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2 & 6. Custom Navbar with Working Links -->
+    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top custom-navbar">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand font-serif" href="#hero">
+                <span class="material-symbols-outlined text-gold align-middle me-1">cookie</span>
+                Chocobites
+            </a>
+            <button class="navbar-toggler border-0 focus-ring-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="material-symbols-outlined">menu_open</span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Story</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Creations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                    <button class="btn btn-link text-choco p-0 position-relative" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <span class="material-symbols-outlined fs-4">shopping_cart</span>
+                        <span class="cart-badge">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 5. Super Hero Section Redesign -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="hero-glass-card mx-auto" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500">
+                        <span class="text-gold fw-bold text-uppercase d-block mb-3" style="letter-spacing: 4px; font-size: 0.9rem;">Artisanal Masterpieces</span>
+                        <h1 class="display-3 font-serif fw-bold mb-4">Crafted with Pure Passion</h1>
+                        <p class="lead mb-5 opacity-75">Every bite is a curated journey of rich flavors, handcrafted locally with world-class cocoa. Gift a box of infinite joy today.</p>
+                        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                            <a href="#products" class="btn-gold">Explore Collection</a>
+                            <a href="#about" class="btn-outline-gold">Discover Our Secret</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Segment -->
+    <section id="about" class="section-padding bg-cream position-relative">
+        <div class="story-chapter" style="left: -2%;">HERITAGE</div>
+        <div class="container chapter-content">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1200">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div style="height: 2px; width: 60px; background-color: var(--gold);"></div>
+                        <span class="text-gold text-uppercase fw-bold" style="letter-spacing: 2px;">Our Origin</span>
+                    </div>
+                    <h2 class="font-serif text-choco display-5 fw-bold mb-4">The Art of True Indulgence</h2>
+                    <p class="text-muted fs-5 leading-relaxed mb-4">From our humble beginnings in a small home bakery to an esteemed atelier, our focus remains unchanged: quality without compromise. Each chocolate is tempered by hand using heirloom techniques.</p>
+                    <div class="row pt-4 border-top border-light">
+                        <div class="col-6">
+                            <h3 class="font-serif display-4 fw-bold text-choco">100%</h3>
+                            <p class="text-uppercase text-muted fw-bold small tracking-wider">Natural Ingredients</p>
+                        </div>
+                        <div class="col-6">
+                            <h3 class="font-serif display-4 fw-bold text-choco">12+</h3>
+                            <p class="text-uppercase text-muted fw-bold small tracking-wider">Awards Won</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1200">
+                     <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0xIJBTTHH6BM51c54OxRbfZgdFBbD4wiMtCU1j_aSMKFCD8qBQPNOZfQyHQD492BJoAg0sJkdUITb1qXBoLvJm6JvjPn5_mnzAhbb_EnMaXd1CzFfmP_ZWzSRPbTkyIklFl-AbHNlhELZDk5v7xnQeQGsxKY7t-6wN5xosnCKdEax05zIROzyXLo6cmMNJIZud_TDNo8mA3So7enM5FSDw8GeBGKPg6jWnmBwAzXbOx7xt3GSQvG3Lo1NtzIzYlTEm6Owgbejvxl0" alt="Chocolate Maker" class="img-fluid rounded-4 shadow-lg w-100" style="object-fit: cover; height: 500px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Showcase (Bug Fixed) -->
+    <section id="products" class="section-padding bg-alt position-relative">
+        <div class="story-chapter text-end" style="right: -2%; top: 5%;">CREATIONS</div>
+        <div class="container chapter-content">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="text-gold text-uppercase fw-bold d-block mb-2" style="letter-spacing: 2px;">Our Best Sellers</span>
+                <h2 class="font-serif display-4 fw-bold text-choco">Signature Collections</h2>
+            </div>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Card 1 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="assets/p1.png" alt="Signature Box" class="product-img">
+                            <div class="product-overlay">
+                                <button class="btn btn-light rounded-pill px-4 fw-bold py-2 shadow-sm quick-view-btn" 
+                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                    data-title="Signature Box" data-price="₹850"
+                                    data-desc="12 exquisite pralines wrapped elegantly in gold foil."
+                                    data-img="assets/p1.png">
+                                    <span class="material-symbols-outlined fs-6 align-text-bottom me-1">visibility</span> Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="h5 font-serif fw-bold text-choco mb-2">Signature Box</h3>
+                            <span class="text-gold fw-bold">₹850</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="assets/p2.png" alt="Event Special" class="product-img">
+                            <div class="product-overlay">
+                                <button class="btn btn-light rounded-pill px-4 fw-bold py-2 shadow-sm quick-view-btn" 
+                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                    data-title="Party Pack" data-price="₹1,200"
+                                    data-desc="Beautiful bites tailored specifically for robust events."
+                                    data-img="assets/p2.png">
+                                    <span class="material-symbols-outlined fs-6 align-text-bottom me-1">visibility</span> Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="h5 font-serif fw-bold text-choco mb-2">Party Pack</h3>
+                            <span class="text-gold fw-bold">₹1,200</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="assets/p3.png" alt="Wedding Favors" class="product-img">
+                            <div class="product-overlay">
+                                <button class="btn btn-light rounded-pill px-4 fw-bold py-2 shadow-sm quick-view-btn" 
+                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                    data-title="Wedding Favors" data-price="From ₹150"
+                                    data-desc="Elegant boxed favors customised for your special day."
+                                    data-img="assets/p3.png">
+                                    <span class="material-symbols-outlined fs-6 align-text-bottom me-1">visibility</span> Quick View
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-4 text-center">
+                            <h3 class="h5 font-serif fw-bold text-choco mb-2">Wedding Favors</h3>
+                            <span class="text-gold fw-bold">From ₹150</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. New Customer Feedback Section -->
+    <section id="reviews" class="section-padding bg-cream position-relative">
+        <div class="container chapter-content">
+            <div class="text-center mb-5" data-aos="fade-down">
+                <span class="text-gold text-uppercase fw-bold d-block mb-2" style="letter-spacing: 2px;">Testimonials</span>
+                <h2 class="font-serif display-4 fw-bold text-choco">Words of Sweetness</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="flip-left" data-aos-delay="100">
+                    <div class="review-card">
+                        <span class="review-quote-icon">"</span>
+                        <div class="mb-4 text-gold">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        </div>
+                        <p class="fst-italic text-muted mb-4">"The best homemade chocolates I've ever had. The Dark Sea Salt praline is life-changing! Perfect packaging for my anniversary gift."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Anjali Menon" class="rounded-circle me-3 shadow-sm border border-2 border-white" style="width: 100px; height: 100px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-0 fw-bold text-choco">Anjali Menon</h6>
+                                <small class="text-muted">Verified Buyer</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-lg-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="review-card">
+                        <span class="review-quote-icon">"</span>
+                        <div class="mb-4 text-gold">
+                             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                        </div>
+                        <p class="fst-italic text-muted mb-4">"Ordered 100 boxes for my daughter's wedding return gifts. Everyone raved about the quality. Unmatched elegance!"</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Rahul S." class="rounded-circle me-3 shadow-sm border border-2 border-white" style="width: 100px; height: 100px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-0 fw-bold text-choco">Rahul S.</h6>
+                                <small class="text-muted">Event Client</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-lg-4" data-aos="flip-left" data-aos-delay="500">
+                    <div class="review-card">
+                        <span class="review-quote-icon">"</span>
+                        <div class="mb-4 text-gold">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+                            <span class="material-symbols-outlined">star_half</span>
+                        </div>
+                        <p class="fst-italic text-muted mb-4">"You can taste the love in every bite. Truly artisanal and miles ahead of commercial brands. My go-to for birthdays."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Priya Das" class="rounded-circle me-3 shadow-sm border border-2 border-white" style="width: 100px; height: 100px; object-fit: cover;">
+                            <div>
+                                <h6 class="mb-0 fw-bold text-choco">Priya Das</h6>
+                                <small class="text-muted">Frequent Patron</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect / Contact -->
+    <section id="contact" class="section-padding bg-alt">
+        <div class="container chapter-content">
+             <div class="row w-100 mx-auto bg-white rounded-5 shadow-lg overflow-hidden align-items-center p-0" data-aos="fade-up">
+                <div class="col-lg-5 p-0 d-none d-lg-block">
+                    <img src="assets/contact.jpg" class="w-100 h-100" style="object-fit: cover; min-height: 600px;" alt="Contact Image">
+                </div>
+                <div class="col-lg-7 p-5 p-lg-5 text-center text-md-start">
+                    <span class="text-gold text-uppercase fw-bold d-block mb-2" style="letter-spacing: 2px;">Get In Touch</span>
+                    <h2 class="font-serif display-5 fw-bold text-choco mb-4">Let's Connect</h2>
+                    <p class="text-muted mb-5">Reach out for custom orders, massive events, or just to share your sweet experience with us.</p>
+                    
+                    <form>
+                        <div class="row g-4">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="Your Name">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="email" class="form-control form-control-lg bg-light border-0" placeholder="Your Email">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control form-control-lg bg-light border-0" rows="4" placeholder="How can we help?"></textarea>
+                            </div>
+                            <div class="col-12 text-md-end">
+                                <button type="submit" class="btn-gold mt-2 border-0">Send Message <span class="material-symbols-outlined align-middle ms-2">send</span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Mega Footer Redesign -->
+    <footer class="mega-footer">
+        <div class="container">
+            <div class="row g-5 border-bottom border-secondary pb-5 mb-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <a class="navbar-brand font-serif fs-3 text-white text-decoration-none mb-3 d-inline-block" href="#hero">
+                        <span class="material-symbols-outlined text-gold align-middle me-1">cookie</span>
+                        Chocobites
+                    </a>
+                    <p class="opacity-75 mb-4 pe-lg-4">Delivering handcrafted artisanal happiness worldwide. Quality over quantity, always.</p>
+                    <div class="footer-socials">
+                        <a href="#"><span class="material-symbols-outlined">language</span></a>
+                        <a href="#"><span class="material-symbols-outlined">photo_camera</span></a>
+                        <a href="#"><span class="material-symbols-outlined">mail</span></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <h5>Discover</h5>
+                    <ul class="footer-links">
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#products">Signature Menu</a></li>
+                        <li><a href="#reviews">Testimonials</a></li>
+                        <li><a href="#">Chef's Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <h5>Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <h5>Newsletter</h5>
+                    <p class="opacity-75 mb-3">Subscribe for exclusive secret recipes and sweet discounts.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control border-0 py-3" placeholder="Email Address">
+                        <button class="btn btn-gold bg-gold text-choco px-4 fw-bold" type="button" id="button-addon2">Join</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row text-center text-md-start align-items-center opacity-75 small">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    &copy; 2026 Chocobites Homemades. All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-md-end">
+                    Designed with <span class="material-symbols-outlined fs-6 text-danger px-1" style="font-variation-settings: 'FILL' 1;">favorite</span> <a href="https://www.tebinnovations.in/" target="_blank"> TEB Innovations.</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FAB -->
+    <a href="https://wa.me/9747919123" class="fab-wa" target="_blank" data-aos="zoom-in" data-aos-delay="1000">
+        <span class="material-symbols-outlined fs-2">chat</span>
+    </a>
+
+    <!-- Quick View Modal -->
+    <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content overflow-hidden border-0 rounded-4 shadow-lg">
+                <div class="modal-header border-0 position-absolute w-100 justify-content-end z-2">
+                    <button type="button" class="btn-close bg-white bg-opacity-75 rounded-circle p-2 shadow-sm" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="row g-0">
+                        <div class="col-md-5">
+                            <img id="modalImg" src="" alt="Product" class="img-fluid h-100 w-100" style="object-fit: cover; min-height: 450px;">
+                        </div>
+                        <div class="col-md-7 p-5 bg-white d-flex flex-column justify-content-center">
+                            <span class="text-gold fw-bold text-uppercase small mb-2" style="letter-spacing: 1px;">Fresh Details</span>
+                            <h3 id="modalTitle" class="font-serif text-choco mb-2 display-6 fw-bold">Title</h3>
+                            <h4 id="modalPrice" class="text-choco opacity-75 mb-4 fw-bold">Price</h4>
+                            <p id="modalDesc" class="text-muted mb-4 fs-5" style="line-height: 1.6;">Description.</p>
+                            
+                            <hr class="opacity-10 mb-4">
+                            
+                            <div class="d-flex align-items-center gap-4">
+                                <button class="btn-gold flex-grow-1 border-0 w-100">Add to Basket</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Offcanvas -->
+    <div class="offcanvas offcanvas-end border-0 shadow" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header bg-alt border-bottom py-4">
+            <h5 class="offcanvas-title font-serif text-choco fw-bold fs-4">Your Basket</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column bg-cream">
+            <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center opacity-50">
+                <span class="material-symbols-outlined fs-1 mb-3 text-choco">shopping_basket</span>
+                <p class="font-serif fst-italic">Your basket is empty.</p>
+            </div>
+            <div class="border-top pt-4 mt-auto">
+                <button class="btn btn-gold bg-gold text-choco border-0 w-100 py-3 mb-3 fw-bold rounded-pill">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+</div> <!-- End Site Wrapper -->
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="../bootstrap.js"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Custom Scripts -->
+    <script>
+        // Init AOS
+        AOS.init({ once: true, offset: 50, easing: 'ease-out-cubic' });
+
+        // 4. Loader implementation (Curtain Reveal)
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var content = document.getElementById('loaderContent');
+                var curtainL = document.getElementById('curtainL');
+                var curtainR = document.getElementById('curtainR');
+                var loaderBg = document.getElementById('loader');
+                
+                content.style.opacity = '0';
+                
+                setTimeout(function(){
+                    curtainL.style.transform = 'translateY(-100%)';
+                    curtainR.style.transform = 'translateY(100%)';
+                    loaderBg.style.backgroundColor = 'transparent';
+                    
+                    setTimeout(function(){
+                        loaderBg.style.visibility = 'hidden';
+                    }, 1200);
+                }, 400);
+
+            }, 800); 
+        });
+
+        // 2 & 6. Sticky Custom Navbar behavior
+        window.addEventListener('scroll', function() {
+            var nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Quick View Data population
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.quick-view-btn').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    document.getElementById('modalTitle').textContent = this.getAttribute('data-title');
+                    document.getElementById('modalPrice').textContent = this.getAttribute('data-price');
+                    document.getElementById('modalDesc').textContent = this.getAttribute('data-desc');
+                    document.getElementById('modalImg').src = this.getAttribute('data-img');
+                });
+            });
+        });
+        // Active Navigation Link on Scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current) && current !== '') {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for nav links and auto-close mobile menu
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if(targetElement) {
+                    // Account for fixed navbar height
+                    const navbarHeight = document.querySelector('.custom-navbar').offsetHeight;
+                    const offsetPosition = targetElement.offsetTop - navbarHeight - 20; // 20px extra padding
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile navbar if open
+                    const navbarCollapse = document.getElementById('navbarCollapse');
+                    if(navbarCollapse.classList.contains('show') && typeof bootstrap !== 'undefined') {
+                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, {toggle: false});
+                        bsCollapse.hide();
+                    }
+                }
+            });
+        });
+    </script>
+    <script 
+  src="https://haseefmuhammed.github.io/teb-site-hook/teb-controller.js"
+  data-site="demo139">
+</script>
+</body>
+</html>
